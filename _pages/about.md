@@ -18,7 +18,7 @@ social: true # includes social icons at the bottom of the page
 I am an undergraduate student passionate about harnessing deep learning techniques to advance computer vision, with a particular focus on assistive technologies and medical applications. My academic journey is driven by the belief that technology should enhance human capabilities while ensuring accessibility for all.
 
 ## Academic Background  
-Currently pursuing a Bachelor's degree in **Artificial Intelligence (Honors Program)** at **VNU University of Science** (GPA: 3.91/4.0), I complement my formal education with online courses from Harvard, Stanford, and Coursera. My coursework spans theoretical foundations in calculus and linear algebra to practical applications in computer vision and machine learning.
+Currently pursuing a Bachelor's degree in **Honors Program** at **VNU University of Science** (GPA: 3.91/4.0), I build upon my formal education by taking online courses from Harvard, Stanford, and Coursera. My academic foundation spans theoretical subjects such as calculus, linear algebra, and programming, along with practical applications in computer vision and machine learning.
 
 ## Research Interests  
 My research interests lie at the intersection of:  
