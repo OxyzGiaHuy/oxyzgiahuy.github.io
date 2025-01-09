@@ -27,8 +27,8 @@ My research interests lie at the intersection of:
 
 Through my work with the AIVN Research Group, I've gained hands-on experience in processing fMRI images and conducting literature reviews on medical imaging. This experience has reinforced my interest in developing intuitive, adaptive interfaces that respond to neural signals and physiological changes.
 
-## Technical Projects  
-<!-- I've led several projects that demonstrate my technical capabilities:  
+<!-- ## Technical Projects  
+I've led several projects that demonstrate my technical capabilities:  
 - Implemented stereo matching algorithms for 3D depth reconstruction  
 - Built image retrieval systems using CLIP embeddings and semantic search  
 - Developed pathfinding visualizations using various algorithms (DFS, BFS, A*, Q-Learning)  
