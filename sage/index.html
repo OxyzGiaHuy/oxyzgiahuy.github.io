@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Shape-Adapting Gated Experts: Dynamic Expert Routing for Colonoscopic Lesion Segmentation">
+  <meta name="keywords" content="Medical Imaging, Segmentation, Dynamic Routing, Mixture of Experts, Colonoscopy">
+  <meta name="author" content="Gia Huy Thai, Hoang-Nguyen Vu, Anh-Minh Phan, et al.">
+  <meta name="robots" content="index, follow">
+
+  <title>SAGE-UNet: Shape-Adapting Gated Experts</title>
+
+  <!-- Using the same static assets as the reference project -->
+  <link rel="icon" type="image/x-icon" href="static/images/VN.ico">
+  
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <style>
+    .publication-title {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800 !important;
+    }
+
+    .method-section {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .method-image {
+      margin: 2rem auto;
+      text-align: center;
+      max-width: 1000px;
+    }
+    
+    .method-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .image-caption {
+      margin-top: 1rem;
+      font-style: italic;
+      color: #666;
+      font-size: 0.95rem;
+      text-align: justify;
+    }
+    
+    .result-table {
+      margin: 2rem auto;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    
+    .result-table table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: "Inter", sans-serif;
+      font-size: 0.85rem;
+      color: #000;
+    }
+    
+    .result-table th,
+    .result-table td {
+      padding: 0.5rem;
+      border: none;
+      text-align: center;
+      vertical-align: middle;
+    }
+    
+    /* Top and bottom borders for the table */
+    .result-table thead {
+      border-top: 2px solid #000;
+      border-bottom: 1px solid #000;
+    }
+    
+    .result-table tbody {
+      border-bottom: 2px solid #000;
+    }
+    
+    /* Header specific styling */
+    .result-table thead tr:first-child th {
+      font-weight: 700;
+      border-bottom: 1px solid #ccc;
+    }
+    
+    /* Model column alignment and separator */
+    .result-table td:first-child,
+    .result-table th:first-child {
+      text-align: left;
+      border-right: 1px solid #ccc;
+      font-weight: 600;
+    }
+
+    /* Vertical dividers between groups */
+    
+    /* Header Row 1: Separators after each group header */
+    .result-table thead tr:first-child th:not(:last-child) {
+      border-right: 1px solid #ccc;
+    }
+
+    /* Header Row 2: Separators after metrics of each group (indices 3, 6, 9, 12) */
+    .result-table thead tr:nth-child(2) th:nth-child(3),
+    .result-table thead tr:nth-child(2) th:nth-child(6),
+    .result-table thead tr:nth-child(2) th:nth-child(9),
+    .result-table thead tr:nth-child(2) th:nth-child(12) {
+      border-right: 1px solid #ccc;
+    }
+
+    /* Body Rows: Separators after metrics of each group (indices 4, 7, 10, 13 - shifted by 1 due to Model col) */
+    .result-table td:nth-child(4),
+    .result-table td:nth-child(7),
+    .result-table td:nth-child(10),
+    .result-table td:nth-child(13) {
+      border-right: 1px solid #ccc;
+    }
+
+    /* Hover effect for rows */
+    .result-table tbody tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .grid-5 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Shape-Adapting Gated Experts: Dynamic Expert Routing for Colonoscopic Lesion Segmentation</h1>
+            
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://orcid.org/0009-0006-6684-5323" target="_blank">Gia-Huy Thai</a><sup>1,*</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=nGUt6_oAAAAJ&hl=en" target="_blank">Hoang-Nguyen Vu</a><sup>2,*</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=JCbuDwcAAAAJ&hl=vi" target="_blank">Anh-Minh Phan</a><sup>3</sup>,</span>
+              <span class="author-block"><a href="https://orcid.org/0009-0006-9039-5887" target="_blank">Quang-Thinh Ly</a><sup>4</sup>,</span>
+              <span class="author-block">Tram Dinh<sup>5</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=rTa5hJwAAAAJ&hl=en" target="_blank">Thi-Ngoc-Truc Nguyen</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com.vn/citations?user=Xs7cKMwAAAAJ&hl=vi" target="_blank">Nhat Ho</a><sup>6</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>University of Science, VNU-HCM,</span>
+              <span class="author-block"><sup>2</sup>Trivita AI,</span>
+              <span class="author-block"><sup>3</sup>University of Technology, VNU-HCM,</span>
+              <span class="author-block"><sup>4</sup>Michigan State University, USA,</span>
+              <span class="author-block"><sup>5</sup>Phu Nhuan High School,</span>
+              <span class="author-block"><sup>6</sup>The University of Texas at Austin</span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>*</sup>Equal Contribution</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2511.18493" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Arxiv</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code (coming soon)</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teaser / Explainability Visualization -->
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3 has-text-centered" style="margin-top: 2rem;">Explainability Visualization</h2>
+            <div class="grid-3">
+              <!-- Row 1 -->
+              <div class="method-image">
+                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Original Image</p>
+                <img src="figs/org_img_xai.png" alt="Original Image">
+              </div>
+              <div class="method-image">
+                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Ground Truth</p>
+                <img src="figs/gt_xai.png" alt="Ground Truth">
+              </div>
+              <div class="method-image">
+                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Prediction</p>
+                <img src="figs/pred_xai.png" alt="Our model Prediction">
+              </div>
+        
+              <!-- Row 2 -->
+              <div class="method-image">
+                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">CNN Main Path</p>
+                <img src="figs/cnn_main.png" alt="CNN Main Path">
+              </div>
+              <div class="method-image">
+                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Transformer Block 1</p>
+                <img src="figs/trans_block1.png" alt="Transformer Block 1">
+              </div>
+              <div class="method-image">
+                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Transformer Block 11</p>
+                <img src="figs/trans_block11.png" alt="Transformer Block 11">
+              </div>
+        
+              <!-- Row 3 -->
+              <div class="method-image">
+                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Transformer Main Path</p>
+                <img src="figs/trans_main.png" alt="Transformer Main Path">
+              </div>
+              <div class="method-image">
+                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">CNN Block 2</p>
+                <img src="figs/convnext_stage1.png" alt="CNN Block 2">
+              </div>
+              <div class="method-image">
+                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Transformer Block 2</p>
+                <img src="figs/trans_block2.png" alt="Transformer Block 2">
+              </div>
+            </div>
+            <div class="content has-text-justified">
+                <p class="image-caption">
+                    Figure 1: Explainability visualization of dynamic expert routing in SAGE on the EBHI dataset. Grad-CAMs highlight contributions from the CNN and Transformer main paths and their expert blocks. SAGE adaptively redistributes attention across heterogeneous modules, revealing interpretable expert collaboration during inference.
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              The substantial diversity in cell scale and form remains a primary challenge in computer-aided cancer detection on gigapixel Whole Slide Images (WSIs), attributable to cellular heterogeneity. Existing CNN-Transformer hybrids rely on static computation graphs with fixed routing, which consequently causes redundant computation and limits their adaptability to input variability. We propose Shape-Adapting Gated Experts (SAGE), an input-adaptive framework that enables dynamic expert routing in heterogeneous visual networks. SAGE reconfigures static backbones into dynamically routed expert architectures. SAGE’s dual-path design features a backbone stream that preserves representation and selectively activates an expert path through hierarchical gating. This gating mechanism operates at multiple hierarchical levels, performing a two-level, hierarchical selection between shared and specialized experts to modulate model logits for Top-K activation. Our Shape-Adapting Hub (SA-Hub) harmonizes structural and semantic representations across the CNN and the Transformer module, effectively bridging diverse modules. Embodied as SAGE-UNet, our model achieves superior segmentation on three medical benchmarks: EBHI, DigestPath, and GlaS, yielding state-of-the-art Dice Scores of 95.57%, 95.16%, and 94.17%, respectively, and robustly generalizes across domains by adaptively balancing local refinement and global context. SAGE provides a scalable foundation for dynamic expert routing, enabling flexible visual reasoning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Method -->
+  <section class="section method-section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-2 has-text-centered">Methodology</h2>
+      
+      <div class="content has-text-justified">
+        <p>
+        The principal road (black arrows) represents the backbone forward flow, and the expert road (brown arrows) is dynamically responsible for routing information between distant modules. The router determines the best connections to experts, and then the Shape-Adapting Hub ensures that there is structural compatibility between the convolutional features and transformer features. In this illustration, the router activates two experts, and the Shape-Adapting Hub preserves compatibility between convolutional and transformer features. The skip connections enable the transfer of multi-scale features to the decoder, facilitating higher-resolution reconstruction. The two-path architecture enables SAGE-UNet to perform adaptive and complexity-conscious segmentation tasks.
+        </p>
+      </div>
+
+      <div class="method-image">
+        <img src="figs/pipeline.jpg" alt="SAGE Architecture Overview">
+        <p class="image-caption">
+          <strong>Figure 2: SAGE Architecture Overview.</strong> 
+        </p>
+      </div>
+
+
+      <div class="columns is-vcentered">
+        <div class="column is-half">
+          <div class="content has-text-justified">
+            <h3 class="title is-4 has-text-left">Hierarchical Top-K Expert Routing</h3>
+            <p>
+              The router dynamically divides computing between shared experts (green), which capture domain-invariant and transferable
+              features, and specialized experts (blue), who focus on input-specific reasoning. High gating values prefer shared
+              experts for generalization, whereas low values prefer specialized experts for context-dependent adaptation. This
+              hierarchical routing allows SAGE to balance generalization and specialization across several visual domains.
+            </p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="method-image">
+            <img src="figs/share.png" alt="Shared Expert Gating" style="max-height: 600px; width: auto; object-fit: contain;">
+            <p class="image-caption">
+              <strong>Figure 3: SAGE Gating.</strong> 
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content has-text-justified" style="margin-top: 2rem;">
+        <h3 class="title is-4 has-text-left">Semantic Affinity Routing (SAR)</h3>
+        <p>
+         The query vectors of CNN and Transformer calculate routing logits separately by conducting dot-product similarity calculation with expert-specific key matrices, which are selected from a shared expert pool. The affinity structure has three parts: convolutional self-affinity, transformer-based self-affinity, and cross-architectural affinity, which allow the router to capture relevance within and among modalities. From these scores, SAR selects the semantically most similar experts and treats their representations as inputs to subsequent layer-adaptive processing.
+        </p>
+      </div>
+      
+      <div class="method-image">
+        <img src="figs/SAR.png" alt="SAR Mechanism" style="width: 100%; max-width: 1000px; height: auto;">
+        <p class="image-caption">
+          <strong>Figure 4: Overview of Semantic Affinity Routing (SAR) Mechanism in SAGE.</strong>
+        </p>
+      </div>
+
+      <div class="columns">
+        <div class="column is-half">
+          <div class="method-image">
+            <img src="figs/full_affinity_heatmap.png" alt="Normalized affinity score heatmap">
+            <p class="image-caption">
+              <strong>Figure 5: Normalized affinity score heatmap.</strong> This visualization illustrates the normalized affinity scores (gating probabilities per expert per layer), with a color scale ranging from red (low affinity) to dark green (high affinity). Each row corresponds to a layer in the model (CNN 1&minus;4 followed by Transformer 1&minus;16), and each column represents one of the 20 experts (E0 to E19).
+            </p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="method-image">
+            <img src="figs/Routing.jpg" alt="Top-K activation map">
+            <p class="image-caption">
+              <strong>Figure 6: Top-K activation map.</strong> This binary heatmap shows routing choice information for <i>K</i> = 4 and over the layers of the model (rows correspond to CNN layers 1&minus;4 and Transformer layers 1&minus;16) and the 20 experts (columns correspond to E0 through E19). The activation of an expert within the top <i>K</i> at least for one token in the layer, upon processing the entire batch, is marked by blue cells; empty cells indicate no activation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content has-text-justified">
+        <h3 class="title is-4">Shape-Adapting Hub (SA-Hub)</h3>
+        <p>
+          Integrating diverse networks like CNNs and Transformers is challenging because they process data differently. The <strong>Shape-Adapting Hub (SA-Hub)</strong> acts as a bridge. It includes an <em>Input Adapter</em> to reshape features for the specific expert and an <em>Output Adapter</em> to convert them back. This ensures seamless communication and structural compatibility between heterogeneous modules.
+        </p>
+        <p>
+          The first step of the shape-adaptation process in the SA-Hub, for each expert activated, is to transform the shape of the input feature by <i>S<sub>in</sub></i>, based on what shape is required by each expert, and then reconstruct it by <i>S<sub>out</sub></i> so that its shape fits that of the main path feature. The shape of each feature, therefore, serves as metadata that directs this shape-adaptation process, irrespective of the diverse expert architectures activated. The outputs from all the activated experts are then combined to obtain another expert path representation.
+        </p>
+      </div>
+
+      <div class="method-image">
+        <img src="figs/sahub.png" alt="SA-Hub Structure">
+        <p class="image-caption">
+          <strong>Figure 7: The structure of the Shape-Adapting Hub (SA-Hub) over activated experts.</strong>
+        </p>
+      </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section" style="margin-top: -3rem;">
+    <div class="container is-max-desktop">
+      <h2 class="title is-2 has-text-centered">Experimental Results</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          SAGE-UNet outperforms baselines on EBHI, DigestPath, and GlaS, yielding state-of-the-art Dice Scores.
+        </p>
+      </div>
+
+      <h3 class="title is-4 has-text-centered">Table 1: Performance comparison with baseline models</h3>
+      <div class="result-table">
+        <table class="is-size-7">
+          <thead>
+            <tr>
+              <th rowspan="2" style="vertical-align: middle;">Model</th>
+              <th colspan="3">EBHI (Adenocarcinoma)</th>
+              <th colspan="3">DigestPath (Colonoscopy)</th>
+              <th colspan="3">GlaS (Test A+B)</th>
+              <th colspan="3">GlaS (Test A)</th>
+              <th colspan="3">GlaS (Test B)</th>
+            </tr>
+            <tr>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>ResNet101-UNet</td><td>92.04</td><td>88.89</td><td>94.12</td><td>98.40</td><td>92.15</td><td>88.03</td><td>91.86</td><td>85.29</td><td>92.06</td><td>92.81</td><td>86.39</td><td>92.70</td><td>89.02</td><td>82.49</td><td>90.41</td></tr>
+            <tr><td>ResNet152-UNet</td><td>89.25</td><td>85.36</td><td>92.10</td><td>98.42</td><td>92.15</td><td>88.34</td><td>90.51</td><td>83.17</td><td>90.81</td><td>92.25</td><td>85.32</td><td>92.08</td><td>85.28</td><td>78.14</td><td>87.73</td></tr>
+            <tr><td>EfficientNet-B7-UNet</td><td>92.00</td><td>88.85</td><td>94.09</td><td>98.81</td><td>94.95</td><td>90.96</td><td>92.50</td><td>86.13</td><td>92.55</td><td>93.17</td><td>86.83</td><td>92.95</td><td>90.51</td><td>84.34</td><td>91.50</td></tr>
+            <tr><td>ConvNeXt-UNet</td><td>92.40</td><td>89.42</td><td>94.42</td><td>98.99</td><td>95.71</td><td>91.94</td><td>92.76</td><td>86.70</td><td>92.88</td><td>93.74</td><td>87.91</td><td>93.56</td><td>89.81</td><td>83.72</td><td>91.14</td></tr>
+            <tr><td>UNet++</td><td>88.75</td><td>84.90</td><td>91.83</td><td>98.94</td><td>94.06</td><td>91.26</td><td>92.75</td><td>86.85</td><td>92.96</td><td>93.44</td><td>87.56</td><td>93.37</td><td>90.69</td><td>85.06</td><td>91.93</td></tr>
+            <tr><td>SegFormer</td><td>92.50</td><td>89.52</td><td>94.47</td><td>98.91</td><td>94.47</td><td>91.10</td><td>93.02</td><td>87.31</td><td>93.23</td><td>94.02</td><td>88.55</td><td>93.93</td><td>90.03</td><td>84.26</td><td>91.45</td></tr>
+            <tr><td>Swin-Unet</td><td>88.52</td><td>84.68</td><td>91.70</td><td>98.65</td><td>93.43</td><td>89.50</td><td>91.26</td><td>84.42</td><td>91.55</td><td>91.97</td><td>85.09</td><td>91.95</td><td>89.13</td><td>82.69</td><td>90.52</td></tr>
+            <tr><td>U-Mamba</td><td>90.07</td><td>86.41</td><td>92.71</td><td>98.05</td><td>91.61</td><td>86.34</td><td>87.50</td><td>78.60</td><td>88.02</td><td>88.60</td><td>79.58</td><td>88.63</td><td>84.18</td><td>76.11</td><td>86.43</td></tr>
+            <tr><td>Swin-UMamba</td><td>90.68</td><td>87.25</td><td>93.19</td><td>98.37</td><td>91.70</td><td>87.59</td><td>88.15</td><td>78.90</td><td>88.21</td><td>89.26</td><td>80.04</td><td>88.91</td><td>84.80</td><td>76.02</td><td>86.38</td></tr>
+            <tr><td>MoE-NuSeg</td><td>83.53</td><td>78.64</td><td>88.41</td><td>98.15</td><td>91.40</td><td>87.13</td><td>87.70</td><td>79.06</td><td>88.31</td><td>87.94</td><td>78.75</td><td>88.11</td><td>86.96</td><td>79.89</td><td>88.82</td></tr>
+            <tr style="font-weight: bold; background-color: #f0f7ff;"><td>SAGE-UNet + Softmax (Ours)</td><td>95.39</td><td>90.88</td><td>94.77</td><td>98.27</td><td>95.87</td><td>94.41</td><td>93.54</td><td>88.31</td><td>93.39</td><td>94.06</td><td>88.79</td><td>93.78</td><td>92.06</td><td>86.79</td><td>91.88</td></tr>
+            <tr style="font-weight: bold; background-color: #e6f3ff;"><td>SAGE-UNet + Sigmoid (Ours)</td><td>96.22</td><td>91.58</td><td>95.57</td><td>99.03</td><td>96.67</td><td>95.16</td><td>94.31</td><td>89.02</td><td>94.17</td><td>94.81</td><td>89.52</td><td>94.67</td><td>92.81</td><td>87.52</td><td>92.67</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="title is-4 has-text-centered">Table 2: Performance comparison with SOTA models</h3>
+      <div class="result-table">
+        <table class="is-size-7">
+          <thead>
+            <tr>
+              <th rowspan="2" style="vertical-align: middle;">Model</th>
+              <th colspan="3">EBHI (Adenocarcinoma)</th>
+              <th colspan="3">DigestPath (Colonoscopy)</th>
+              <th colspan="3">GlaS (Test A+B)</th>
+              <th colspan="3">GlaS (Test A)</th>
+              <th colspan="3">GlaS (Test B)</th>
+            </tr>
+            <tr>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+              <th>Acc</th><th>IoU</th><th>DSC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>SelfReg-UNet</td><td>91.76</td><td>88.39</td><td>93.84</td><td>98.41</td><td>91.25</td><td>87.62</td><td>89.10</td><td>80.67</td><td>89.30</td><td>89.76</td><td>81.05</td><td>89.53</td><td>87.12</td><td>79.69</td><td>88.70</td></tr>
+            <tr><td>Attention U-Net</td><td>91.59</td><td>88.42</td><td>93.86</td><td>98.61</td><td>92.44</td><td>89.17</td><td>90.51</td><td>82.90</td><td>90.65</td><td>90.83</td><td>82.87</td><td>90.63</td><td>89.54</td><td>82.96</td><td>90.69</td></tr>
+            <tr><td>ConvUNeXt</td><td>91.48</td><td>88.14</td><td>93.69</td><td>98.87</td><td>94.01</td><td>90.76</td><td>90.08</td><td>82.10</td><td>90.17</td><td>90.50</td><td>82.10</td><td>90.17</td><td>88.82</td><td>82.09</td><td>90.17</td></tr>
+            <tr><td>UCTransNet</td><td>92.01</td><td>89.09</td><td>94.23</td><td>98.21</td><td>90.42</td><td>86.39</td><td>89.92</td><td>82.07</td><td>90.15</td><td>90.36</td><td>82.12</td><td>90.18</td><td>88.62</td><td>81.95</td><td>90.08</td></tr>
+            <tr><td>TransAttUNet</td><td>92.15</td><td>89.01</td><td>94.19</td><td>98.59</td><td>92.77</td><td>89.04</td><td>90.25</td><td>82.29</td><td>90.28</td><td>90.69</td><td>82.41</td><td>90.36</td><td>88.94</td><td>81.97</td><td>90.09</td></tr>
+            <tr><td>EViT-UNet</td><td>92.18</td><td>89.05</td><td>94.21</td><td>98.98</td><td>94.91</td><td>91.60</td><td>92.24</td><td>85.99</td><td>92.47</td><td>93.00</td><td>86.76</td><td>92.91</td><td>89.97</td><td>84.07</td><td>91.35</td></tr>
+            <tr><td>DS-TransUNet</td><td>91.91</td><td>88.68</td><td>94.00</td><td>98.14</td><td>95.07</td><td>91.51</td><td>89.12</td><td>80.83</td><td>89.40</td><td>89.53</td><td>80.85</td><td>89.42</td><td>87.89</td><td>80.77</td><td>89.36</td></tr>
+            <tr><td>CAC-UNet</td><td>91.90</td><td>88.71</td><td>94.02</td><td>98.51</td><td>96.47</td><td>94.97</td><td>89.00</td><td>80.76</td><td>89.36</td><td>89.84</td><td>81.59</td><td>89.86</td><td>86.47</td><td>78.60</td><td>88.02</td></tr>
+            <tr><td>TransUNet</td><td>91.92</td><td>83.21</td><td>90.66</td><td>98.26</td><td>85.45</td><td>88.26</td><td>90.00</td><td>81.81</td><td>89.87</td><td>90.90</td><td>83.10</td><td>90.64</td><td>86.53</td><td>76.44</td><td>86.26</td></tr>
+            <tr style="font-weight: bold; background-color: #f0f7ff;"><td>SAGE-UNet + Softmax (Ours)</td><td>95.39</td><td>90.88</td><td>94.77</td><td>98.27</td><td>95.87</td><td>94.41</td><td>93.54</td><td>88.31</td><td>93.39</td><td>94.06</td><td>88.79</td><td>93.78</td><td>92.06</td><td>86.79</td><td>91.88</td></tr>
+            <tr style="font-weight: bold; background-color: #e6f3ff;"><td>SAGE-UNet + Sigmoid (Ours)</td><td>96.22</td><td>91.58</td><td>95.57</td><td>99.03</td><td>96.67</td><td>95.16</td><td>94.31</td><td>89.02</td><td>94.17</td><td>94.81</td><td>89.52</td><td>94.67</td><td>92.81</td><td>87.52</td><td>92.67</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="title is-4 has-text-centered">Qualitative Comparison on GlaS Dataset</h3>
+      
+      <div class="grid-5">
+        <div class="method-image">
+          <img src="figs/testA_org_img.png" alt="Original Image">
+          <p class="image-caption has-text-centered">Original</p>
+        </div>
+        <div class="method-image">
+          <img src="figs/testA_gt.png" alt="Ground Truth">
+          <p class="image-caption has-text-centered">Ground Truth</p>
+        </div>
+        <div class="method-image">
+          <img src="figs/testA_overlay_transunet.png" alt="TransUNet">
+          <p class="image-caption has-text-centered">TransUNet</p>
+        </div>
+        <div class="method-image">
+          <img src="figs/testA_overlay_evit.png" alt="EViT">
+          <p class="image-caption has-text-centered">EViT</p>
+        </div>
+        <div class="method-image">
+          <img src="figs/testA_overlay_sage.png" alt="SAGE (Ours)">
+          <p class="image-caption has-text-centered"><strong>SAGE (Ours)</strong></p>
+        </div>
+      </div>
+
+      <div class="grid-5">
+        <div class="method-image">
+          <img src="figs/testB_org_img.png" alt="Original Image">
+          <p class="image-caption has-text-centered">Original</p>
+        </div>
+        <div class="method-image">
+          <img src="figs/testB_gt.png" alt="Ground Truth">
+          <p class="image-caption has-text-centered">Ground Truth</p>
+        </div>
+        <div class="method-image">
+          <img src="figs/testB_overlay_transunet.png" alt="TransUNet">
+          <p class="image-caption has-text-centered">TransUNet</p>
+        </div>
+        <div class="method-image">
+          <img src="figs/testB_overlay_evit.png" alt="EViT">
+          <p class="image-caption has-text-centered">EViT</p>
+        </div>
+        <div class="method-image">
+          <img src="figs/testB_overlay_sage.png" alt="SAGE (Ours)">
+          <p class="image-caption has-text-centered"><strong>SAGE (Ours)</strong></p>
+        </div>
+      </div>
+
+      <div class="content has-text-justified">
+        <p class="image-caption">
+          <strong>Figure 8: Qualitative comparison of segmentation results on the GlaS dataset.</strong> 
+          We compare SAGE-UNet with TransUNet and EViT. The overlay images highlight the alignment between the predicted masks (colored) and the original tissue structures. SAGE-UNet demonstrates superior boundary delineation and reduces false positives compared to other methods.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <div style="position: relative;">
+        <button class="button is-small is-light" onclick="copyBibtex()" style="position: absolute; top: 0.5rem; right: 0.5rem; z-index: 10;">
+          <span class="icon"><i class="fas fa-copy"></i></span>
+          <span>Copy</span>
+        </button>
+        <pre><code id="bibtex">@article{thai2025shape,
+  title={Shape-Adapting Gated Experts: Dynamic Expert Routing for Colonoscopic Lesion Segmentation},
+  author={Thai, Gia Huy and Vu, Hoang-Nguyen and Phan, Anh-Minh and Ly, Quang-Thinh and Dinh, Tram and Nguyen, Thi-Ngoc-Truc and Ho, Nhat},
+  journal={arXiv preprint arXiv:2511.18493},
+  year={2025}
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function copyBibtex() {
+      var copyText = document.getElementById("bibtex").innerText;
+      navigator.clipboard.writeText(copyText).then(function() {
+        var btn = document.querySelector("#BibTeX button span:last-child");
+        btn.innerText = "Copied!";
+        setTimeout(function() {
+          btn.innerText = "Copy";
+        }, 2000);
+      });
+    }
+  </script>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          This website is licensed under a <a rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
