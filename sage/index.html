@@ -286,7 +286,17 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              The substantial diversity in cell scale and form remains a primary challenge in computer-aided cancer detection on gigapixel Whole Slide Images (WSIs), attributable to cellular heterogeneity. Existing CNN-Transformer hybrids rely on static computation graphs with fixed routing, which consequently causes redundant computation and limits their adaptability to input variability. We propose Shape-Adapting Gated Experts (SAGE), an input-adaptive framework that enables dynamic expert routing in heterogeneous visual networks. SAGE reconfigures static backbones into dynamically routed expert architectures. SAGE’s dual-path design features a backbone stream that preserves representation and selectively activates an expert path through hierarchical gating. This gating mechanism operates at multiple hierarchical levels, performing a two-level, hierarchical selection between shared and specialized experts to modulate model logits for Top-K activation. Our Shape-Adapting Hub (SA-Hub) harmonizes structural and semantic representations across the CNN and the Transformer module, effectively bridging diverse modules. Embodied as SAGE-UNet, our model achieves superior segmentation on three medical benchmarks: EBHI, DigestPath, and GlaS, yielding state-of-the-art Dice Scores of 95.57%, 95.16%, and 94.17%, respectively, and robustly generalizes across domains by adaptively balancing local refinement and global context. SAGE provides a scalable foundation for dynamic expert routing, enabling flexible visual reasoning.
+              The significant variability in cell size and shape continues to pose a major obstacle in computer-assisted cancer
+              detection on gigapixel Whole Slide Images (WSIs), due to cellular heterogeneity. Current CNN-Transformer hybrids use
+              static computation graphs with fixed routing. This leads to extra computation and makes it harder to adapt to changes in
+              input. We propose Shape-Adapting Gated Experts (SAGE), an input-adaptive framework that enables dynamic expert routing
+              in heterogeneous visual networks. SAGE reconfigures static backbones into dynamically routed expert architectures via a
+              dual-path design with hierarchical gating and a Shape-Adapting Hub (SA-Hub) that harmonizes feature representations
+              across convolutional and transformer modules. Embodied as SAGE with ConvNeXt and Vision Transformer UNet
+              (SAGE-ConvNeXt+ViT-UNet), our model achieves a Dice score of $95.23\%$ on EBHI, $92.78\%$/$91.42\%$ DSC on GlaS Test
+              A/Test B, and $91.26\%$ DSC at the WSI level on DigestPath, while exhibiting robust generalization under distribution
+              shifts by adaptively balancing local refinement and global context. SAGE establishes a scalable foundation for dynamic
+              expert routing in visual networks, thereby facilitating flexible visual reasoning.
             </p>
           </div>
         </div>
@@ -303,14 +313,19 @@
       
       <div class="content has-text-justified">
         <p>
-        The principal road (black arrows) represents the backbone forward flow, and the expert road (brown arrows) is dynamically responsible for routing information between distant modules. The router determines the best connections to experts, and then the Shape-Adapting Hub ensures that there is structural compatibility between the convolutional features and transformer features. In this illustration, the router activates two experts, and the Shape-Adapting Hub preserves compatibility between convolutional and transformer features. The skip connections enable the transfer of multi-scale features to the decoder, facilitating higher-resolution reconstruction. The two-path architecture enables SAGE-UNet to perform adaptive and complexity-conscious segmentation tasks.
+        The main path (black arrows) keeps the original forward flow through Backbone 1 and Backbone 2, with multi-scale skip
+        connections to the decoder. In parallel, the expert path (brown arrows) routes features from an intermediate layer to a
+        sparse expert set (illustrated with Stage~2, Expert~$k$) selected by the router. The Shape-Adapting Hub performs
+        bidirectional format alignment via $S_{\text{in}}$ and $S_{\text{out}}$ so that cross-backbone expert execution is
+        shape-compatible before fusion with the main branch. Blue arrows indicate input/output shape constraints used by the
+        adapters, and dashed boxes denote parameter sharing (expert upcycling from pretrained backbone blocks).
         </p>
       </div>
 
       <div class="method-image">
-        <img src="figs/pipeline.jpg" alt="SAGE Architecture Overview">
+        <img src="figs/pipeline_new_2.jpg" alt="SAGE Architecture Overview">
         <p class="image-caption">
-          <strong>Figure 2: SAGE Architecture Overview.</strong> 
+          <strong>Figure 2: Overview of the SAGE Framework.</strong> 
         </p>
       </div>
 
@@ -362,7 +377,7 @@
         </div>
         <div class="column is-half">
           <div class="method-image">
-            <img src="figs/Routing.jpg" alt="Top-K activation map">
+            <img src="figs/router_2.jpg" alt="Top-K activation map">
             <p class="image-caption">
               <strong>Figure 6: Top-K activation map.</strong> This binary heatmap shows routing choice information for <i>K</i> = 4 and over the layers of the model (rows correspond to CNN layers 1&minus;4 and Transformer layers 1&minus;16) and the 20 experts (columns correspond to E0 through E19). The activation of an expert within the top <i>K</i> at least for one token in the layer, upon processing the entire batch, is marked by blue cells; empty cells indicate no activation.
             </p>
@@ -381,7 +396,7 @@
       </div>
 
       <div class="method-image">
-        <img src="figs/sahub.png" alt="SA-Hub Structure">
+        <img src="figs/sahub_2.jpg" alt="SA-Hub Structure">
         <p class="image-caption">
           <strong>Figure 7: The structure of the Shape-Adapting Hub (SA-Hub) over activated experts.</strong>
         </p>
