@@ -81,7 +81,7 @@
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <!--    <link rel="icon" href="./static/images/favicon.svg">-->
@@ -104,6 +104,8 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800 !important;
+    padding-bottom: 0.1em;
+    font-size: 2.3rem !important;
   }
 
   .method-section {
@@ -178,12 +180,14 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h2 class="title is-1 publication-title" style="margin-bottom: 0;">SAGE: Shape-Adapting Gated Experts for
-              Adaptive Histopathology
-              Image Segmentation</h2>
+            <h2 class="title publication-title" style="margin-bottom: 3.5rem;">
+              <img src="sage.gif" alt="SAGE Logo"
+                style="height: 1.5em; vertical-align: middle; margin-right: 1px; margin-bottom: 5px;">
+              SAGE: Shape-Adapting Gated Experts<br>for Adaptive Histopathology Image Segmentation
+            </h2>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><a href="https://orcid.org/0009-0006-6684-5323" target="_blank">Gia-Huy
+              <span class="author-block"><a href="https://orcid.org/0009-0006-6684-5323" target="_blank">Gia Huy
                   Thai</a><sup>1,*</sup>,</span>
               <span class="author-block"><a href="https://scholar.google.com/citations?user=nGUt6_oAAAAJ&hl=en"
                   target="_blank">Hoang-Nguyen Vu</a><sup>2,*</sup>,</span>
@@ -207,12 +211,17 @@
               <span class="author-block"><sup>6</sup>The University of Texas at Austin</span>
             </div>
 
-            <div class="title is-4 has-text-weight-semibold" style="margin-top: 10px; margin-bottom: 20px; color: #4a4a4a;">
+            <div class="title is-4 has-text-weight-semibold"
+              style="margin-top: 10px; margin-bottom: 20px; color: #4a4a4a;">
               CVPR 2026 <span style="color: #3b82f6;">Findings Track</span>
             </div>
 
-            <div class="is-size-6 publication-authors">
+            <div class="is-size-6 publication-authors" style="margin-bottom: 1rem;">
               <span class="author-block"><sup>*</sup>Equal Contribution</span>
+            </div>
+
+            <div class="has-text-centered" style="margin-bottom: 1rem;">
+              <img src="sage_herb.png" alt="SAGE Herb Mascot" style="height: 180px; width: auto; object-fit: contain;">
             </div>
 
             <div class="column has-text-centered">
@@ -240,55 +249,9 @@
         <div class="columns is-centered">
           <div class="column is-four-fifths">
             <h2 class="title is-3 has-text-centered" style="margin-top: 2rem;">Explainability Visualization</h2>
-            <div class="grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5px 1.25px;">
-              <!-- Row 1 -->
-              <div class="method-image">
-                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Original Image
-                </p>
-                <img src="figs/org_img_xai.png" alt="Original Image">
-              </div>
-              <div class="method-image">
-                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Ground Truth
-                </p>
-                <img src="figs/gt_xai.png" alt="Ground Truth">
-              </div>
-              <div class="method-image">
-                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Prediction</p>
-                <img src="figs/pred_xai.png" alt="Our model Prediction">
-              </div>
-
-              <!-- Row 2 -->
-              <div class="method-image">
-                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">CNN Main Path
-                </p>
-                <img src="figs/cnn_main.png" alt="CNN Main Path">
-              </div>
-              <div class="method-image">
-                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Transformer
-                  Block 1</p>
-                <img src="figs/trans_block1.png" alt="Transformer Block 1">
-              </div>
-              <div class="method-image">
-                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Transformer
-                  Block 11</p>
-                <img src="figs/trans_block11.png" alt="Transformer Block 11">
-              </div>
-
-              <!-- Row 3 -->
-              <div class="method-image">
-                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Transformer
-                  Main Path</p>
-                <img src="figs/trans_main.png" alt="Transformer Main Path">
-              </div>
-              <div class="method-image">
-                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">CNN Block 2</p>
-                <img src="figs/convnext_stage1.png" alt="CNN Block 2">
-              </div>
-              <div class="method-image">
-                <p class="image-caption has-text-centered" style="margin-top: 0; margin-bottom: 0.5rem;">Transformer
-                  Block 2</p>
-                <img src="figs/trans_block2.png" alt="Transformer Block 2">
-              </div>
+            <div class="method-image">
+              <img src="expl_viz.png" alt="Explainability Visualization"
+                style="width: 70%; border-radius: 8px; margin-bottom: 1rem;">
             </div>
             <div class="content has-text-justified">
               <p class="image-caption">
@@ -374,15 +337,21 @@
   <!-- Results -->
   <section class="section" style="margin-top: -3rem;">
     <div class="container is-max-desktop">
-      <h2 class="title is-2 has-text-centered">Experimental Results</h2>
+      <!-- <h2 class="title is-2 has-text-centered">Experimental Results</h2>
 
       <div class="content has-text-justified">
         <p>
           SAGE-UNet outperforms baselines on EBHI, DigestPath, and GlaS, yielding state-of-the-art Dice Scores.
         </p>
-      </div>
+      </div> -->
 
       <h3 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">Qualitative Comparison</h3>
+    </div>
+  </section>
+
+  <section class="hero is-light is-small" style="overflow-x: hidden; padding-bottom: 2rem;">
+    <div class="hero-body">
+      <div class="container is-fluid">
 
       <style>
         .qual-grid {
@@ -424,122 +393,180 @@
           font-weight: bold;
           font-size: 0.95rem;
         }
+
+        .carousel-card {
+          padding: 24px;
+          margin: 0;
+          background-color: #ffffff;
+          border-radius: 16px;
+          border: none;
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* Ensure images have no black borders implicitly */
+        .qual-col img {
+          width: 100%;
+          border-radius: 4px;
+          display: block;
+          border: none !important;
+        }
+        
+        /* Center Mode Magic (1 focus, 2 halves) */
+        #results-carousel {
+          width: 75%;
+          margin: 0 auto;
+          overflow: visible !important;
+        }
+        #results-carousel .slider-wrapper,
+        #results-carousel .slider-container {
+          overflow: visible !important;
+        }
+        #results-carousel .slider-item {
+          transition: transform 0.4s ease;
+          transform: scale(0.9);        
+          pointer-events: none;
+          opacity: 1;
+        }
+        #results-carousel .slider-item.is-active {
+          transform: scale(1);
+          pointer-events: auto;
+          z-index: 10;
+        }
       </style>
 
-      <!-- GlaS Header -->
-      <div class="header-row">
-        <div></div>
-        <div>(a) Input</div>
-        <div>(b) TransUNet</div>
-        <div>(c) EViT-UNet</div>
-        <div>(d) Ours</div>
+      <div id="results-carousel" class="carousel results-carousel">
+
+        <!-- Slide 1: GlaS Test A -->
+        <div class="item">
+          <div class="carousel-card">
+            <div class="header-row">
+              <div></div>
+              <div>(a) Input</div>
+              <div>(b) TransUNet</div>
+              <div>(c) EViT-UNet</div>
+              <div>(d) Ours</div>
+            </div>
+            <div class="qual-grid" style="margin-bottom: 0;">
+              <div class="rotated-label">GlaS Test A</div>
+              <div class="qual-col">
+                <img src="figs/testA_org_img.png" alt="Test A Input">
+                <img src="figs/testA_gt.png" alt="Test A GT">
+              </div>
+              <div class="qual-col">
+                <img src="figs/testA_overlay_transunet.png" alt="Test A TransUNet Overlay">
+                <img src="figs/testA_pred_transunet.png" alt="Test A TransUNet Pred">
+              </div>
+              <div class="qual-col">
+                <img src="figs/testA_overlay_evit.png" alt="Test A EViT Overlay">
+                <img src="figs/testA_pred_evit.png" alt="Test A EViT Pred">
+              </div>
+              <div class="qual-col">
+                <img src="figs/testA_overlay_sage.png" alt="Test A SAGE Overlay">
+                <img src="figs/testA_pred_sage.png" alt="Test A SAGE Pred">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: GlaS Test B -->
+        <div class="item">
+          <div class="carousel-card">
+            <div class="header-row">
+              <div></div>
+              <div>(a) Input</div>
+              <div>(b) TransUNet</div>
+              <div>(c) EViT-UNet</div>
+              <div>(d) Ours</div>
+            </div>
+            <div class="qual-grid" style="margin-bottom: 0;">
+              <div class="rotated-label">GlaS Test B</div>
+              <div class="qual-col">
+                <img src="figs/testB_org_img.png" alt="Test B Input">
+                <img src="figs/testB_gt.png" alt="Test B GT">
+              </div>
+              <div class="qual-col">
+                <img src="figs/testB_overlay_transunet.png" alt="Test B TransUNet Overlay">
+                <img src="figs/testB_pred_transunet.png" alt="Test B TransUNet Pred">
+              </div>
+              <div class="qual-col">
+                <img src="figs/testB_overlay_evit.png" alt="Test B EViT Overlay">
+                <img src="figs/testB_pred_evit.png" alt="Test B EViT Pred">
+              </div>
+              <div class="qual-col">
+                <img src="figs/testB_overlay_sage.png" alt="Test B SAGE Overlay">
+                <img src="figs/testB_pred_sage.png" alt="Test B SAGE Pred">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: DigestPath WSI 1 -->
+        <div class="item">
+          <div class="carousel-card">
+            <div class="header-row">
+              <div></div>
+              <div>(a) Input</div>
+              <div>(b) SegFormer</div>
+              <div>(c) EViT-UNet</div>
+              <div>(d) Ours</div>
+            </div>
+            <div class="qual-grid" style="margin-bottom: 0;">
+              <div class="rotated-label">WSI Sample 1</div>
+              <div class="qual-col">
+                <img src="figs/wsi_img1.png" alt="WSI 1 Input">
+                <img src="figs/wsi_gt1.png" alt="WSI 1 GT">
+              </div>
+              <div class="qual-col">
+                <img src="figs/segformer_wsi_overlay1.png" alt="WSI 1 SegFormer Overlay">
+                <img src="figs/segformer_wsi_pred1.png" alt="WSI 1 SegFormer Pred">
+              </div>
+              <div class="qual-col">
+                <img src="figs/evit_wsi_overlay1.png" alt="WSI 1 EViT Overlay">
+                <img src="figs/evit_wsi_pred1.png" alt="WSI 1 EViT Pred">
+              </div>
+              <div class="qual-col">
+                <img src="figs/sage_wsi_overlay1.png" alt="WSI 1 SAGE Overlay">
+                <img src="figs/sage_wsi_pred1.png" alt="WSI 1 SAGE Pred">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: DigestPath WSI 2 -->
+        <div class="item">
+          <div class="carousel-card">
+            <div class="header-row">
+              <div></div>
+              <div>(a) Input</div>
+              <div>(b) SegFormer</div>
+              <div>(c) EViT-UNet</div>
+              <div>(d) Ours</div>
+            </div>
+            <div class="qual-grid" style="margin-bottom: 0;">
+              <div class="rotated-label">WSI Sample 2</div>
+              <div class="qual-col">
+                <img src="figs/wsi_img2.png" alt="WSI 2 Input">
+                <img src="figs/wsi_gt2.png" alt="WSI 2 GT">
+              </div>
+              <div class="qual-col">
+                <img src="figs/segformer_wsi_overlay2.png" alt="WSI 2 SegFormer Overlay">
+                <img src="figs/segformer_wsi_pred2.png" alt="WSI 2 SegFormer Pred">
+              </div>
+              <div class="qual-col">
+                <img src="figs/evit_wsi_overlay2.png" alt="WSI 2 EViT Overlay">
+                <img src="figs/evit_wsi_pred2.png" alt="WSI 2 EViT Pred">
+              </div>
+              <div class="qual-col">
+                <img src="figs/sage_wsi_overlay2.png" alt="WSI 2 SAGE Overlay">
+                <img src="figs/sage_wsi_pred2.png" alt="WSI 2 SAGE Pred">
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- GlaS Test A -->
-      <div class="qual-grid">
-        <div class="rotated-label">GlaS Test A</div>
-        <div class="qual-col">
-          <img src="figs/testA_org_img.png" alt="Test A Input">
-          <img src="figs/testA_gt.png" alt="Test A GT">
-        </div>
-        <div class="qual-col">
-          <img src="figs/testA_overlay_transunet.png" alt="Test A TransUNet Overlay">
-          <img src="figs/testA_pred_transunet.png" alt="Test A TransUNet Pred">
-        </div>
-        <div class="qual-col">
-          <img src="figs/testA_overlay_evit.png" alt="Test A EViT Overlay">
-          <img src="figs/testA_pred_evit.png" alt="Test A EViT Pred">
-        </div>
-        <div class="qual-col">
-          <img src="figs/testA_overlay_sage.png" alt="Test A SAGE Overlay">
-          <img src="figs/testA_pred_sage.png" alt="Test A SAGE Pred">
-        </div>
       </div>
-
-      <!-- GlaS Test B -->
-      <div class="qual-grid">
-        <div class="rotated-label">GlaS Test B</div>
-        <div class="qual-col">
-          <img src="figs/testB_org_img.png" alt="Test B Input">
-          <img src="figs/testB_gt.png" alt="Test B GT">
-        </div>
-        <div class="qual-col">
-          <img src="figs/testB_overlay_transunet.png" alt="Test B TransUNet Overlay">
-          <img src="figs/testB_pred_transunet.png" alt="Test B TransUNet Pred">
-        </div>
-        <div class="qual-col">
-          <img src="figs/testB_overlay_evit.png" alt="Test B EViT Overlay">
-          <img src="figs/testB_pred_evit.png" alt="Test B EViT Pred">
-        </div>
-        <div class="qual-col">
-          <img src="figs/testB_overlay_sage.png" alt="Test B SAGE Overlay">
-          <img src="figs/testB_pred_sage.png" alt="Test B SAGE Pred">
-        </div>
-      </div>
-
-      <div class="content has-text-centered" style="margin-top: 1rem; margin-bottom: 3rem;">
-        <p class="image-caption">
-          <strong>Figure 8: Qualitative comparison on GlaS test samples.</strong>
-        </p>
-      </div>
-
-      <!-- Digestpath Header -->
-      <div class="header-row">
-        <div></div>
-        <div>(a) Input</div>
-        <div>(b) SegFormer</div>
-        <div>(c) EViT-UNet</div>
-        <div>(d) Ours</div>
-      </div>
-
-      <!-- DigestPath WSI 1 -->
-      <div class="qual-grid">
-        <div class="rotated-label">WSI Sample 1</div>
-        <div class="qual-col">
-          <img src="figs/wsi_img1.png" alt="WSI 1 Input">
-          <img src="figs/wsi_gt1.png" alt="WSI 1 GT">
-        </div>
-        <div class="qual-col">
-          <img src="figs/segformer_wsi_overlay1.png" alt="WSI 1 SegFormer Overlay">
-          <img src="figs/segformer_wsi_pred1.png" alt="WSI 1 SegFormer Pred">
-        </div>
-        <div class="qual-col">
-          <img src="figs/evit_wsi_overlay1.png" alt="WSI 1 EViT Overlay">
-          <img src="figs/evit_wsi_pred1.png" alt="WSI 1 EViT Pred">
-        </div>
-        <div class="qual-col">
-          <img src="figs/sage_wsi_overlay1.png" alt="WSI 1 SAGE Overlay">
-          <img src="figs/sage_wsi_pred1.png" alt="WSI 1 SAGE Pred">
-        </div>
-      </div>
-
-      <!-- DigestPath WSI 2 -->
-      <div class="qual-grid">
-        <div class="rotated-label">WSI Sample 2</div>
-        <div class="qual-col">
-          <img src="figs/wsi_img2.png" alt="WSI 2 Input">
-          <img src="figs/wsi_gt2.png" alt="WSI 2 GT">
-        </div>
-        <div class="qual-col">
-          <img src="figs/segformer_wsi_overlay2.png" alt="WSI 2 SegFormer Overlay">
-          <img src="figs/segformer_wsi_pred2.png" alt="WSI 2 SegFormer Pred">
-        </div>
-        <div class="qual-col">
-          <img src="figs/evit_wsi_overlay2.png" alt="WSI 2 EViT Overlay">
-          <img src="figs/evit_wsi_pred2.png" alt="WSI 2 EViT Pred">
-        </div>
-        <div class="qual-col">
-          <img src="figs/sage_wsi_overlay2.png" alt="WSI 2 SAGE Overlay">
-          <img src="figs/sage_wsi_pred2.png" alt="WSI 2 SAGE Pred">
-        </div>
-      </div>
-
-      <div class="content has-text-centered" style="margin-top: 1rem;">
-        <p class="image-caption">
-          <strong>Figure 9: Qualitative comparison on Digestpath WSI test samples.</strong>
-        </p>
-      </div>
-
     </div>
   </section>
 
@@ -589,6 +616,10 @@
     </div>
   </footer>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </body>
 
 </html>
