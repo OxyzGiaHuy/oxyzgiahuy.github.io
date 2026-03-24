@@ -1,0 +1,15 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\textbf{Medical Image Segmentation.}
+Medical image segmentation is a core component of computational pathology because it enables quantitative analysis of cellular and tissue morphology. Earlier methods based on intensity thresholds, region growing, and contour evolution are sensitive to noise and staining variation. Deep learning substantially improved robustness, starting from U-Net~\cite{ronneberger2015unet} and extending to stronger encoders such as ResNet~\cite{ResNet}, EfficientNet~\cite{EfficientNetRM}, ConvNeXt~\cite{ConvNext}, and nested designs such as U-Net++~\cite{zhou2018unet++}. Recent studies emphasize data efficiency and transferability: foundation models such as MedSAM~\cite{medSAM} and SAM-Med2D/3D~\cite{sun2024sammed2d} leverage large-scale pretraining, while semi-supervised methods such as C2GMatch~\cite{C2GMatch} improve performance under limited annotations. However, severe domain heterogeneity in histopathology still makes robust cross-domain adaptation challenging.
+
+% \vspace{0.1in}
+
+\noindent\textbf{Hybrid U-Net Architectures.}
+Hybrid CNN--Transformer segmentation models seek to combine local detail modeling and long-range context. Representative architectures include TransUNet~\cite{chen2024transunet}, Swin-UNet~\cite{cao2022swin}, and SegFormer~\cite{xie2021segformer}. Although these models improve global reasoning, they still follow static fusion and static computation graphs, which can be suboptimal for highly variable tissue patterns. State-space alternatives such as U-Mamba~\cite{ma2024u} and Swin U-Mamba~\cite{liu2024swin} reduce complexity for large images via linear-time sequence modeling, but fine boundary precision can remain challenging in difficult regions. MoE-based segmentation models (e.g., MoE-NuSeg~\cite{wu2025moe}) introduce conditional computation, yet most existing designs do not explicitly combine depth-wise adaptive routing with cross-architecture shape alignment.
+
+% \vspace{0.1in}
+
+\noindent\textbf{Mixture of Experts.}
+MoE provides scalable conditional computation by activating only a subset of experts per input~\cite{sparseMoE}. Subsequent advances improve routing robustness and efficiency, including large-scale routing designs~\cite{deepseekMoE} and sigmoid-based gating~\cite{sigmoidGatingMoE, sigmoid_attention}. In vision, MoE has been explored for multimodal routing and multi-task adaptation~\cite{mixtureCNN, Ada-MV}, and decoder-centric parameterization strategies~\cite{mixture-of-low-rank}. Most prior approaches perform routing at token or spatial granularity, with limited depth-wise control over which layers are executed. MoLEx~\cite{molex} addresses this gap by treating layers as experts and routing across depth. SAGE builds on this direction and further introduces hierarchical group-aware routing together with shape-adaptive interaction between heterogeneous experts (e.g., CNN and Transformer blocks).

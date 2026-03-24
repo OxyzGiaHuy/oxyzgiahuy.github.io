@@ -140,3 +140,118 @@ span.highlight {
     display: inline-block;
     border-radius: 10px;
 }
+
+/* CSS Layout - replaces table-based layout */
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.header-section {
+    padding: 2.5%;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5%;
+}
+
+.header-text {
+    flex: 1 1 63%;
+    vertical-align: middle;
+}
+
+.header-image {
+    flex: 1 1 37%;
+    max-width: 37%;
+}
+
+.header-image img {
+    border-radius: 50%;
+}
+
+.contact-links {
+    text-align: center;
+}
+
+.research-section {
+    padding: 16px;
+}
+
+.papers-section {
+    width: 100%;
+}
+
+.paper-item {
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+    gap: 8px;
+    background-color: #ffffd0;
+}
+
+.paper-image {
+    flex: 0 0 20%;
+    vertical-align: middle;
+}
+
+.paper-content {
+    flex: 1 1 80%;
+    vertical-align: middle;
+}
+
+.under-review {
+    color: red;
+}
+
+.footer-section {
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.footer-text {
+    text-align: right;
+    font-size: small;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: column-reverse;
+    }
+    
+    .header-text,
+    .header-image {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .header-image img {
+        max-width: 200px;
+    }
+    
+    .paper-item {
+        flex-direction: column;
+    }
+    
+    .paper-image,
+    .paper-content {
+        flex: none;
+        width: 100%;
+    }
+    
+    .paper-image {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .footer-text {
+        text-align: center;
+    }
+}

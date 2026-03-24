@@ -1,0 +1,545 @@
+@String(PAMI = {IEEE Trans. Pattern Anal. Mach. Intell.})
+@String(IJCV = {Int. J. Comput. Vis.})
+@String(CVPR= {IEEE Conf. Comput. Vis. Pattern Recog.})
+@String(ICCV= {Int. Conf. Comput. Vis.})
+@String(ECCV= {Eur. Conf. Comput. Vis.})
+@String(NIPS= {Adv. Neural Inform. Process. Syst.})
+@String(ICPR = {Int. Conf. Pattern Recog.})
+@String(BMVC= {Brit. Mach. Vis. Conf.})
+@String(TOG= {ACM Trans. Graph.})
+@String(TIP  = {IEEE Trans. Image Process.})
+@String(TVCG  = {IEEE Trans. Vis. Comput. Graph.})
+@String(TMM  = {IEEE Trans. Multimedia})
+@String(ACMMM= {ACM Int. Conf. Multimedia})
+@String(ICME = {Int. Conf. Multimedia and Expo})
+@String(ICASSP=	{ICASSP})
+@String(ICIP = {IEEE Int. Conf. Image Process.})
+@String(ACCV  = {ACCV})
+@String(ICLR = {Int. Conf. Learn. Represent.})
+@String(IJCAI = {IJCAI})
+@String(PR   = {Pattern Recognition})
+@String(AAAI = {AAAI})
+@String(CVPRW= {IEEE Conf. Comput. Vis. Pattern Recog. Worksh.})
+@String(CSVT = {IEEE Trans. Circuit Syst. Video Technol.})
+
+@String(SPL	= {IEEE Sign. Process. Letters})
+@String(VR   = {Vis. Res.})
+@String(JOV	 = {J. Vis.})
+@String(TVC  = {The Vis. Comput.})
+@String(JCST  = {J. Comput. Sci. Tech.})
+@String(CGF  = {Comput. Graph. Forum})
+@String(CVM = {Computational Visual Media})
+
+
+@String(PAMI  = {IEEE TPAMI})
+@String(IJCV  = {IJCV})
+@String(CVPR  = {CVPR})
+@String(ICCV  = {ICCV})
+@String(ECCV  = {ECCV})
+@String(NIPS  = {NeurIPS})
+@String(ICPR  = {ICPR})
+@String(BMVC  =	{BMVC})
+@String(TOG   = {ACM TOG})
+@String(TIP   = {IEEE TIP})
+@String(TVCG  = {IEEE TVCG})
+@String(TCSVT = {IEEE TCSVT})
+@String(TMM   =	{IEEE TMM})
+@String(ACMMM = {ACM MM})
+@String(ICME  =	{ICME})
+@String(ICASSP=	{ICASSP})
+@String(ICIP  = {ICIP})
+@String(ACCV  = {ACCV})
+@String(ICLR  = {ICLR})
+@String(IJCAI = {IJCAI})
+@String(PR = {PR})
+@String(AAAI = {AAAI})
+@String(CVPRW= {CVPRW})
+@String(CSVT = {IEEE TCSVT})
+
+@INPROCEEDINGS{VMambaDA,
+  author={Vu, Hoang-Nguyen and Nguyen, Thi-Ngoc-Truc and Bui, Minh-Duc and Huynh, Kim-Ngan Ngoc and Minh Nguyen, Thanh and Minh, Hoang Tran and Nguyen V., Duy},
+  booktitle={2025 IEEE 6th International Conference on Image Processing, Applications and Systems (IPAS)}, 
+  title={VMambaDA: Visual State Space Model with Unsupervised Domain Adaptation in Cervical Cancer}, 
+  year={2025},
+  volume={CFP2540Z-ART},
+  number={},
+  pages={1-6},
+  keywords={Deep learning;Adaptation models;Visualization;Accuracy;Sensitivity;Mortality;Public healthcare;Cervical cancer;Medical diagnostic imaging;Testing;Cervical cancer;Unsupervised Domain adaptation;Medical Image Classification;Artificial Intelligence;Deep Learning},
+  doi={10.1109/IPAS63548.2025.10924483}}
+
+@INPROCEEDINGS{C2GMatch,
+  author={Nguyen, Thi-Ngoc-Truc and Ong, Xuan-Hong and Hoang-Thien-Nguyen and Bui, Van-Hung and Vu, Hoang-Nguyen and Nguyen, Thanh Minh and Nguyen, Quan and Nguyen, Huu-Hung},
+  booktitle={2025 IEEE 6th International Conference on Image Processing, Applications and Systems (IPAS)}, 
+  title={C2GMatch: Leveraging Dual-View Cross-Guidance and Co-Guidance Framework for Semi-Supervised Cell Segmentation}, 
+  year={2025},
+  volume={CFP2540Z-ART},
+  number={},
+  pages={1-6},
+  keywords={White blood cells;Semantic segmentation;Leukemia;Semisupervised learning;Monitoring;White blood cell;Semi-supervised learning;Semantic Segmentation},
+  doi={10.1109/IPAS63548.2025.10924518}}
+
+
+@article{MoE-NuSeg,
+title = {MoE-NuSeg: Enhancing nuclei segmentation in histology images with a two-stage Mixture of Experts network},
+journal = {Alexandria Engineering Journal},
+volume = {110},
+pages = {557-566},
+year = {2025},
+issn = {1110-0168},
+doi = {https://doi.org/10.1016/j.aej.2024.10.011},
+url = {https://www.sciencedirect.com/science/article/pii/S1110016824011669},
+author = {Xuening Wu and Yiqing Shen and Qing Zhao and Yanlan Kang and Wenqiang Zhang},
+keywords = {Nuclei segmentation, Histology image, Swin transformer, Mixture of Experts (moEs)},
+abstract = {Accurate nuclei segmentation is essential for extracting quantitative information from histology images to support disease diagnosis and treatment decisions. However, precise segmentation is challenging due to the presence of clustered nuclei, varied morphologies, and the need to capture global spatial correlations. While state-of-the-art Transformer-based models employ tri-decoder architectures to decouple the segmentation task into nuclei, edges, and cluster edges segmentation, their complexity and long inference times hinder clinical integration. To address this, we introduce MoE-NuSeg, a novel Mixture of Experts (MoE) network that consolidates the tri-decoder into a single decoder. MoE-NuSeg employs three specialized experts for nuclei segmentation, edge delineation, and cluster edge detection, thereby mirroring the functionality of tri-decoders while surpassing their performance and reducing parameters by sharing attention heads. We propose a two-stage training strategy: the first stage independently trains the three experts, and the second stage fine-tunes their interactions to dynamically allocate the contributions of each expert using a learnable attention-based gating network. Evaluations across three datasets demonstrate that MoE-NuSeg outperforms the state-of-the-art methods, achieving an average increase of 0.99% in Dice coefficient, 1.14% in IoU and 0.92% in F1 Score, while reducing parameters by 30.1% and FLOPs by 40.2%. The code is available at https://github.com/deep-geo/MoE-NuSeg.}
+}
+
+@misc{sparseMoE,
+      title={Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer}, 
+      author={Noam Shazeer and Azalia Mirhoseini and Krzysztof Maziarz and Andy Davis and Quoc Le and Geoffrey Hinton and Jeff Dean},
+      year={2017},
+      eprint={1701.06538},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1701.06538}, 
+}
+
+@misc{deepseekMoE,
+      title={DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models}, 
+      author={Damai Dai and Chengqi Deng and Chenggang Zhao and R. X. Xu and Huazuo Gao and Deli Chen and Jiashi Li and Wangding Zeng and Xingkai Yu and Y. Wu and Zhenda Xie and Y. K. Li and Panpan Huang and Fuli Luo and Chong Ruan and Zhifang Sui and Wenfeng Liang},
+      year={2024},
+      eprint={2401.06066},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2401.06066}, 
+}
+@article{zhu2021multi,
+  title={Multi-level colonoscopy malignant tissue detection with adversarial CAC-UNet},
+  author={Zhu, Chuang and Mei, Ke and Peng, Ting and Luo, Yihao and Liu, Jun and Wang, Ying and Jin, Mulan},
+  journal={Neurocomputing},
+  volume={438},
+  pages={165--183},
+  year={2021},
+  publisher={Elsevier}
+}
+
+@article{chen2021transunet,
+  title={Transunet: Transformers make strong encoders for medical image segmentation},
+  author={Chen, Jieneng and Lu, Yongyi and Yu, Qihang and Luo, Xiangde and Adeli, Ehsan and Wang, Yan and Lu, Le and Yuille, Alan L and Zhou, Yuyin},
+  journal={arXiv preprint arXiv:2102.04306},
+  year={2021}
+}
+@inproceedings{cao2022swin,
+  title={Swin-unet: Unet-like pure transformer for medical image segmentation},
+  author={Cao, Hu and Wang, Yueyue and Chen, Joy and Jiang, Dongsheng and Zhang, Xiaopeng and Tian, Qi and Wang, Manning},
+  booktitle={European conference on computer vision},
+  pages={205--218},
+  year={2022},
+  organization={Springer}
+}
+@article{xie2021segformer,
+  title={SegFormer: Simple and efficient design for semantic segmentation with transformers},
+  author={Xie, Enze and Wang, Wenhai and Yu, Zhiding and Anandkumar, Anima and Alvarez, Jose M and Luo, Ping},
+  journal={Advances in neural information processing systems},
+  volume={34},
+  number={},
+  pages={12077--12090},
+  year={2021}
+}
+@inproceedings{zhu2024selfreg,
+  title={Selfreg-unet: Self-regularized unet for medical image segmentation},
+  author={Zhu, Wenhui and Chen, Xiwen and Qiu, Peijie and Farazi, Mohammad and Sotiras, Aristeidis and Razi, Abolfazl and Wang, Yalin},
+  booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},
+  pages={601--611},
+  year={2024},
+  organization={Springer}
+}
+@misc{sigmoidGatingMoE,
+      title={Sigmoid Gating is More Sample Efficient than Softmax Gating in Mixture of Experts}, 
+      author={Huy Nguyen and Nhat Ho and Alessandro Rinaldo},
+      year={2024},
+      eprint={2405.13997},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML},
+      url={https://arxiv.org/abs/2405.13997}, 
+}
+@article{oktay2018attention,
+  title={Attention u-net: Learning where to look for the pancreas},
+  author={Oktay, Ozan and Schlemper, Jo and Folgoc, Loic Le and Lee, Matthew and Heinrich, Mattias and Misawa, Kazunari and Mori, Kensaku and McDonagh, Steven and Hammerla, Nils Y and Kainz, Bernhard and others},
+  journal={arXiv preprint arXiv:1804.03999},
+  year={2018}
+}
+
+@article{sigmoid_attention,
+  title={Sigmoid self-attention is better than softmax self-attention: {A} mixture-of-experts perspective},
+  author={Yan, Fanqi and  Nguyen, Huy and Akbarian, Pedram and Ho, Nhat  and Rinaldo, Alessandro},
+  journal={arXiv preprintarXiv: 2502.00281},
+  year={2025}
+}
+
+@article{lin2022ds,
+  title={Ds-transunet: Dual swin transformer u-net for medical image segmentation},
+  author={Lin, Ailiang and Chen, Bingzhi and Xu, Jiayu and Zhang, Zheng and Lu, Guangming and Zhang, David},
+  journal={IEEE Transactions on Instrumentation and Measurement},
+  volume={71},
+  pages={1--15},
+  year={2022},
+  publisher={IEEE}
+}
+@article{chen2023transattunet,
+  title={Transattunet: Multi-level attention-guided u-net with transformer for medical image segmentation},
+  author={Chen, Bingzhi and Liu, Yishu and Zhang, Zheng and Lu, Guangming and Kong, Adams Wai Kin},
+  journal={IEEE Transactions on Emerging Topics in Computational Intelligence},
+  volume={8},
+  number={1},
+  pages={55--68},
+  year={2023},
+  publisher={IEEE}
+}
+@inproceedings{li2025evit,
+  title={EViT-UNET: U-Net Like Efficient Vision Transformer for Medical Image Segmentation on Mobile and Edge Devices},
+  author={Li, Xin and Zhu, Wenhui and Dong, Xuanzhao and Dumitrascu, Oana M and Wang, Yalin},
+  booktitle={2025 IEEE 22nd International Symposium on Biomedical Imaging (ISBI)},
+  pages={1--5},
+  year={2025},
+  organization={IEEE}
+}
+@article{han2022convunext,
+  title={ConvUNeXt: An efficient convolution neural network for medical image segmentation},
+  author={Han, Zhimeng and Jian, Muwei and Wang, Gai-Ge},
+  journal={Knowledge-based systems},
+  volume={253},
+  pages={109512},
+  year={2022},
+  publisher={Elsevier}
+}
+@inproceedings{wang2022uctransnet,
+  title={Uctransnet: rethinking the skip connections in u-net from a channel-wise perspective with transformer},
+  author={Wang, Haonan and Cao, Peng and Wang, Jiaqi and Zaiane, Osmar R},
+  booktitle={Proceedings of the AAAI conference on artificial intelligence},
+  volume={36},
+  pages={2441--2449},
+  year={2022}
+}
+@misc{molex,
+      title={MoLEx: Mixture of Layer Experts for Finetuning with Sparse Upcycling}, 
+      author={Rachel S. Y. Teo and Tan M. Nguyen},
+      year={2025},
+      eprint={2503.11144},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2503.11144}, 
+}
+
+
+@INPROCEEDINGS{mixtureCNN,
+  author={Mees, Oier and Eitel, Andreas and Burgard, Wolfram},
+  booktitle={2016 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
+  title={Choosing smartly: Adaptive multimodal fusion for object detection in changing environments}, 
+  year={2016},
+  volume={},
+  number={},
+  pages={151-156},
+  keywords={Robot sensing systems;Object detection;Feature extraction;Detectors;Training;Adaptive systems},
+  doi={10.1109/IROS.2016.7759048}}
+
+
+@INPROCEEDINGS{Ada-MV,
+  author={Chen, Tianlong and Chen, Xuxi and Du, Xianzhi and Rashwan, Abdullah and Yang, Fan and Chen, Huizhong and Wang, Zhangyang and Li, Yeqing},
+  booktitle={2023 IEEE/CVF International Conference on Computer Vision (ICCV)}, 
+  title={AdaMV-MoE: Adaptive Multi-Task Vision Mixture-of-Experts}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={17300-17311},
+  keywords={Training;Instance segmentation;Adaptation models;Adaptive systems;Object detection;Benchmark testing;Multitasking},
+  doi={10.1109/ICCV51070.2023.01591}}
+
+@misc{mixture-of-low-rank,
+      title={Multi-Task Dense Prediction via Mixture of Low-Rank Experts}, 
+      author={Yuqi Yang and Peng-Tao Jiang and Qibin Hou and Hao Zhang and Jinwei Chen and Bo Li},
+      year={2024},
+      eprint={2403.17749},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2403.17749}, 
+}
+
+@inproceedings{ronneberger2015unet,
+  title     = {U-Net: Convolutional Networks for Biomedical Image Segmentation},
+  author    = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+  booktitle = {Medical Image Computing and Computer-Assisted Intervention – MICCAI 2015},
+  editor    = {Navab, Nassir and Hornegger, Joachim and Wells, William M. and Frangi, Alejandro F.},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {9351},
+  pages     = {234--241},
+  publisher = {Springer, Cham},
+  year      = {2015},
+  doi       = {10.1007/978-3-319-24574-4_28},
+  url       = {https://doi.org/10.1007/978-3-319-24574-4_28}
+}
+
+@inproceedings{cicek2016unet,
+  title     = {3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation},
+  author    = {Çiçek, Özgün and Abdulkadir, Ahmed and Lienkamp, Soeren S. and Brox, Thomas and Ronneberger, Olaf},
+  booktitle = {Medical Image Computing and Computer-Assisted Intervention – MICCAI 2016},
+  editor    = {Ourselin, Sebastien and Joskowicz, Leo and Sabuncu, Mert R. and Unal, Gozde and Wells, William M.},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {9901},
+  pages     = {424--432},
+  publisher = {Springer, Cham},
+  year      = {2016},
+  doi       = {10.1007/978-3-319-46723-8_49},
+  url       = {https://doi.org/10.1007/978-3-319-46723-8_49}
+}
+
+
+@article{stringer2021cellpose,
+  title     = {Cellpose: a generalist algorithm for cellular segmentation},
+  author    = {Stringer, Carsen and Wang, Tim and Michaelos, Michalis and Pachitariu, Marius},
+  journal   = {Nature Methods},
+  volume    = {18},
+  number    = {1},
+  pages     = {100--106},
+  year      = {2021},
+  doi       = {10.1038/s41592-020-01018-x},
+  url       = {https://doi.org/10.1038/s41592-020-01018-x},
+  note      = {Epub 2020 Dec 14. PMID: 33318659}
+}
+
+
+@article{ma2024segment,
+  title     = {Segment anything in medical images},
+  author    = {Ma, Jun and He, Yanning and Li, Feng and others},
+  journal   = {Nature Communications},
+  volume    = {15},
+  pages     = {654},
+  year      = {2024},
+  doi       = {10.1038/s41467-024-44824-z},
+  url       = {https://doi.org/10.1038/s41467-024-44824-z}
+}
+
+
+@INPROCEEDINGS{ResNet,
+  author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle={2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, 
+  title={Deep Residual Learning for Image Recognition}, 
+  year={2016},
+  volume={},
+  number={},
+  pages={770-778},
+  keywords={Training;Degradation;Complexity theory;Image recognition;Neural networks;Visualization;Image segmentation},
+  doi={10.1109/CVPR.2016.90}}
+
+@article{EfficientNetRM,
+  title={EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks},
+  author={Mingxing Tan and Quoc V. Le},
+  journal={ArXiv},
+  year={2019},
+  volume={abs/1905.11946},
+  url={https://api.semanticscholar.org/CorpusID:167217261}
+}
+
+@INPROCEEDINGS{ConvNext,
+  author={Liu, Zhuang and Mao, Hanzi and Wu, Chao-Yuan and Feichtenhofer, Christoph and Darrell, Trevor and Xie, Saining},
+  booktitle={2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 
+  title={A ConvNet for the 2020s}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={11966-11976},
+  keywords={Computer vision;Image segmentation;Visualization;Computational modeling;Scalability;Semantics;Transformers;Deep learning architectures and techniques; Recognition: detection;categorization;retrieval; Representation learning},
+  doi={10.1109/CVPR52688.2022.01167}}
+
+
+@inproceedings{zhou2018unet++,
+  title     = {UNet++: A Nested U-Net Architecture for Medical Image Segmentation},
+  author    = {Zhou, Zongwei and Siddiquee, Md Mahfuzur Rahman and Tajbakhsh, Nima and Liang, Jianming},
+  booktitle = {Deep Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support},
+  pages     = {3--11},
+  year      = {2018},
+  publisher = {Springer},
+  address   = {Cham},
+  doi       = {10.1007/978-3-030-00889-5_1},
+  pmid      = {32613207},
+  pmcid     = {PMC7329239},
+  note      = {Epub 2018 Sep 20},
+}
+
+
+@article{sun2024sammed2d,
+  title   = {Medical image analysis using improved SAM-Med2D: segmentation and classification perspectives},
+  author  = {Sun, Jiahao and Chen, Kai and He, Zhiwei and others},
+  journal = {BMC Medical Imaging},
+  volume  = {24},
+  pages   = {241},
+  year    = {2024},
+  doi     = {10.1186/s12880-024-01401-6},
+  url     = {https://doi.org/10.1186/s12880-024-01401-6},
+}
+
+@article{chen2024transunet,
+  title={TransUNet: Rethinking the U-Net architecture design for medical image segmentation through the lens of transformers},
+  author={Chen, Jieneng and Mei, Jieru and Li, Xianhang and Lu, Yongyi and Yu, Qihang and Wei, Qingyue and Luo, Xiangde and Xie, Yutong and Adeli, Ehsan and Wang, Yan and others},
+  journal={Medical Image Analysis},
+  volume={97},
+  pages={103280},
+  year={2024},
+  publisher={Elsevier}
+}
+
+
+@article{ma2024u,
+  title={U-mamba: Enhancing long-range dependency for biomedical image segmentation},
+  author={Ma, Jun and Li, Feifei and Wang, Bo},
+  journal={arXiv preprint arXiv:2401.04722},
+  year={2024}
+}
+
+@inproceedings{liu2024swin,
+  title={Swin-umamba: Mamba-based unet with imagenet-based pretraining},
+  author={Liu, Jiarun and Yang, Hao and Zhou, Hong-Yu and Xi, Yan and Yu, Lequan and Li, Cheng and Liang, Yong and Shi, Guangming and Yu, Yizhou and Zhang, Shaoting and others},
+  booktitle={International conference on medical image computing and computer-assisted intervention},
+  pages={615--625},
+  year={2024},
+  organization={Springer}
+}
+
+@article{wu2025moe,
+  title={Moe-nuseg: Enhancing nuclei segmentation in histology images with a two-stage mixture of experts network},
+  author={Wu, Xuening and Shen, Yiqing and Zhao, Qing and Kang, Yanlan and Zhang, Wenqiang},
+  journal={Alexandria Engineering Journal},
+  volume={110},
+  pages={557--566},
+  year={2025},
+  publisher={Elsevier}
+}
+
+@INPROCEEDINGS{CNN,
+  author={Albawi, Saad and Mohammed, Tareq Abed and Al-Zawi, Saad},
+  booktitle={2017 International Conference on Engineering and Technology (ICET)}, 
+  title={Understanding of a convolutional neural network}, 
+  year={2017},
+  volume={},
+  number={},
+  pages={1-6},
+  keywords={Convolution;Neurons;Convolutional neural networks;Feature extraction;Image edge detection;machine learning;artificial neural networks;deep learning;convolutional neural networks;computer vision;Image recognition},
+  doi={10.1109/ICEngTechnol.2017.8308186}}
+
+
+
+@article{khan2022transformers,
+  title={Transformers in vision: A survey},
+  author={Khan, Salman and Naseer, Muzammal and Hayat, Munawar and Zamir, Syed Waqas and Khan, Fahad Shahbaz and Shah, Mubarak},
+  journal={ACM computing surveys (CSUR)},
+  volume={54},
+  number={10s},
+  pages={1--41},
+  year={2022},
+  publisher={ACM New York, NY}
+}
+
+@misc{sirinukunwattana2016glandsegmentationcolonhistology,
+      title={Gland Segmentation in Colon Histology Images: The GlaS Challenge Contest}, 
+      author={Korsuk Sirinukunwattana and Josien P. W. Pluim and Hao Chen and Xiaojuan Qi and Pheng-Ann Heng and Yun Bo Guo and Li Yang Wang and Bogdan J. Matuszewski and Elia Bruni and Urko Sanchez and Anton Böhm and Olaf Ronneberger and Bassem Ben Cheikh and Daniel Racoceanu and Philipp Kainz and Michael Pfeiffer and Martin Urschler and David R. J. Snead and Nasir M. Rajpoot},
+      year={2016},
+      eprint={1603.00275},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/1603.00275}, 
+}
+
+@article{HU2023102534,
+    title = {EBHI-Seg: A novel enteroscope biopsy histopathological hematoxylin and eosin image dataset for image segmentation tasks},
+    journal = {Frontiers in Medicine},
+    volume = {Volume 10 - 2023},
+    year = {2023},
+    issn = {2296-858X},
+    doi = {10.3389/fmed.2023.1114673},
+    url = {https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2023.1114673},
+    author = {Shi, Liyu  and Li, Xiaoyan  and Hu, Weiming  and Chen, Haoyuan  and Chen, Jing  and Fan, Zizhen  and Gao, Minghe  and Jing, Yujie  and Lu, Guotao  and Ma, Deguo  and Ma, Zhiyu  and Meng, Qingtao  and Tang, Dechao  and Sun, Hongzan  and Grzegorzek, Marcin  and Qi, Shouliang  and Teng, Yueyang  and Li, Chen},
+}
+
+@article{DA2022102485,
+    title = {DigestPath: A benchmark dataset with challenge review for the pathological detection and segmentation of digestive-system},
+    journal = {Medical Image Analysis},
+    volume = {80},
+    pages = {102485},
+    year = {2022},
+    issn = {1361-8415},
+    doi = {https://doi.org/10.1016/j.media.2022.102485},
+    url = {https://www.sciencedirect.com/science/article/pii/S1361841522001323},
+    author = {Qian Da and Xiaodi Huang and Zhongyu Li and Yanfei Zuo and Chenbin Zhang and Jingxin Liu and Wen Chen and Jiahui Li and Dou Xu and Zhiqiang Hu and Hongmei Yi and Yan Guo and Zhe Wang and Ling Chen and Li Zhang and Xianying He and Xiaofan Zhang and Ke Mei and Chuang Zhu and Weizeng Lu and Linlin Shen and Jun Shi and Jun Li and Sreehari S and Ganapathy Krishnamurthi and Jiangcheng Yang and Tiancheng Lin and Qingyu Song and Xuechen Liu and Simon Graham and Raja Muhammad Saad Bashir and Canqian Yang and Shaofei Qin and Xinmei Tian and Baocai Yin and Jie Zhao and Dimitris N. Metaxas and Hongsheng Li and Chaofu Wang and Shaoting Zhang},
+}
+
+@misc{dosovitskiy2021imageworth16x16words,
+      title={An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale}, 
+      author={Alexey Dosovitskiy and Lucas Beyer and Alexander Kolesnikov and Dirk Weissenborn and Xiaohua Zhai and Thomas Unterthiner and Mostafa Dehghani and Matthias Minderer and Georg Heigold and Sylvain Gelly and Jakob Uszkoreit and Neil Houlsby},
+      year={2021},
+      eprint={2010.11929},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2010.11929}, 
+}
+
+@misc{loshchilov2019decoupledweightdecayregularization,
+      title={Decoupled Weight Decay Regularization}, 
+      author={Ilya Loshchilov and Frank Hutter},
+      year={2019},
+      eprint={1711.05101},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1711.05101}, 
+}
+
+@misc{howard2018universallanguagemodelfinetuning,
+      title={Universal Language Model Fine-tuning for Text Classification}, 
+      author={Jeremy Howard and Sebastian Ruder},
+      year={2018},
+      eprint={1801.06146},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/1801.06146}, 
+}
+
+@misc{ronneberger2015unetconvolutionalnetworksbiomedical,
+      title={U-Net: Convolutional Networks for Biomedical Image Segmentation}, 
+      author={Olaf Ronneberger and Philipp Fischer and Thomas Brox},
+      year={2015},
+      eprint={1505.04597},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/1505.04597}, 
+}
+
+@misc{he2015deepresiduallearningimage,
+      title={Deep Residual Learning for Image Recognition}, 
+      author={Kaiming He and Xiangyu Zhang and Shaoqing Ren and Jian Sun},
+      year={2015},
+      eprint={1512.03385},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/1512.03385}, 
+}
+
+@misc{tan2020efficientnetrethinkingmodelscaling,
+      title={EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks}, 
+      author={Mingxing Tan and Quoc V. Le},
+      year={2020},
+      eprint={1905.11946},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1905.11946}, 
+}
+
+@article{medSAM,
+   title={Segment anything in medical images},
+   volume={15},
+   ISSN={2041-1723},
+   url={http://dx.doi.org/10.1038/s41467-024-44824-z},
+   DOI={10.1038/s41467-024-44824-z},
+   number={1},
+   journal={Nature Communications},
+   publisher={Springer Science and Business Media LLC},
+   author={Ma, Jun and He, Yuting and Li, Feifei and Han, Lin and You, Chenyu and Wang, Bo},
+   year={2024},
+   month=jan }

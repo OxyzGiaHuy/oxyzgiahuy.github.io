@@ -1,0 +1,95 @@
+\section{Introduction}
+\label{sec:intro}
+\begin{figure}[t]
+    \centering
+\scriptsize
+% \setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
+
+% --- Define lengths ---
+\newlength{\imagewidth}
+\setlength{\imagewidth}{0.3\columnwidth} % giữ nguyên layout gốc
+
+\newlength{\hsp}
+\setlength{\hsp}{0.005em}
+
+\newlength{\vsp}
+\setlength{\vsp}{0.4em}
+
+\newlength{\labelvsp}
+\setlength{\labelvsp}{0.2em}
+
+% --- Row 1 ---
+\begin{minipage}[t]{\imagewidth}
+    \centering
+    Original Image \\[\labelvsp]
+    \includegraphics[width=0.7\linewidth]{figs/org_img_xai.png} %
+\end{minipage}%
+\hspace*{\hsp}%
+\begin{minipage}[t]{\imagewidth}
+    \centering
+    Ground Truth \\[\labelvsp]
+    \includegraphics[width=0.7\linewidth]{figs/gt_xai.png}
+\end{minipage}%
+\hspace*{\hsp}%
+\begin{minipage}[t]{\imagewidth}
+    \centering
+    Prediction \\[\labelvsp]
+    \includegraphics[width=0.7\linewidth]{figs/pred_xai.png}
+\end{minipage}%
+\\[\vsp]
+
+% --- Row 2 ---
+\begin{minipage}[t]{\imagewidth}
+    \centering
+    CNN Main Path \\[\labelvsp]
+    \includegraphics[width=0.7\linewidth]{figs/cnn_main.png}
+\end{minipage}%
+\hspace*{\hsp}%
+\begin{minipage}[t]{\imagewidth}
+    \centering
+    Transformer Block 1 \\[\labelvsp]
+    \includegraphics[width=0.7\linewidth]{figs/trans_block1.png}
+\end{minipage}%
+\hspace*{\hsp}%
+\begin{minipage}[t]{\imagewidth}
+    \centering
+    Transformer Block 11 \\[\labelvsp]
+    \includegraphics[width=0.7\linewidth]{figs/trans_block11.png}
+\end{minipage}%
+\\[\vsp]
+
+% --- Row 3 ---
+\begin{minipage}[t]{\imagewidth}
+    \centering
+    Transformer Main Path \\[\labelvsp]
+    \includegraphics[width=0.7\linewidth]{figs/trans_main.png}
+\end{minipage}%
+\hspace*{\hsp}%
+\begin{minipage}[t]{\imagewidth}
+    \centering
+    CNN Block 2 \\[\labelvsp]
+    \includegraphics[width=0.7\linewidth]{figs/convnext_stage1.png}
+\end{minipage}%
+\hspace*{\hsp}%
+\begin{minipage}[t]{\imagewidth}
+    \centering
+    Transformer Block 2 \\[\labelvsp]
+    \includegraphics[width=0.7\linewidth]{figs/trans_block2.png}
+\end{minipage}
+
+    % No \\[\vsp] after the last row
+
+    \caption{Explainability visualization of dynamic expert routing in SAGE on the EBHI dataset. From left to right, the first row shows the input patch, its ground-truth mask, and the predicted segmentation. Rows two and three report representative Grad-CAM heatmaps from the ConvNeXt and Transformer streams, including the main paths and selected expert blocks. Warmer regions indicate higher attribution, illustrating how SAGE routes computation to different experts to refine local boundaries while preserving global context under heterogeneous tissue appearances.}
+    \label{fig:visualization_grid}
+\end{figure}
+Computer-aided detection of malignant tissue in gigapixel WSIs is the basis of digital pathology. This makes it possible to quickly and accurately diagnose diseases. For quick diagnosis, classification, and treatment planning of colorectal cancer, it is very important to accurately describe the tumor's morphology. Nonetheless, converting these visually intricate and diverse tissue architectures into computational comprehension continues to be exceedingly difficult. Convolutional Neural Networks (CNNs) \cite{CNN} are great at finding small local features like cell boundaries and textures. Vision Transformers (ViTs) \cite{khan2022transformers}, on the other hand, are a powerful way to model long-range spatial dependencies and global context. Nevertheless, substantial variability in tissue appearance, ranging from homogeneous normal tissues to complex and subtly textured malignant patterns, combined with the large resolution of WSIs, pushes current models beyond their representational and computational limits. Existing models, including U-Net variants and hybrid CNN-Transformer architectures, utilize a static computational graph. This makes all input segments go through the same processing, which is not a good way to do things because it over-processes simple areas and under-models complex ones. Also, the fact that CNN and Transformer blocks can only interact in one way means that you can't take advantage of each paradigm's strengths based on the characteristics of the input.
+
+To address these limitations, we propose \textit{Shape-Adapting Gated Experts} (SAGE), a dynamic, input-adaptive framework that converts a static backbone into a dual-path architecture. Each layer contains a main path that preserves the original backbone transformation and an expert path that conditionally activates a subset of reused backbone blocks. A hierarchical router first estimates a group-level preference between shared and fine-grained expert groups, then applies top-$K$ selection on prior-modulated logits to determine the active experts for each input. The two paths are fused adaptively, allowing the model to balance stability and input-specific refinement at run time. To enable interaction across heterogeneous experts (e.g., CNN and Transformer blocks), we introduce the \textit{Shape-Adapting Hub} (SA-Hub), which aligns feature formats before and after expert execution. Although trained on patches, SAGE is deployed on full WSIs through sliding-window reconstruction, preserving compatibility with high-resolution pathology workflows.
+
+To summarize, this work makes contributions as follows:
+\begin{itemize}
+\item We propose a dual-path formulation that transforms static backbones into dynamically routed architectures, enabling input-adaptive computation with parameter reuse.
+\item We design a hierarchical router with group-level gating and top-$K$ selection over prior-modulated logits to balance shared and fine-grained specialization.
+\item We introduce SA-Hub, a lightweight shape-adaptation module that aligns CNN/Transformer feature formats for stable cross-expert communication.
+\end{itemize}

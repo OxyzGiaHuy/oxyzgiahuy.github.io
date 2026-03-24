@@ -1,0 +1,114 @@
+% CVPR 2026 Paper Template; see https://github.com/cvpr-org/author-kit
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+\usepackage{cvpr}              % To produce the CAMERA-READY version
+% \usepackage[review]{cvpr}      % To produce the REVIEW version
+% \usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+
+% 4. REQUIRED PACKAGES FOR THE TABLES
+\usepackage{graphicx}
+\usepackage{subcaption} % For subfigures
+\usepackage{amsmath}  % For math environments
+\usepackage{booktabs} % For \toprule, \midrule, \bottomrule
+\usepackage[table]{xcolor} % For \cellcolor and HTML colors
+\usepackage[export]{adjustbox}
+\usepackage{caption}
+\usepackage{array}      % For custom column types (already there)
+\usepackage{calc}       % For calculations (already there)
+\usepackage{rotating}   % For \rotatebox (already there)
+\usepackage{multirow}
+% Set space for image
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}  % giảm khoảng cách trên/dưới float giữa text
+\setlength{\textfloatsep}{4pt plus 2pt minus 2pt} % giảm khoảng cách giữa float và text
+
+
+
+% 5. CUSTOM COLOR DEFINITIONS
+\definecolor{BestColor}{HTML}{eff3f6}     % User's Light Blue
+\definecolor{BestTextColor}{HTML}{4b6175}    % User's Blue text
+\definecolor{SecondBestColor}{HTML}{fbfbef}  % User's Light Yellow
+\definecolor{SecondBestTextColor}{HTML}{9f7040} % User's Dark Yellow text
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{17189} % *** Enter the Paper ID here
+\def\confName{CVPR}
+\def\confYear{2026}
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{SAGE: Shape-Adapting Gated Experts for Adaptive Histopathology Image Segmentation}
+
+%%%%%%%%% AUTHORS - PLEASE UPDATE
+\author{
+Gia Huy Thai$^{\ast}$\\
+University of Science, VNU-HCM\\
+{\tt\small 2312008@student.hcmus.edu.vn}
+\and
+Hoang-Nguyen Vu$^{\ast}$\\
+Trivita AI\\
+{\tt\small nguyen.vu@trivita.ai}
+\and
+Anh-Minh Phan\\
+University of Technology, VNU-HCM\\
+{\tt\small phananhm5@gmail.com}
+\and
+Quang-Thinh Ly\\
+Michigan State University, USA\\
+{\tt\small lythinh@msu.edu}
+\and
+Tram Dinh\\
+Phu Nhuan High School\\
+{\tt\small 50.dnmtram.81@gmail.com}
+\and
+Thi-Ngoc-Truc Nguyen\\
+Trivita AI\\
+{\tt\small truc.nguyen@trivita.ai}
+\and
+Nhat Ho\\
+The University of Texas at Austin\\
+{\tt\small minhnnhat@utexas.edu}
+}
+
+% Định nghĩa các toán tử
+\DeclareMathOperator*{\argmax}{arg\,max} % argmax operator
+
+
+\begin{document}
+\maketitle
+\begingroup
+\renewcommand\thefootnote{}\footnotetext{
+    {\scriptsize
+    $^{\ast}$Equal Contribution.
+    }
+}
+\addtocounter{footnote}{0}
+\endgroup
+\input{sec/0_abstract}    
+\input{sec/1_intro} 
+\input{sec/2_related_work}
+\input{sec/3_method}
+\input{sec/4_experiments}
+\input{sec/5_conclusion}
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+\appendix
+\input{sec/X_suppl} 
+\end{document}
