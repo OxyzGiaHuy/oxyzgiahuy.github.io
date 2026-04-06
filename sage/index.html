@@ -195,7 +195,6 @@
                   target="_blank">Anh-Minh Phan</a><sup>3</sup>,</span>
               <span class="author-block"><a href="https://orcid.org/0009-0006-9039-5887" target="_blank">Quang-Thinh
                   Ly</a><sup>4</sup>,</span>
-              <span class="author-block">Tram Dinh<sup>5</sup>,</span>
               <span class="author-block"><a href="https://scholar.google.com/citations?user=rTa5hJwAAAAJ&hl=en"
                   target="_blank">Thi-Ngoc-Truc Nguyen</a><sup>2</sup>,</span>
               <span class="author-block"><a href="https://scholar.google.com.vn/citations?user=Xs7cKMwAAAAJ&hl=vi"
@@ -207,7 +206,6 @@
               <span class="author-block"><sup>2</sup>Trivita AI,</span>
               <span class="author-block"><sup>3</sup>University of Technology, VNU-HCM,</span>
               <span class="author-block"><sup>4</sup>Michigan State University, USA,</span>
-              <span class="author-block"><sup>5</sup>Phu Nhuan High School,</span>
               <span class="author-block"><sup>6</sup>The University of Texas at Austin</span>
             </div>
 
@@ -353,218 +351,221 @@
     <div class="hero-body">
       <div class="container is-fluid">
 
-      <style>
-        .qual-grid {
-          display: grid;
-          grid-template-columns: 30px repeat(4, 1fr);
-          gap: 10px;
-          margin-bottom: 20px;
-          align-items: center;
-        }
+        <style>
+          .qual-grid {
+            display: grid;
+            grid-template-columns: 30px repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+          }
 
-        .rotated-label {
-          writing-mode: vertical-rl;
-          transform: rotate(180deg);
-          font-weight: bold;
-          text-align: center;
-          font-size: 0.9rem;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+          .rotated-label {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
 
-        .qual-col img {
-          width: 100%;
-          border-radius: 4px;
-          display: block;
-        }
+          .qual-col img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+          }
 
-        .qual-col img+img {
-          margin-top: 5px;
-        }
+          .qual-col img+img {
+            margin-top: 5px;
+          }
 
-        .header-row {
-          display: grid;
-          grid-template-columns: 30px repeat(4, 1fr);
-          gap: 10px;
-          margin-bottom: 15px;
-          text-align: center;
-          font-weight: bold;
-          font-size: 0.95rem;
-        }
+          .header-row {
+            display: grid;
+            grid-template-columns: 30px repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+          }
 
-        .carousel-card {
-          padding: 24px;
-          margin: 0;
-          background-color: #ffffff;
-          border-radius: 16px;
-          border: none;
-          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
-        }
-        
-        /* Ensure images have no black borders implicitly */
-        .qual-col img {
-          width: 100%;
-          border-radius: 4px;
-          display: block;
-          border: none !important;
-        }
-        
-        /* Center Mode Magic (1 focus, 2 halves) */
-        #results-carousel {
-          width: 75%;
-          margin: 0 auto;
-          overflow: visible !important;
-        }
-        #results-carousel .slider-wrapper,
-        #results-carousel .slider-container {
-          overflow: visible !important;
-        }
-        #results-carousel .slider-item {
-          transition: transform 0.4s ease;
-          transform: scale(0.9);        
-          pointer-events: none;
-          opacity: 1;
-        }
-        #results-carousel .slider-item.is-active {
-          transform: scale(1);
-          pointer-events: auto;
-          z-index: 10;
-        }
-      </style>
+          .carousel-card {
+            padding: 24px;
+            margin: 0;
+            background-color: #ffffff;
+            border-radius: 16px;
+            border: none;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+          }
 
-      <div id="results-carousel" class="carousel results-carousel">
+          /* Ensure images have no black borders implicitly */
+          .qual-col img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+            border: none !important;
+          }
 
-        <!-- Slide 1: GlaS Test A -->
-        <div class="item">
-          <div class="carousel-card">
-            <div class="header-row">
-              <div></div>
-              <div>(a) Input</div>
-              <div>(b) TransUNet</div>
-              <div>(c) EViT-UNet</div>
-              <div>(d) Ours</div>
-            </div>
-            <div class="qual-grid" style="margin-bottom: 0;">
-              <div class="rotated-label">GlaS Test A</div>
-              <div class="qual-col">
-                <img src="figs/testA_org_img.png" alt="Test A Input">
-                <img src="figs/testA_gt.png" alt="Test A GT">
+          /* Center Mode Magic (1 focus, 2 halves) */
+          #results-carousel {
+            width: 75%;
+            margin: 0 auto;
+            overflow: visible !important;
+          }
+
+          #results-carousel .slider-wrapper,
+          #results-carousel .slider-container {
+            overflow: visible !important;
+          }
+
+          #results-carousel .slider-item {
+            transition: transform 0.4s ease;
+            transform: scale(0.9);
+            pointer-events: none;
+            opacity: 1;
+          }
+
+          #results-carousel .slider-item.is-active {
+            transform: scale(1);
+            pointer-events: auto;
+            z-index: 10;
+          }
+        </style>
+
+        <div id="results-carousel" class="carousel results-carousel">
+
+          <!-- Slide 1: GlaS Test A -->
+          <div class="item">
+            <div class="carousel-card">
+              <div class="header-row">
+                <div></div>
+                <div>(a) Input</div>
+                <div>(b) TransUNet</div>
+                <div>(c) EViT-UNet</div>
+                <div>(d) Ours</div>
               </div>
-              <div class="qual-col">
-                <img src="figs/testA_overlay_transunet.png" alt="Test A TransUNet Overlay">
-                <img src="figs/testA_pred_transunet.png" alt="Test A TransUNet Pred">
-              </div>
-              <div class="qual-col">
-                <img src="figs/testA_overlay_evit.png" alt="Test A EViT Overlay">
-                <img src="figs/testA_pred_evit.png" alt="Test A EViT Pred">
-              </div>
-              <div class="qual-col">
-                <img src="figs/testA_overlay_sage.png" alt="Test A SAGE Overlay">
-                <img src="figs/testA_pred_sage.png" alt="Test A SAGE Pred">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 2: GlaS Test B -->
-        <div class="item">
-          <div class="carousel-card">
-            <div class="header-row">
-              <div></div>
-              <div>(a) Input</div>
-              <div>(b) TransUNet</div>
-              <div>(c) EViT-UNet</div>
-              <div>(d) Ours</div>
-            </div>
-            <div class="qual-grid" style="margin-bottom: 0;">
-              <div class="rotated-label">GlaS Test B</div>
-              <div class="qual-col">
-                <img src="figs/testB_org_img.png" alt="Test B Input">
-                <img src="figs/testB_gt.png" alt="Test B GT">
-              </div>
-              <div class="qual-col">
-                <img src="figs/testB_overlay_transunet.png" alt="Test B TransUNet Overlay">
-                <img src="figs/testB_pred_transunet.png" alt="Test B TransUNet Pred">
-              </div>
-              <div class="qual-col">
-                <img src="figs/testB_overlay_evit.png" alt="Test B EViT Overlay">
-                <img src="figs/testB_pred_evit.png" alt="Test B EViT Pred">
-              </div>
-              <div class="qual-col">
-                <img src="figs/testB_overlay_sage.png" alt="Test B SAGE Overlay">
-                <img src="figs/testB_pred_sage.png" alt="Test B SAGE Pred">
+              <div class="qual-grid" style="margin-bottom: 0;">
+                <div class="rotated-label">GlaS Test A</div>
+                <div class="qual-col">
+                  <img src="figs/testA_org_img.png" alt="Test A Input">
+                  <img src="figs/testA_gt.png" alt="Test A GT">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testA_overlay_transunet.png" alt="Test A TransUNet Overlay">
+                  <img src="figs/testA_pred_transunet.png" alt="Test A TransUNet Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testA_overlay_evit.png" alt="Test A EViT Overlay">
+                  <img src="figs/testA_pred_evit.png" alt="Test A EViT Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testA_overlay_sage.png" alt="Test A SAGE Overlay">
+                  <img src="figs/testA_pred_sage.png" alt="Test A SAGE Pred">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Slide 3: DigestPath WSI 1 -->
-        <div class="item">
-          <div class="carousel-card">
-            <div class="header-row">
-              <div></div>
-              <div>(a) Input</div>
-              <div>(b) SegFormer</div>
-              <div>(c) EViT-UNet</div>
-              <div>(d) Ours</div>
-            </div>
-            <div class="qual-grid" style="margin-bottom: 0;">
-              <div class="rotated-label">WSI Sample 1</div>
-              <div class="qual-col">
-                <img src="figs/wsi_img1.png" alt="WSI 1 Input">
-                <img src="figs/wsi_gt1.png" alt="WSI 1 GT">
+          <!-- Slide 2: GlaS Test B -->
+          <div class="item">
+            <div class="carousel-card">
+              <div class="header-row">
+                <div></div>
+                <div>(a) Input</div>
+                <div>(b) TransUNet</div>
+                <div>(c) EViT-UNet</div>
+                <div>(d) Ours</div>
               </div>
-              <div class="qual-col">
-                <img src="figs/segformer_wsi_overlay1.png" alt="WSI 1 SegFormer Overlay">
-                <img src="figs/segformer_wsi_pred1.png" alt="WSI 1 SegFormer Pred">
-              </div>
-              <div class="qual-col">
-                <img src="figs/evit_wsi_overlay1.png" alt="WSI 1 EViT Overlay">
-                <img src="figs/evit_wsi_pred1.png" alt="WSI 1 EViT Pred">
-              </div>
-              <div class="qual-col">
-                <img src="figs/sage_wsi_overlay1.png" alt="WSI 1 SAGE Overlay">
-                <img src="figs/sage_wsi_pred1.png" alt="WSI 1 SAGE Pred">
+              <div class="qual-grid" style="margin-bottom: 0;">
+                <div class="rotated-label">GlaS Test B</div>
+                <div class="qual-col">
+                  <img src="figs/testB_org_img.png" alt="Test B Input">
+                  <img src="figs/testB_gt.png" alt="Test B GT">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testB_overlay_transunet.png" alt="Test B TransUNet Overlay">
+                  <img src="figs/testB_pred_transunet.png" alt="Test B TransUNet Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testB_overlay_evit.png" alt="Test B EViT Overlay">
+                  <img src="figs/testB_pred_evit.png" alt="Test B EViT Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testB_overlay_sage.png" alt="Test B SAGE Overlay">
+                  <img src="figs/testB_pred_sage.png" alt="Test B SAGE Pred">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Slide 4: DigestPath WSI 2 -->
-        <div class="item">
-          <div class="carousel-card">
-            <div class="header-row">
-              <div></div>
-              <div>(a) Input</div>
-              <div>(b) SegFormer</div>
-              <div>(c) EViT-UNet</div>
-              <div>(d) Ours</div>
-            </div>
-            <div class="qual-grid" style="margin-bottom: 0;">
-              <div class="rotated-label">WSI Sample 2</div>
-              <div class="qual-col">
-                <img src="figs/wsi_img2.png" alt="WSI 2 Input">
-                <img src="figs/wsi_gt2.png" alt="WSI 2 GT">
+          <!-- Slide 3: DigestPath WSI 1 -->
+          <div class="item">
+            <div class="carousel-card">
+              <div class="header-row">
+                <div></div>
+                <div>(a) Input</div>
+                <div>(b) SegFormer</div>
+                <div>(c) EViT-UNet</div>
+                <div>(d) Ours</div>
               </div>
-              <div class="qual-col">
-                <img src="figs/segformer_wsi_overlay2.png" alt="WSI 2 SegFormer Overlay">
-                <img src="figs/segformer_wsi_pred2.png" alt="WSI 2 SegFormer Pred">
-              </div>
-              <div class="qual-col">
-                <img src="figs/evit_wsi_overlay2.png" alt="WSI 2 EViT Overlay">
-                <img src="figs/evit_wsi_pred2.png" alt="WSI 2 EViT Pred">
-              </div>
-              <div class="qual-col">
-                <img src="figs/sage_wsi_overlay2.png" alt="WSI 2 SAGE Overlay">
-                <img src="figs/sage_wsi_pred2.png" alt="WSI 2 SAGE Pred">
+              <div class="qual-grid" style="margin-bottom: 0;">
+                <div class="rotated-label">WSI Sample 1</div>
+                <div class="qual-col">
+                  <img src="figs/wsi_img1.png" alt="WSI 1 Input">
+                  <img src="figs/wsi_gt1.png" alt="WSI 1 GT">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/segformer_wsi_overlay1.png" alt="WSI 1 SegFormer Overlay">
+                  <img src="figs/segformer_wsi_pred1.png" alt="WSI 1 SegFormer Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/evit_wsi_overlay1.png" alt="WSI 1 EViT Overlay">
+                  <img src="figs/evit_wsi_pred1.png" alt="WSI 1 EViT Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/sage_wsi_overlay1.png" alt="WSI 1 SAGE Overlay">
+                  <img src="figs/sage_wsi_pred1.png" alt="WSI 1 SAGE Pred">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-      </div>
+          <!-- Slide 4: DigestPath WSI 2 -->
+          <div class="item">
+            <div class="carousel-card">
+              <div class="header-row">
+                <div></div>
+                <div>(a) Input</div>
+                <div>(b) SegFormer</div>
+                <div>(c) EViT-UNet</div>
+                <div>(d) Ours</div>
+              </div>
+              <div class="qual-grid" style="margin-bottom: 0;">
+                <div class="rotated-label">WSI Sample 2</div>
+                <div class="qual-col">
+                  <img src="figs/wsi_img2.png" alt="WSI 2 Input">
+                  <img src="figs/wsi_gt2.png" alt="WSI 2 GT">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/segformer_wsi_overlay2.png" alt="WSI 2 SegFormer Overlay">
+                  <img src="figs/segformer_wsi_pred2.png" alt="WSI 2 SegFormer Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/evit_wsi_overlay2.png" alt="WSI 2 EViT Overlay">
+                  <img src="figs/evit_wsi_pred2.png" alt="WSI 2 EViT Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/sage_wsi_overlay2.png" alt="WSI 2 SAGE Overlay">
+                  <img src="figs/sage_wsi_pred2.png" alt="WSI 2 SAGE Pred">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
 
       </div>
     </div>
