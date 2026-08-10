@@ -1,0 +1,308 @@
+\documentclass[conference]{IEEEtran}
+% \IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{subfig}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{orcidlink}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{ELDER: Equivariance-preserving Downsampling for Efficient Low-Resolution Image Classification}
+
+\author{\IEEEauthorblockN{Trong-Dai Phan}
+\IEEEauthorblockA{\textit{University of Science, VNU-HCM}\\
+% Vietnam National University, 
+Ho Chi Minh City, Vietnam \\
+23120026@student.hcmus.edu.vn}
+\and
+\IEEEauthorblockN{Gia Huy Thai~\orcidlink{https://orcid.org/0009-0006-6684-5323}}
+\IEEEauthorblockA{\textit{University of Science, VNU-HCM}\\
+% Vietnam National University, 
+Ho Chi Minh City, Vietnam \\
+23120008@student.hcmus.edu.vn}
+\and
+% \\[0.5cm]
+\IEEEauthorblockN{Minh-Huy Mai-Duc}
+\IEEEauthorblockA{\textit{University of Science, VNU-HCM}\\
+% Vietnam National University, 
+Ho Chi Minh City, Vietnam \\ 23122008@student.hcmus.edu.vn
+}
+}
+
+\maketitle
+
+%========================================================================================
+% ABSTRACT
+%========================================================================================
+\begin{abstract}
+Efficient inference on low-resolution images requires architectures that preserve discriminative information while staying compact. Conventional downsampling in Convolutional Neural Networks (CNNs), including max-pooling and strided convolutions, often removes spatial detail that is critical for 32x32 inputs. In this paper, we present ELDER (Efficiency-driven Low-resolution Downsampling Equivariance Review), a systematic study of whether equivariance-preserving downsampling can improve the accuracy-efficiency trade-off for low-resolution classification. On CIFAR-10, we compare a ResNet18 baseline against four variants: No Pooling, No Stride, No Downsample, and Space-to-Depth (SPD). The baseline achieves 76.18\% accuracy with 11.2M parameters, while the best variant (No Stride) reaches 81.78\% using only 570K parameters. Across variants, parameter counts are reduced to 149K--2.8M, and improved accuracy is accompanied by higher G-empirical equivariance deviation (G-EED) scores in deeper layers. The modified models also show better generalization, reducing both Generalization Gap and Overfitting Index relative to the baseline. These results indicate that downsampling design is an effective systems-level lever for building accurate, compact, and robust CNNs for resource-constrained low-resolution image classification.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Transformation Equivariance, Low-Resolution Image Classification, Convolutional Neural Networks, Downsampling, Overfitting
+\end{IEEEkeywords}
+
+%========================================================================================
+% SECTION I: INTRODUCTION
+%========================================================================================
+\section{Introduction}\label{sec:introduction}
+
+
+
+Deploying image classification models on resource-constrained platforms requires a careful balance between predictive performance and computational cost. This challenge becomes more pronounced for low-resolution inputs, where each pixel carries a large fraction of the semantic content. Standard Convolutional Neural Networks (CNNs) rely on downsampling operations such as max-pooling and strided convolutions to reduce spatial dimensions and computation. For 32x32 images, however, these operations can remove critical spatial detail and high-frequency structure (Fig.~\ref{fig:problem_illustration}).
+
+A core property of convolution is \textbf{transformation equivariance}: transforming the input should induce a corresponding transformation in the feature representation~\cite{kvinge2022}. Prior work shows that common downsampling operations weaken this property~\cite{azulay2019}. Pooling breaks strict equivariance by selecting a single local activation, while strided convolution introduces aliasing by skipping pixels~\cite{azulay2019}. When equivariance degrades, robustness to small input perturbations also degrades, which directly affects real-world deployment reliability.
+
+\begin{figure}[t]
+    \centering
+    \subfloat[Sample CIFAR-10 images (32x32 pixels).]{\includegraphics[width=0.6\columnwidth]{cifar_samples.png}\label{fig:cifar_samples}}
+    % \hfill
+    \\[0.3em]
+    \subfloat[Effect of traditional downsampling.]{\includegraphics[width=0.6\columnwidth]{downsampling_process.png}\label{fig:downsampling_effect}}
+    \caption{Illustration of the core challenge in low-resolution image classification. (a) Images from the CIFAR-10 dataset are inherently difficult to discern due to their small size. (b) Standard downsampling operations further degrade image quality, discarding crucial spatial information that is vital for classification.}
+    \label{fig:problem_illustration}
+\end{figure}
+
+To address this gap, we introduce \textbf{ELDER}, a controlled evaluation setting for downsampling design in low-resolution CNNs. Instead of proposing a new operator, ELDER studies how common downsampling choices (pooling, stride, and space-to-depth replacement) influence representation quality and system-level trade-offs under a unified training protocol~\cite{sunkara2022}.
+
+The contributions of this paper are two-fold: (1) a controlled architectural study that isolates the impact of downsampling choices on low-resolution CNN behavior, and (2) an analysis that jointly reports equivariance behavior, predictive performance, model compactness, and overfitting indicators.
+
+%========================================================================================
+% SECTION II: RELATED WORKS
+%========================================================================================
+\section{Related Work}\label{sec:related_works}
+
+Our research is situated at the intersection of equivariance in neural networks, low-resolution architecture design, and efficient Machine Learning (ML) system considerations.
+
+\subsection{Equivariance in Convolutional Networks}\label{subsec:equiv_in_convnets}
+The translation equivariance of the convolution operation is a primary reason for the success of CNNs in computer vision. However, perfect equivariance is often lost due to other components in the network architecture. It has been shown that deep convolutional networks can generalize poorly to small image transformations, with pooling and striding identified as primary causes of this issue~\cite{azulay2019}.
+
+Recent work has focused on quantifying this property. For instance, studies have empirically measured the "learned equivariance" across different layers and architectures, revealing how equivariance to transformations like rotation and translation degrades through the depth of networks like ResNet and Vision Transformers~\cite{bruintjes2023}. Other research has sought to build equivariance directly into the network's components. The development of Scaling-Translation-Equivariant Networks with Decomposed Convolutional Filters (ScDCFNet) is one such example, where novel filter designs are used to explicitly create models that are equivariant to scaling, demonstrating superior performance in tasks requiring this property~\cite{zhu2022}.
+
+\subsection{Architectures for Low-Resolution Classification}\label{subsec:arch_for_low_res}
+The challenge of information loss in low-resolution images has motivated the development of specialized network components. One prominent approach is to replace standard downsampling with lossless alternatives. The \textbf{Space-to-Depth (SPD)} transformation was proposed as a new building block to replace strided convolutions and pooling layers entirely~\cite{sunkara2022}. SPD reshapes the feature map by moving spatial information into the channel dimension, thereby preserving all information while still reducing spatial resolution. This technique has proven effective for low-resolution images and small object detection.
+
+Another strategy involves designing blocks that can capture features at multiple scales simultaneously. The \textbf{Multi-Kernel (MK) Block}, used in LR-Net, is designed to learn both local and global features by combining outputs from different kernel sizes~\cite{ganj2023}. This allows the network to better process details that might be lost in a standard single-path architecture.
+
+While these works introduce novel components, our study complements them by systematically analyzing the specific impact of modifying and removing \textit{existing}, widely-used downsampling operations within a standard baseline architecture. This provides a controlled view of how equivariance preservation affects both predictive quality and model efficiency.
+
+\subsection{Efficient ML Systems Perspective}\label{subsec:efficient_systems}
+Efficient ML systems research emphasizes jointly optimizing model quality and resource consumption, including memory footprint, arithmetic cost, and deployment robustness. Typical strategies include model compression, quantization, operator-level optimization, and architecture-level redesign. In this context, downsampling is not only a representational choice but also a systems choice: it changes feature-map sizes, channel widths, operator mix, and the overall compute-memory profile during inference.
+
+Our work focuses on architecture-level efficiency through downsampling redesign. Instead of introducing heavyweight auxiliary modules, we modify a standard ResNet18 backbone using minimal structural changes, then evaluate the resulting models with metrics relevant to efficient computing: accuracy, parameter count, FLOPs, and generalization under input transformations. This framing aligns low-resolution vision modeling with practical system constraints in edge and resource-limited settings.
+%========================================================================================
+% SECTION III: METHOD
+%========================================================================================
+\section{Method}\label{sec:method}
+
+Our methodology is centered on a comparative analysis of a baseline architecture against several variants modified to enhance transformation equivariance. This section details the architectural design of our models and the metrics used for their evaluation.
+
+% This figure spans both columns and will be placed at the top of a page.
+\begin{figure*}[t]
+    \centering
+    % \subfloat[Baseline ResNet18 Architecture.]{\includegraphics[width=0.2\textwidth]{baseline_arch.png}\label{fig:arch_baseline}}
+    % \hspace{1cm} % Adds horizontal space between the first two images
+    % \subfloat[Variants: No Pooling, No Stride, No Downsample.]{\includegraphics[width=0.55\textwidth]{variant_archs.png}\label{fig:arch_variants}}
+    
+    % \vspace{0.5cm} % Adds some vertical space between the rows
+    
+    % \subfloat[SPD Variant Architecture and Operation.]{\includegraphics[width=0.65\textwidth]{spd_arch.png}\label{fig:arch_spd}}
+
+    \includegraphics[width=1.05\linewidth]{archi.pdf}
+    \caption{Architectural comparison of five models (Baseline, No Pooling, No Stride, No Downsample, and SPD) and the space-to-depth mechanism used in SPD. Red boxes indicate removed layers, and green boxes indicate modified layers. The No Pooling variant removes the initial MaxPool; No Stride sets the stride in Layers 2-4 to 1 with channel adjustments; No Downsample removes both the initial MaxPool and downsampling strides in Layers 2-4; and SPD replaces the initial pooling stage with an SPD block ($\text{block}=2$) before a standard convolution. The right panel illustrates space-to-depth, which rearranges spatial neighborhoods into channels (from $S\times S\times C_1$ to $\frac{S}{2}\times\frac{S}{2}\times 4C_1$), preserving information while reducing spatial resolution.}
+    
+    % \caption{Architectural diagrams of the baseline and variant models. (a) The baseline ResNet18 architecture, featuring standard MaxPool and strided convolutions for downsampling. (b) The three variants designed to reduce information loss by removing pooling, removing striding, or removing all downsampling. (c) The SPD variant, which replaces conventional downsampling with a lossless Space-to-Depth operation.}
+    \label{fig:architectures}
+\end{figure*}
+
+
+\subsection{Architecture Design}\label{subsec:architecture}
+The foundation for our investigation is the \textbf{ResNet18 architecture}, chosen for its moderate depth, which is well-suited for low-resolution image classification tasks while minimizing the risk of overfitting. Its established performance provides a stable and common baseline, and its modularity facilitates the controlled comparative analyses central to this study.
+
+Starting with this baseline, we developed four architectural variants. The modifications were guided by a core set of principles designed to ensure a fair comparison. We preserved the original number of layers and introduced only minimal structural changes focused on the downsampling mechanism. To maintain a comparable level of computational complexity (FLOPs), we adjusted the channel depth in some convolutional layers to compensate for the architectural changes. The variants are as follows (see Fig.~\ref{fig:architectures}):
+
+\begin{enumerate}
+    \item \textbf{No Pooling:} In this variant, the initial \texttt{MaxPool} layer of the ResNet18 architecture is removed. Consequently, the spatial dimensions of the feature maps remain larger in the early stages of the network. The number of channels in subsequent layers was adjusted to maintain a parameter count comparable to other variants.
+
+    \item \textbf{No Stride:} This model replaces all strided convolutions within the residual blocks with standard convolutions where the stride is set to 1. Downsampling is therefore handled exclusively by the initial \texttt{MaxPool} layer, altering how spatial information is reduced through the network's depth.
+
+    \item \textbf{No Downsample:} This architecture represents the most direct approach to preserving spatial information by removing \textit{all} conventional downsampling layers. Both the initial \texttt{MaxPool} layer and all strided convolutions are eliminated. As a result, the feature maps maintain their original input resolution throughout all convolutional layers until the final average pooling.
+
+    \item \textbf{SPD (Space-to-Depth):} This variant replaces traditional downsampling layers with the \textbf{Space-to-Depth (SPD)} operation~\cite{sunkara2022}. The SPD layer is a lossless transformation that reorganizes spatial information from the feature map into the channel dimension. This prevents the information loss associated with pooling or striding while still reducing spatial dimensions to allow for a deeper network architecture.
+\end{enumerate}
+
+\subsection{Evaluation Metrics}\label{subsec:metrics}
+To conduct a comprehensive evaluation, we employed a suite of metrics designed to assess transformation equivariance, classification performance, model efficiency, and the degree of overfitting.
+
+\begin{enumerate}
+    \item \textbf{Transformation Equivariance:} To quantify how well each model preserves equivariance, we utilized the \textbf{G-empirical equivariance deviation (G-EED)} score~\cite{kvinge2022}. The score is formally defined as:
+    \begin{equation}
+        \mathcal{E}(f,G):=\frac{1}{|D||G|}\sum_{x\in D}\sum_{g\in G}m(f(gx),g\hat{f}(x))
+        \label{eq:geed}
+    \end{equation}
+    where $f$ is the model under evaluation, $G$ is a finite transformation group, $D$ is a finite input sample, and the factor $1/(|D||G|)$ averages the deviation over all sample-transformation pairs $(x,g)$. For each pair, $f(gx)$ is the model output after transforming the input, and $g\hat{f}(x)$ is the output predicted by equivariance. Following~\cite{kvinge2022},
+    \begin{equation}
+        \hat{f}(x):=\mathbb{E}_{h\in\ker(\phi_Y)}f(hx),
+        \label{eq:fhat}
+    \end{equation}
+    where $\ker(\phi_Y)$ is the subgroup acting trivially on the output space; when the action on $Y$ is faithful, $\hat{f}(x)=f(x)$. The function $m(\cdot,\cdot)$ measures discrepancy between actual and equivariant outputs. In general, smaller $\mathcal{E}(f,G)$ indicates smaller equivariance deviation (and can reach 0 under exact matching, depending on $m$). In this work, $m$ is implemented as channel-wise negative cosine similarity, so the reported values are negative and less negative (higher) values indicate better equivariant alignment. For our analysis, we measured G-EED scores for three distinct transformation groups:
+    \begin{itemize}
+        \item \textbf{\(G_{\text{rotate}}\):} Rotations of $0^{\circ}$, $90^{\circ}$, $180^{\circ}$, and $270^{\circ}$.
+        \item \textbf{\(G_{\text{shift}}\):} Translations of 3 pixels up, down, left, and right.
+        \item \textbf{\(G_{\text{scale}}\):} Scaling factors of 0.8, 0.9, 1.1, and 1.2.
+    \end{itemize}
+
+
+    \item \textbf{Performance and Efficiency:} Model performance was primarily measured by test accuracy on the CIFAR-10 dataset. Model efficiency and computational complexity were evaluated using two standard metrics: total Parameter Count and Floating-Point Operations\textbf{ (FLOPs)}.
+
+    \item \textbf{Overfitting Analysis:} To measure model generalization, we calculated the \textbf{Generalization Gap}, defined as the difference between the test error and the training error. We also employed the \textbf{Overfitting Index (OI)}~\cite{aburass2023}, which provides a cumulative measure of the divergence between training and validation performance across all epochs. The OI is calculated as:
+    \begin{equation}
+        OI=\sum_{e=1}^{N}\max(\text{Loss Diff}, \text{Acc Diff})\cdot e
+        \label{eq:oi}
+    \end{equation}
+    where $e$ is the epoch number and $N$ is the total number of epochs. A lower value for both metrics indicates better generalization and less overfitting.
+\end{enumerate}
+%========================================================================================
+% SECTION IV: EXPERIMENTS
+%========================================================================================
+\section{Experiments}\label{sec:experiments}
+
+This section presents the empirical results of our study. We evaluated the baseline ResNet18 and the four modified architectures on the CIFAR-10 dataset, focusing on their transformation equivariance, classification accuracy, model efficiency, and generalization capabilities.
+
+
+\subsection{Training Configuration}\label{subsec:training_config}
+All five models (Baseline, No Pooling, No Stride, No Downsample, and SPD) were trained using identical hyperparameters to ensure a fair comparison. We trained for \textbf{30 epochs} using the \textbf{Adam} optimizer with learning rate $\text{lr}=0.01$ and weight decay $\lambda=5 \times 10^{-4}$. For regularization, we employed \textbf{CrossEntropyLoss} as the loss criterion. Learning rate scheduling was managed using \textbf{CosineAnnealingLR} with $T_{\max}=30$ epochs and $\eta_{\min}=0.0005$ for the minimum learning rate.
+
+
+\subsection{Equivariance Analysis}\label{subsec:equivariance_analysis}
+To validate our primary hypothesis, we measured the G-EED score for each of the four main layers in all five models. A higher score signifies better preservation of transformation equivariance. The results, as depicted in Fig.~\ref{fig:geed_results}, demonstrate a clear trend. While all models exhibit high equivariance in the first layer, the baseline model shows a significant degradation in this property in subsequent layers (Layers 2, 3, and 4). In stark contrast, all four modified architectures - \textbf{No Pooling}, \textbf{No Stride}, \textbf{No Downsample}, and \textbf{SPD} - consistently maintained higher G-EED scores across these deeper layers compared to the baseline. This finding provides strong evidence that replacing or removing traditional downsampling mechanisms effectively enhances the transformation equivariance of feature representations throughout the network.
+
+\begin{figure*}[t]
+    \centering
+    % Use a fraction of \textwidth for a two-column figure.
+    % 0.8\textwidth is a good size that leaves some margin.
+    \includegraphics[width=0.8\textwidth]{geed_plot.png}
+    \caption{G-EED score comparison across the four main layers for all models. The score measures transformation equivariance, with higher (less negative) values indicating better preservation of this property. The modified architectures consistently outperform the baseline in deeper layers.}
+    \label{fig:geed_results}
+\end{figure*}
+
+\begin{figure*}[!t]
+    \centering
+    \subfloat[Baseline]{\includegraphics[width=0.33\textwidth]{base_accuracy.png}\label{fig:acc_curve_baseline}}
+    \hfill
+    \subfloat[No Pooling]{\includegraphics[width=0.33\textwidth]{nopooling_accuracy.png}\label{fig:acc_curve_no_pooling}}
+    \hfill
+    \subfloat[No Stride]{\includegraphics[width=0.33\textwidth]{nostride_accuracy.png}\label{fig:acc_curve_no_stride}}\\[0.5em]
+    \makebox[\textwidth][c]{%
+        \subfloat[No Downsample]{\includegraphics[width=0.33\textwidth]{nodown_accuracy.png}\label{fig:acc_curve_no_downsample}}%
+        \hspace{0.02\textwidth}%
+        \subfloat[SPD]{\includegraphics[width=0.33\textwidth]{spd_accuracy.png}\label{fig:acc_curve_spd}}%
+    }
+    \caption{Training (blue) and validation (orange) accuracy curves for the baseline and four variant architectures. The narrower gap between the curves in the modified models indicates superior generalization and reduced overfitting.}
+    \label{fig:accuracy_curves}
+\end{figure*}
+
+\subsection{Classification Performance and Efficiency}\label{subsec:performance_efficiency}
+The ultimate goal of enhancing equivariance is to improve classification performance. Our results, summarized in Table~\ref{tab:results}, confirm a strong positive correlation between these two aspects. The baseline ResNet18 achieved a final test accuracy of 76.18\%. All modified variants surpassed this benchmark, with the No Stride model achieving the highest accuracy of 81.78\%. The other models also showed significant improvements: No Pooling (78.79\%), SPD (78.71\%), and No Downsample (77.47\%).
+
+Crucially, these accuracy gains were accompanied by substantial improvements in parameter and computational efficiency. As reported in Table~\ref{tab:results}, the baseline ResNet18 has 11.2M parameters and 141M FLOPs, whereas the modified models range from 149K to 2.8M parameters and 140M to 225M FLOPs. 
+
+% IEEE tables are often placed at the top of the page.
+\begin{table}[t]
+    \caption{Comparison of Performance, Efficiency, and Generalization Metrics}
+    \label{tab:results}
+    \centering
+    \tiny
+    \setlength{\tabcolsep}{3pt}
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{lcccccc}
+        \hline
+        \textbf{Metric} & \textbf{Base} & \textbf{No Stride} & \textbf{No Pool.} & \textbf{No Down.} & \textbf{SPD} \\
+        \hline
+        Params & 11.2M & 570K & 2.8M & 149K & 874K \\
+        FLOPs (M) & 141 & 147 & 140 & 154 & 225 \\
+        Test acc. (\%) & 76.18 & 81.78 & 78.79 & 77.47 & 78.71 \\
+        OI & 137.66 & 82.32 & 132.12 & 132.47 & 105.36 \\
+        Gen. gap (\%) & 15.82 & 6.28 & 12.92 & 6.88 & 8.27 \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
+
+\subsection{Generalization and Overfitting}\label{subsec:generalization}
+In addition to improved accuracy and efficiency, the modified architectures demonstrated substantially better generalization and reduced overfitting. This is visually suggested by the training and validation accuracy curves in Fig.~\ref{fig:accuracy_curves}, where the gap between the two is narrower for the modified models compared to the baseline.
+
+We quantified this observation using the Generalization Gap and the Overfitting Index (OI), with final values presented in Table~\ref{tab:results}. The baseline model showed clear signs of overfitting, with a Generalization Gap of 15.82\% and an OI of 137.66. In contrast, all four modified architectures exhibited significantly lower values for both metrics. The No Stride model, which was the most accurate, also proved to be the best at generalizing, with a Generalization Gap of just 6.28\% and an OI of 82.32. These results indicate that the models with enhanced equivariance are not only more accurate but also more robust, learning features that generalize more effectively to unseen data.
+
+% \begin{figure*}[t]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{accuracy_curves.png}
+%     \caption{Training (blue) and validation (orange) accuracy curves for the baseline and four variant architectures. The narrower gap between the curves in the modified models compared to the baseline indicates superior generalization and reduced overfitting.}
+%     \label{fig:accuracy_curves}
+% \end{figure*}
+
+% \begin{figure*}[t]
+%     \centering
+%     \subfloat[Baseline]{\includegraphics[width=0.19\textwidth]{base_accuracy.png}\label{fig:acc_curve_baseline}}
+%     \hfill
+%     \subfloat[No Pooling]{\includegraphics[width=0.19\textwidth]{nopooling_accuracy.png}\label{fig:acc_curve_no_pooling}}
+%     \hfill
+%     \subfloat[No Stride]{\includegraphics[width=0.19\textwidth]{nostride_accuracy.png}\label{fig:acc_curve_no_stride}}
+%     \hfill
+%     \subfloat[No Downsample]{\includegraphics[width=0.19\textwidth]{nodown_accuracy.png}\label{fig:acc_curve_no_downsample}}
+%     \hfill
+%     \subfloat[SPD]{\includegraphics[width=0.19\textwidth]{spd_accuracy.png}\label{fig:acc_curve_spd}}
+%     \caption{Training (blue) and validation (orange) accuracy curves for the baseline and four variant architectures. The narrower gap between the curves in the modified models indicates superior generalization and reduced overfitting.}
+%     \label{fig:accuracy_curves}
+% \end{figure*}
+
+
+
+%========================================================================================
+% SECTION V: CONCLUSION
+%========================================================================================
+\section{Conclusion}\label{sec:conclusion}
+
+This work studied downsampling design as a joint representation-and-systems problem for low-resolution image classification. We showed that preserving transformation equivariance through simple architectural changes yields consistent gains in accuracy, compactness, and generalization.
+
+Compared with a ResNet18 baseline (76.18\%, 11.2M parameters), all proposed variants improved accuracy while drastically reducing model size (149K--2.8M). The best overall model, No Stride, achieved 81.78\% with only 570K parameters and moderate FLOPs. These gains align with improved G-EED behavior in deeper layers, supporting the link between equivariance preservation and robust feature learning.
+
+The main practical implication is that downsampling policy is a strong systems-level lever: it shapes not only equivariance and accuracy, but also parameter budget and computational demand. For efficient ML deployments on resource-limited platforms, the presented design space offers useful trade-offs without introducing complex auxiliary modules. Future work will extend this study with hardware-specific latency, memory, and energy measurements, together with quantization-aware evaluation on edge devices.
+
+
+%========================================================================================
+% REFERENCES
+%========================================================================================
+\begin{thebibliography}{00}
+
+\bibitem{kvinge2022}
+H. Kvinge, T. H. Emerson, G. Jorgenson, S. Vasquez, T. Doster, and J. D. Lew, ``In what ways are deep neural networks invariant and how should we measure this?'' \textit{arXiv preprint arXiv:2210.03773}, 2022.
+
+\bibitem{azulay2019}
+A. Azulay and Y. Weiss, ``Why do deep convolutional networks generalize so poorly to small image transformations?'' \textit{arXiv preprint arXiv:1805.12177}, 2019.
+
+\bibitem{bruintjes2023}
+R.-J. Bruintjes, T. Motyka, and J. van Gemert, ``What affects learned equivariance in deep image recognition models?'' in \textit{Proc. IEEE/CVF Conf. Comput. Vis.}, 2023.
+
+\bibitem{zhu2022}
+W. Zhu, Q. Qiu, R. Calderbank, G. Sapiro, and X. Cheng, ``Scaling-translation-equivariant networks with decomposed convolutional filters,'' \textit{J. Mach. Learn. Res.}, 2022.
+
+\bibitem{sunkara2022}
+R. Sunkara and T. Luo, ``No more strided convolutions or pooling: A new CNN building block for low-resolution images and small objects,'' \textit{arXiv preprint arXiv:2208.03641}, 2022.
+
+\bibitem{ganj2023}
+A. Ganj, M. Ebadpour, M. Darvish, and H. Bahador, ``LR-Net: A block-based convolutional neural network for low-resolution image classification,'' \textit{arXiv preprint arXiv:2207.09531}, 2023.
+
+\bibitem{aburass2023}
+S. Aburass, ``Quantifying overfitting: Introducing the overfitting index,'' \textit{arXiv preprint arXiv:2308.08682}, 2023.
+
+\end{thebibliography}
+\vspace{12pt}
+
+\end{document}

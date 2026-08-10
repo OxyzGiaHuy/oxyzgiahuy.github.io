@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="SAGE: Shape-Adapting Gated Experts for Adaptive Histopathology Image Segmentation - CVPR 2026 Findings Track">
+  <meta name="keywords"
+    content="Medical Imaging, Histopathology, Segmentation, Dynamic Routing, Mixture of Experts, SAGE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAGE: Shape-Adapting Gated Experts for Adaptive Histopathology Image Segmentation | CVPR 2026 Findings Track
+  </title>
+  <style>
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+
+      10%,
+      90% {
+        transform: translateX(-5px);
+      }
+
+      20%,
+      80% {
+        transform: translateX(5px);
+      }
+
+      30%,
+      50%,
+      70% {
+        transform: translateX(-5px);
+      }
+
+      40%,
+      60% {
+        transform: translateX(5px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    #blur {
+      /* font-size: 60px; */
+      color: rgb(52, 144, 197);
+      filter: blur(3x);
+      -webkit-filter: blur(2.5px);
+      animation: shake 1s infinite;
+      display: inline-block;
+      ;
+      clear: none;
+    }
+
+    #shake {
+      /* font-size: 60px; */
+      animation: shake 1s infinite;
+      display: inline-block;
+      ;
+      clear: none;
+    }
+  </style>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!--    <link rel="icon" href="./static/images/favicon.svg">-->
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<style>
+  .publication-title {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800 !important;
+    padding-bottom: 0.1em;
+    font-size: 2.3rem !important;
+  }
+
+  .method-section {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .method-image {
+    margin: 2rem auto;
+    text-align: center;
+    max-width: 1000px;
+  }
+
+  .method-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .image-caption {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #666;
+    font-size: 0.95rem;
+    text-align: justify;
+  }
+
+  .result-table {
+    margin: 2rem auto;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  .grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 768px) {
+
+    .grid-2,
+    .grid-3,
+    .grid-5 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h2 class="title publication-title" style="margin-bottom: 3.5rem;">
+              <img src="sage.gif" alt="SAGE Logo"
+                style="height: 1.5em; vertical-align: middle; margin-right: 1px; margin-bottom: 5px;">
+              SAGE: Shape-Adapting Gated Experts<br>for Adaptive Histopathology Image Segmentation
+            </h2>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://orcid.org/0009-0006-6684-5323" target="_blank">Gia Huy
+                  Thai</a><sup>1,*</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=nGUt6_oAAAAJ&hl=en"
+                  target="_blank">Hoang-Nguyen Vu</a><sup>2,*</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=JCbuDwcAAAAJ&hl=vi"
+                  target="_blank">Anh-Minh Phan</a><sup>3</sup>,</span>
+              <span class="author-block"><a href="https://orcid.org/0009-0006-9039-5887" target="_blank">Quang-Thinh
+                  Ly</a><sup>4</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=rTa5hJwAAAAJ&hl=en"
+                  target="_blank">Thi-Ngoc-Truc Nguyen</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com.vn/citations?user=Xs7cKMwAAAAJ&hl=vi"
+                  target="_blank">Nhat Ho</a><sup>5</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>University of Science, VNU-HCM,</span>
+              <span class="author-block"><sup>2</sup>Trivita AI,</span>
+              <span class="author-block"><sup>3</sup>University of Technology, VNU-HCM,</span>
+              <span class="author-block"><sup>4</sup>Michigan State University, USA,</span>
+              <span class="author-block"><sup>5</sup>The University of Texas at Austin</span>
+            </div>
+
+            <div class="title is-4 has-text-weight-semibold"
+              style="margin-top: 10px; margin-bottom: 20px; color: #4a4a4a;">
+              CVPR 2026 <span style="color: #3b82f6;">Findings Track</span>
+            </div>
+
+            <div class="is-size-6 publication-authors" style="margin-bottom: 1rem;">
+              <span class="author-block"><sup>*</sup>Equal Contribution</span>
+            </div>
+
+            <div class="has-text-centered" style="margin-bottom: 1rem;">
+              <img src="sage_herb.png" alt="SAGE Herb Mascot" style="height: 180px; width: auto; object-fit: contain;">
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2511.18493" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noreferrer noopener">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>Arxiv</span>
+                  </a>
+                </span>
+                <!-- Paper Link. -->
+                <span class="link-block">
+                  <a href="./sage_paper.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noreferrer noopener">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Poster Link. -->
+                <span class="link-block">
+                  <a href="./sage_poster.png" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noreferrer noopener">
+                    <span class="icon"><i class="fas fa-image"></i></span>
+                    <span>Poster</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/OxyzGiaHuy/SAGE" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noreferrer noopener">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teaser / Explainability Visualization -->
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3 has-text-centered" style="margin-top: 2rem;">Explainability Visualization</h2>
+            <div class="method-image">
+              <img src="expl_viz.png" alt="Explainability Visualization"
+                style="width: 70%; border-radius: 8px; margin-bottom: 1rem;">
+            </div>
+            <div class="content has-text-justified">
+              <p class="image-caption">
+                <strong>Explainability visualization of dynamic expert routing in SAGE on the EBHI dataset.</strong>
+                Grad-CAMs highlight contributions from the CNN and Transformer main paths and their expert blocks. SAGE
+                adaptively redistributes attention across heterogeneous modules, revealing interpretable expert
+                collaboration during inference.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              The significant variability in cell size and shape continues to pose a major obstacle in computer-assisted
+              cancer
+              detection on gigapixel Whole Slide Images (WSIs), due to cellular heterogeneity. Current CNN-Transformer
+              hybrids use
+              static computation graphs with fixed routing. This leads to extra computation and makes it harder to adapt
+              to changes in
+              input. We propose Shape-Adapting Gated Experts (SAGE), an input-adaptive framework that enables dynamic
+              expert routing
+              in heterogeneous visual networks. SAGE reconfigures static backbones into dynamically routed expert
+              architectures via a
+              dual-path design with hierarchical gating and a Shape-Adapting Hub (SA-Hub) that harmonizes feature
+              representations
+              across convolutional and transformer modules. Embodied as SAGE with ConvNeXt and Vision Transformer UNet
+              (SAGE-ConvNeXt+ViT-UNet), our model achieves a Dice score of $95.23\%$ on EBHI, $92.78\%$/$91.42\%$ DSC on
+              GlaS Test
+              A/Test B, and $91.26\%$ DSC at the WSI level on DigestPath, while exhibiting robust generalization under
+              distribution
+              shifts by adaptively balancing local refinement and global context. SAGE establishes a scalable foundation
+              for dynamic
+              expert routing in visual networks, thereby facilitating flexible visual reasoning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Method -->
+  <section class="section method-section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-2 has-text-centered">Methodology</h2>
+
+      <div class="columns is-vcentered">
+        <div class="column is-half">
+          <div class="method-image"
+            style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <img src="figs/pipeline_new_2.jpg" alt="SAGE Architecture Overview"
+              style="height: 400px; width: 100%; object-fit: contain; width: auto; object-fit: contain; margin: 0 auto;">
+            <p class="image-caption">
+              <strong>Overview of the SAGE Framework.</strong>
+            </p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="method-image"
+            style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <img src="figs/router_2.jpg" alt="Hierarchical Top-K Expert Routing"
+              style="height: 400px; width: 100%; object-fit: contain; width: auto; object-fit: contain; margin: 0 auto;">
+            <p class="image-caption">
+              <strong>Hierarchical routing behavior with prior-guided logit modulation.</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section" style="margin-top: -3rem;">
+    <div class="container is-max-desktop">
+      <!-- <h2 class="title is-2 has-text-centered">Experimental Results</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          SAGE-UNet outperforms baselines on EBHI, DigestPath, and GlaS, yielding state-of-the-art Dice Scores.
+        </p>
+      </div> -->
+
+      <h3 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">Qualitative Comparison</h3>
+    </div>
+  </section>
+
+  <section class="hero is-light is-small" style="overflow-x: hidden; padding-bottom: 2rem;">
+    <div class="hero-body">
+      <div class="container is-fluid">
+
+        <style>
+          .qual-grid {
+            display: grid;
+            grid-template-columns: 30px repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+          }
+
+          .rotated-label {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .qual-col img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+          }
+
+          .qual-col img+img {
+            margin-top: 5px;
+          }
+
+          .header-row {
+            display: grid;
+            grid-template-columns: 30px repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+          }
+
+          .carousel-card {
+            padding: 24px;
+            margin: 0;
+            background-color: #ffffff;
+            border-radius: 16px;
+            border: none;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+          }
+
+          /* Ensure images have no black borders implicitly */
+          .qual-col img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+            border: none !important;
+          }
+
+          /* Center Mode Magic (1 focus, 2 halves) */
+          #results-carousel {
+            width: 75%;
+            margin: 0 auto;
+            overflow: visible !important;
+          }
+
+          #results-carousel .slider-wrapper,
+          #results-carousel .slider-container {
+            overflow: visible !important;
+          }
+
+          #results-carousel .slider-item {
+            transition: transform 0.4s ease;
+            transform: scale(0.9);
+            pointer-events: none;
+            opacity: 1;
+          }
+
+          #results-carousel .slider-item.is-active {
+            transform: scale(1);
+            pointer-events: auto;
+            z-index: 10;
+          }
+        </style>
+
+        <div id="results-carousel" class="carousel results-carousel">
+
+          <!-- Slide 1: GlaS Test A -->
+          <div class="item">
+            <div class="carousel-card">
+              <div class="header-row">
+                <div></div>
+                <div>(a) Input</div>
+                <div>(b) TransUNet</div>
+                <div>(c) EViT-UNet</div>
+                <div>(d) Ours</div>
+              </div>
+              <div class="qual-grid" style="margin-bottom: 0;">
+                <div class="rotated-label">GlaS Test A</div>
+                <div class="qual-col">
+                  <img src="figs/testA_org_img.png" alt="Test A Input">
+                  <img src="figs/testA_gt.png" alt="Test A GT">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testA_overlay_transunet.png" alt="Test A TransUNet Overlay">
+                  <img src="figs/testA_pred_transunet.png" alt="Test A TransUNet Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testA_overlay_evit.png" alt="Test A EViT Overlay">
+                  <img src="figs/testA_pred_evit.png" alt="Test A EViT Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testA_overlay_sage.png" alt="Test A SAGE Overlay">
+                  <img src="figs/testA_pred_sage.png" alt="Test A SAGE Pred">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: GlaS Test B -->
+          <div class="item">
+            <div class="carousel-card">
+              <div class="header-row">
+                <div></div>
+                <div>(a) Input</div>
+                <div>(b) TransUNet</div>
+                <div>(c) EViT-UNet</div>
+                <div>(d) Ours</div>
+              </div>
+              <div class="qual-grid" style="margin-bottom: 0;">
+                <div class="rotated-label">GlaS Test B</div>
+                <div class="qual-col">
+                  <img src="figs/testB_org_img.png" alt="Test B Input">
+                  <img src="figs/testB_gt.png" alt="Test B GT">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testB_overlay_transunet.png" alt="Test B TransUNet Overlay">
+                  <img src="figs/testB_pred_transunet.png" alt="Test B TransUNet Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testB_overlay_evit.png" alt="Test B EViT Overlay">
+                  <img src="figs/testB_pred_evit.png" alt="Test B EViT Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/testB_overlay_sage.png" alt="Test B SAGE Overlay">
+                  <img src="figs/testB_pred_sage.png" alt="Test B SAGE Pred">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: DigestPath WSI 1 -->
+          <div class="item">
+            <div class="carousel-card">
+              <div class="header-row">
+                <div></div>
+                <div>(a) Input</div>
+                <div>(b) SegFormer</div>
+                <div>(c) EViT-UNet</div>
+                <div>(d) Ours</div>
+              </div>
+              <div class="qual-grid" style="margin-bottom: 0;">
+                <div class="rotated-label">WSI Sample 1</div>
+                <div class="qual-col">
+                  <img src="figs/wsi_img1.png" alt="WSI 1 Input">
+                  <img src="figs/wsi_gt1.png" alt="WSI 1 GT">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/segformer_wsi_overlay1.png" alt="WSI 1 SegFormer Overlay">
+                  <img src="figs/segformer_wsi_pred1.png" alt="WSI 1 SegFormer Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/evit_wsi_overlay1.png" alt="WSI 1 EViT Overlay">
+                  <img src="figs/evit_wsi_pred1.png" alt="WSI 1 EViT Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/sage_wsi_overlay1.png" alt="WSI 1 SAGE Overlay">
+                  <img src="figs/sage_wsi_pred1.png" alt="WSI 1 SAGE Pred">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4: DigestPath WSI 2 -->
+          <div class="item">
+            <div class="carousel-card">
+              <div class="header-row">
+                <div></div>
+                <div>(a) Input</div>
+                <div>(b) SegFormer</div>
+                <div>(c) EViT-UNet</div>
+                <div>(d) Ours</div>
+              </div>
+              <div class="qual-grid" style="margin-bottom: 0;">
+                <div class="rotated-label">WSI Sample 2</div>
+                <div class="qual-col">
+                  <img src="figs/wsi_img2.png" alt="WSI 2 Input">
+                  <img src="figs/wsi_gt2.png" alt="WSI 2 GT">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/segformer_wsi_overlay2.png" alt="WSI 2 SegFormer Overlay">
+                  <img src="figs/segformer_wsi_pred2.png" alt="WSI 2 SegFormer Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/evit_wsi_overlay2.png" alt="WSI 2 EViT Overlay">
+                  <img src="figs/evit_wsi_pred2.png" alt="WSI 2 EViT Pred">
+                </div>
+                <div class="qual-col">
+                  <img src="figs/sage_wsi_overlay2.png" alt="WSI 2 SAGE Overlay">
+                  <img src="figs/sage_wsi_pred2.png" alt="WSI 2 SAGE Pred">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <div style="position: relative;">
+        <button class="button is-small is-light" onclick="copyBibtex()"
+          style="position: absolute; top: 0.5rem; right: 0.5rem; z-index: 10;">
+          <span class="icon"><i class="fas fa-copy"></i></span>
+          <span>Copy</span>
+        </button>
+        <pre><code id="bibtex">@InProceedings{Thai_2026_CVPR,
+    author    = {Thai, Gia Huy and Vu, Hoang-Nguyen and Phan, Anh-Minh and Ly, Quang-Thinh and Nguyen, Thi-Ngoc-Truc and Ho, Nhat},
+    title     = {SAGE: Shape-Adapting Gated Experts for Adaptive Histopathology Image Segmentation},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Findings},
+    month     = {June},
+    year      = {2026},
+    pages     = {7337-7346}
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function copyBibtex() {
+      var copyText = document.getElementById("bibtex").innerText;
+      navigator.clipboard.writeText(copyText).then(function () {
+        var btn = document.querySelector("#BibTeX button span:last-child");
+        btn.innerText = "Copied!";
+        setTimeout(function () {
+          btn.innerText = "Copy";
+        }, 2000);
+      });
+    }
+  </script>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          This website is licensed under a <a rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</body>
+
+</html>
