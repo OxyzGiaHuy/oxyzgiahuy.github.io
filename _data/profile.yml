@@ -1,6 +1,6 @@
 primary_name: "Gia Huy Thai"
 secondary_name: ""
-navbar_name: "Gia Huy Thai"
+navbar_name: "TiGiHi"
 
 positions:
 - name: Undergraduate Researcher
@@ -22,18 +22,11 @@ short_bio: >-
   <p>
     I am a final-year Honors Program undergraduate student in Information Technology at
     <a href="https://hcmus.edu.vn/" target="_blank">VNUHCM - University of Science</a>,
-    currently advised by <a href="http://tuandang.info/" target="_blank">Tuan Dang</a>.
-    I conduct my research with the Mixture of Multimodal Experts (MoME) group, which is
-    independent of my university affiliation.
-  </p>
-  <p>
+    where I conduct research with the Mixture of Multimodal Experts (MoME) group,
+    independent of my university affiliation, advised by
+    <a href="http://tuandang.info/" target="_blank">Tuan Dang</a>.
     My research interests include computer vision, medical image analysis, multimodal learning,
-    and efficient expert-based neural architectures. I am an equal-contribution first author of
-    <a href="/sage/" target="_blank">SAGE</a>, accepted to CVPR 2026 Findings Track, where I studied
-    shape-adaptive expert routing, dynamic gating, and heterogeneous backbone fusion for
-    histopathology image segmentation. I am also exploring LiDAR-camera 3D object detection
-    through intra-LiDAR expert routing across point, voxel, and range representations with
-    cross-modal decoding.
+    and efficient expert-based neural architectures.
   </p>
 
 portrait_url: /assets/images/photos/me.png
