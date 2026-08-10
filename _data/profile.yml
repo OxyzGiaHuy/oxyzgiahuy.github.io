@@ -20,32 +20,34 @@ orcid: 0009-0006-6684-5323
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    I am a third-year Honors Program undergraduate student in Information Technology at
+    I am a final-year Honors Program undergraduate student in Information Technology at
     <a href="https://hcmus.edu.vn/" target="_blank">VNUHCM - University of Science</a>,
-    where I lead a Mixture of Multimodal Experts (MoME) research group. My research focuses
-    on computer vision, medical image analysis, multimodal learning, and efficient expert-based
-    neural architectures.
+    currently advised by <a href="http://tuandang.info/" target="_blank">Tuan Dang</a>.
+    I conduct my research with the Mixture of Multimodal Experts (MoME) group, which is
+    independent of my university affiliation.
   </p>
   <p>
-    I am the first author of
-    <a href="/sage/" target="_blank">SAGE</a>, accepted to CVPR 2026 Findings Track,
-    where I studied shape-adaptive expert routing, dynamic gating, and heterogeneous backbone
-    fusion for histopathology image segmentation. I am also exploring LiDAR-camera 3D object
-    detection through intra-LiDAR expert routing across point, voxel, and range representations
-    with cross-modal decoding. Previously, as a member of the AIVN Research Group, I worked on
-    Mamba, Mixture-of-Experts, DeepSeekMoE, cardiac MRI reconstruction, and efficient AI system design.
+    My research interests include computer vision, medical image analysis, multimodal learning,
+    and efficient expert-based neural architectures. I am an equal-contribution first author of
+    <a href="/sage/" target="_blank">SAGE</a>, accepted to CVPR 2026 Findings Track, where I studied
+    shape-adaptive expert routing, dynamic gating, and heterogeneous backbone fusion for
+    histopathology image segmentation. I am also exploring LiDAR-camera 3D object detection
+    through intra-LiDAR expert routing across point, voxel, and range representations with
+    cross-modal decoding.
   </p>
 
-portrait_url: /assets/images/photos/GiaHuy.jpg
+portrait_url: /assets/images/photos/me.png
 
 education:
 - name: VNUHCM - University of Science
   logo: /assets/images/badges/logo_hcmus.png
   position: >-
     B.Sc. in Information Technology (Honors Program) <br/>
+    Final-year student ·
     CGPA: 3.86/4.0
   date: Sep. 2023 - present
 - name: Hoang Le Kha High School for the Gifted, Tay Ninh
+  logo: /assets/images/badges/logo_hlk.png
   position: >-
     Specialized in Mathematics <br/>
     GPA (Grade 12): 9.5/10.0
