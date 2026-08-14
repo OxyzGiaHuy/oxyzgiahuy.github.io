@@ -32,12 +32,16 @@ short_bio: >-
 portrait_url: /assets/images/photos/me.png
 
 education:
+- name: AI VIETNAM
+  logo: /assets/images/badges/aivietnam.png
+  dept: Extracurricular
+  position: Research Assistant
+  date: Feb. 2024 - present
 - name: VNUHCM - University of Science
   logo: /assets/images/badges/logo_hcmus.png
   position: >-
-    B.Sc. in Information Technology (Honors Program) <br/>
-    Final-year student ·
-    CGPA: 3.86/4.0
+    Faculty of Information Technology | Honors Program <br/>
+    Bachelor of Science student | GPA: 3.86/4.0
   date: Sep. 2023 - present
 - name: Hoang Le Kha High School for the Gifted, Tay Ninh
   logo: /assets/images/badges/logo_hlk.png
@@ -47,13 +51,21 @@ education:
   date: Sep. 2020 - May 2023
 
 awards:
-- name: Data for Life Season 3 — Special Award
+- name: "IELTS Academic - Overall Band Score: 6.5"
+  url: https://drive.google.com/file/d/1SGcXOpoMmjvRFe8i2te8A3sUhWF94MQ2/view?usp=sharing
+  date: "Issued: Jun. 2026"
+- name: Data for Life Season 3 - Special Award
+  url: https://drive.google.com/file/d/1v2ok6_anJuFJXxMfzI4v8Qu9o9yO3D8g/view?usp=sharing
   date: Dec. 2025
-- name: Mobius Ribbon Challenge — First Prize
+- name: Mobius Ribbon Challenge - First Prize
+  url: https://drive.google.com/file/d/1E4ciAvXnvG92c60dpJl1Uz7hV-17SvfZ/view?usp=drive_link
   date: Jul. 2025
 - name: Dean's List, Faculty of Information Technology, HCMUS
-  date: 2023–2024
+  url: https://drive.google.com/file/d/1N1-V8F2cV8Q-zFuM9d9DO6BZEhmaTUNt/view?usp=drive_link
+  date: Dec. 2024
 - name: Vallet Fellowship
+  url: https://drive.google.com/file/d/1N0x7TdjRoiS2-rPEdmIsbekFqRvCWGrk/view?usp=sharing
   date: Aug. 2023
-- name: Vietnam National Olympiad — Third Prize in Mathematics
+- name: Vietnam National Olympiad - Third Prize in Mathematics
+  url: https://drive.google.com/file/d/1N4yvLC26hiYZZfDTcmX832SFVgNLuHHT/view?usp=drive_link
   date: Mar. 2023
