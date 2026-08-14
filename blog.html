@@ -1,32 +1,41 @@
 ---
 layout: default
-title : Blog
+title: Blog
 navbar_title: Blog
-body_attr: >-
-  data-spy="scroll" data-target="#navbar-year" data-offset="100"
 ---
 
-{% assign blogs_by_year = site.posts | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
-
-<div class="row">
-    <div class="col-12 col-lg-10">
-        {% for year in blogs_by_year %}
-        {% assign num_blogs = year.items | size %}
-        <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
-        <div class="my-0 p-0 bg-white shadow-sm rounded-xl">
-            {% for item in year.items %}
-                {% include widgets/blog_card.html item=item hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
-            {% endfor %}
+<main class="blog-index">
+    <header class="blog-hero">
+        <div>
+            <p class="blog-eyebrow">Notes, ideas, and experiments</p>
+            <h1>Blog</h1>
+            <p class="blog-lead">Short notes on research, machine learning, and the things I learn while building.</p>
         </div>
+        <div class="blog-hero-mark" aria-hidden="true"><i class="fas fa-feather-pointed"></i></div>
+    </header>
+
+    {% assign posts = site.posts | sort: "date" | reverse %}
+    {% if posts.size > 0 %}
+    <div class="blog-list">
+        {% for post in posts %}
+        <article class="blog-entry">
+            <div class="blog-entry-date">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+                {% if post.categories %}<span>{{ post.categories | join: " · " }}</span>{% endif %}
+            </div>
+            <div class="blog-entry-content">
+                <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+                <p>{{ post.excerpt | strip_html | strip_newlines | truncate: 220 }}</p>
+                <a class="blog-read-more" href="{{ post.url | relative_url }}">Read note <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
         {% endfor %}
     </div>
-
-    <div class="col-2 d-none d-lg-block">
-        <div id="navbar-year" class="nav nav-pills flex-column sticky-top" style="top: 80px">
-            {% for year in blogs_by_year %}
-            <a class="nav-link d-block" href="#year-{{ year.name }}">{{ year.name }}</a>
-            {% endfor %}
-        </div>
-    </div>
-
-</div>
+    {% else %}
+    <section class="blog-empty">
+        <i class="fas fa-pen-nib" aria-hidden="true"></i>
+        <h2>Notes are on the way.</h2>
+        <p>I am preparing short write-ups about research directions, useful tools, and lessons from my projects.</p>
+    </section>
+    {% endif %}
+</main>
