@@ -189,7 +189,7 @@ h1, h2, h3, h4, h5, h6,
     font-weight: 600;
 }
 
-/* Blog layout — content preserves original width, TOC uses remaining space */
+/* Blog layout - content preserves original width, TOC uses remaining space */
 .blog-layout-wrapper {
     display: flex;
     justify-content: center;

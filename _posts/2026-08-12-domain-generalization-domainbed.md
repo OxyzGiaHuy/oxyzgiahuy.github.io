@@ -1,7 +1,7 @@
 ---
 layout: blog_post
-title: "Domain Generalization: khi model phải làm việc ở một domain chưa từng thấy"
-date: 2026-08-12 22:00:00 +0700
+title: "Domain Generalization: When Models Must Work in Unseen Domains"
+date: 2024-07-22 22:00:00 +0700
 categories: [Research, Machine Learning]
 tags: [domain-generalization, domain-adaptation, domainbed, robustness]
 description: "Ghi chú từ seminar về domain shift, domain adaptation, domain generalization và benchmark DomainBed."
@@ -21,17 +21,17 @@ Khi đó, model không còn nhìn thấy đúng “thế giới” mà nó đã 
 
 Vấn đề này thường được gọi là **domain shift**. Domain có thể khác nhau vì nhiều lý do: thiết bị chụp, quy trình thu thập, nhân khẩu học, background, độ phân giải, cách tiền xử lý hoặc những pattern vô tình xuất hiện trong dataset.
 
-[Slide 4–5]({{ slide_deck }}#page=4) mở đầu bằng một ví dụ về bias trong dữ liệu. Một hệ thống có thể hoạt động tốt trên nhóm dữ liệu này nhưng kém hơn rõ rệt trên nhóm khác, không hẳn vì thuật toán “ngu”, mà vì dataset đã dạy nó một cách nhìn không cân bằng.
+[Slide 4-5]({{ slide_deck }}#page=4) mở đầu bằng một ví dụ về bias trong dữ liệu. Một hệ thống có thể hoạt động tốt trên nhóm dữ liệu này nhưng kém hơn rõ rệt trên nhóm khác, không hẳn vì thuật toán “ngu”, mà vì dataset đã dạy nó một cách nhìn không cân bằng.
 
 ## Bias thường đến từ data
 
-Slide 4 đặt câu hỏi “Is AI biased?” và dùng ví dụ về kết quả tìm kiếm cho từ khóa “CEO”. Slide 5–6 tiếp tục minh họa rằng dữ liệu và cách dữ liệu được phân bố có thể ảnh hưởng trực tiếp đến prediction.
+Slide 4 đặt câu hỏi “Is AI biased?” và dùng ví dụ về kết quả tìm kiếm cho từ khóa “CEO”. Slide 5-6 tiếp tục minh họa rằng dữ liệu và cách dữ liệu được phân bố có thể ảnh hưởng trực tiếp đến prediction.
 
 Một ví dụ khác trong slide dẫn lại phân tích về facial recognition: hiệu năng có thể chênh lệch đáng kể giữa các nhóm màu da và giới tính. Khi dataset thiếu đại diện hoặc chứa spurious correlation, model có thể học một shortcut rất mạnh nhưng không bền vững.
 
 Nói cách khác, model có thể không thật sự học “đặc điểm cần thiết” của bài toán. Nó có thể học background, góc chụp, phong cách camera hoặc một dấu hiệu phụ nào đó chỉ xuất hiện trong train set.
 
-[Slide 7–9]({{ slide_deck }}#page=7) dùng một toy experiment để cho thấy model dễ bị ảnh hưởng bởi viewpoint, vật thể bị che khuất và các pattern khác thường. Những ví dụ này đơn giản, nhưng gợi ra một vấn đề lớn hơn: dataset có signature riêng và signature đó không nhất thiết tồn tại trong domain mới.
+[Slide 7-9]({{ slide_deck }}#page=7) dùng một toy experiment để cho thấy model dễ bị ảnh hưởng bởi viewpoint, vật thể bị che khuất và các pattern khác thường. Những ví dụ này đơn giản, nhưng gợi ra một vấn đề lớn hơn: dataset có signature riêng và signature đó không nhất thiết tồn tại trong domain mới.
 
 ## Bài toán của data signature
 
@@ -73,7 +73,7 @@ Ví dụ trong medical imaging rất dễ hình dung: cùng một loại bệnh 
 
 ## Các hướng tiếp cận DG
 
-[Slide 16–17]({{ slide_deck }}#page=16) nhắc đến nhiều hướng nghiên cứu khác nhau, trong đó có:
+[Slide 16-17]({{ slide_deck }}#page=16) nhắc đến nhiều hướng nghiên cứu khác nhau, trong đó có:
 
 - ensemble và model selection;
 - mutual-information regularization;

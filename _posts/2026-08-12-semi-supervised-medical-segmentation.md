@@ -1,7 +1,7 @@
 ---
 layout: blog_post
-title: "Semi-Supervised Medical Segmentation: tận dụng những dữ liệu chưa được gán nhãn"
-date: 2026-08-12 21:00:00 +0700
+title: "Semi-Supervised Medical Segmentation: Making Use of Unlabeled Data"
+date: 2024-07-15 21:00:00 +0700
 categories: [Research, Medical AI]
 tags: [semi-supervised-learning, medical-segmentation, computer-vision, pseudo-labeling]
 description: "Ghi chú từ Seminar 1 của AI VIETNAM về semi-supervised learning và semi-supervised medical segmentation."
@@ -9,7 +9,7 @@ description: "Ghi chú từ Seminar 1 của AI VIETNAM về semi-supervised lear
 
 {% assign slide_deck = '/assets/data/blog/2-seminar1-ssms.pdf' | relative_url %}
 
-> Đây là bài ghi chú được mình rút trích và sắp xếp lại từ **Seminar 1 — Delving into Semi-Supervised Medical Segmentation** của AI VIETNAM. Mục tiêu là giải thích lại ý chính theo cách dễ đọc hơn, không thay thế cho nội dung đầy đủ trong slide.
+> Đây là bài ghi chú được mình rút trích và sắp xếp lại từ **Seminar 1 - Delving into Semi-Supervised Medical Segmentation** của AI VIETNAM. Mục tiêu là giải thích lại ý chính theo cách dễ đọc hơn, không thay thế cho nội dung đầy đủ trong slide.
 
 📎 [Mở toàn bộ slide seminar (PDF)]({{ slide_deck }})
 
@@ -19,7 +19,7 @@ Trong medical AI, dữ liệu thường không thiếu hoàn toàn. Vấn đề 
 
 Hãy tưởng tượng một bệnh viện mỗi ngày thu thập hàng nghìn ảnh X-quang. Nhưng để biến một ảnh thành dữ liệu huấn luyện cho segmentation, cần có người đánh dấu vùng phổi hoặc vùng tổn thương trên từng ảnh. Công việc này vừa tốn thời gian, vừa đòi hỏi chuyên môn. Vì thế, trong thực tế ta thường có một tập nhỏ gồm ảnh và mask, bên cạnh một tập lớn chỉ có ảnh mà chưa có nhãn.
 
-[Slide 4–6]({{ slide_deck }}#page=4) minh họa rất rõ khoảng cách này: supervised learning chỉ sử dụng được phần dữ liệu có mask, trong khi một lượng lớn dữ liệu không nhãn đang bị bỏ lại.
+[Slide 4-6]({{ slide_deck }}#page=4) minh họa rất rõ khoảng cách này: supervised learning chỉ sử dụng được phần dữ liệu có mask, trong khi một lượng lớn dữ liệu không nhãn đang bị bỏ lại.
 
 Vậy câu hỏi là: **làm sao để mô hình học được gì đó từ phần dữ liệu chưa được gán nhãn?**
 
@@ -29,7 +29,7 @@ Trong supervised learning, mô hình dự đoán trên dữ liệu có nhãn r�
 
 Nhưng với ảnh không nhãn, ta không có ground truth để so sánh.
 
-Một ý tưởng tự nhiên là huấn luyện mô hình trên tập labeled trước. Sau đó dùng mô hình này dự đoán cho tập unlabeled, rồi coi prediction đó như một nhãn tạm thời. Cách làm này gọi là **pseudo-labeling**. Sơ đồ ở [slide 7–8]({{ slide_deck }}#page=7) mô tả đúng quy trình đó.
+Một ý tưởng tự nhiên là huấn luyện mô hình trên tập labeled trước. Sau đó dùng mô hình này dự đoán cho tập unlabeled, rồi coi prediction đó như một nhãn tạm thời. Cách làm này gọi là **pseudo-labeling**. Sơ đồ ở [slide 7-8]({{ slide_deck }}#page=7) mô tả đúng quy trình đó.
 
 Pseudo-labeling khá hấp dẫn vì nó biến dữ liệu không nhãn thành dữ liệu “có nhãn”. Tuy nhiên, nhãn tạm thời này không phải sự thật tuyệt đối. Nếu mô hình ban đầu đoán sai, lỗi đó có thể được đưa ngược trở lại quá trình huấn luyện và làm mô hình tự củng cố sai lầm của mình.
 
@@ -37,7 +37,7 @@ Pseudo-labeling khá hấp dẫn vì nó biến dữ liệu không nhãn thành 
 
 Nói đơn giản, **semi-supervised learning (SSL)** là cách huấn luyện kết hợp cả dữ liệu labeled và unlabeled.
 
-Theo [slide 9–10]({{ slide_deck }}#page=9), SSL nằm giữa nhiều chiến lược khác nhau khi dữ liệu có nhãn hạn chế:
+Theo [slide 9-10]({{ slide_deck }}#page=9), SSL nằm giữa nhiều chiến lược khác nhau khi dữ liệu có nhãn hạn chế:
 
 1. Pre-training rồi fine-tuning.
 2. Semi-supervised learning.
@@ -80,7 +80,7 @@ Dữ liệu quan sát có thể nằm trong không gian rất nhiều chiều, n
 
 Trong supervised learning, feature extractor và classifier được học chủ yếu từ dữ liệu labeled. Nếu tập labeled quá nhỏ, representation có thể bị lệch vì chưa nhìn thấy đủ độ đa dạng của từng class.
 
-[Slide 13–18]({{ slide_deck }}#page=13) mô tả hai vấn đề liên quan:
+[Slide 13-18]({{ slide_deck }}#page=13) mô tả hai vấn đề liên quan:
 
 - **Feature extraction bị bias:** feature space được xây dựng từ quá ít thông tin.
 - **Prototype không đại diện cho toàn bộ dữ liệu:** một vài điểm labeled không thể mô tả hết hình dạng của class.
@@ -103,7 +103,7 @@ Mỗi mask y tế có thể yêu cầu chuyên gia đánh dấu rất chi tiết
 
 Ý tưởng cốt lõi là: nếu ta tạo ra các phiên bản thay đổi nhẹ của cùng một ảnh, prediction của mô hình nên nhất quán.
 
-Trong classification, FixMatch là một ví dụ nổi tiếng. Mô hình có thể dùng một augmentation yếu để tạo pseudo-label, sau đó yêu cầu prediction trên augmentation mạnh vẫn khớp với nhãn đó. [Slide 22–23]({{ slide_deck }}#page=22) nhắc đến FixMatch và các hướng phát triển như Dash, FlexMatch, FreeMatch.
+Trong classification, FixMatch là một ví dụ nổi tiếng. Mô hình có thể dùng một augmentation yếu để tạo pseudo-label, sau đó yêu cầu prediction trên augmentation mạnh vẫn khớp với nhãn đó. [Slide 22-23]({{ slide_deck }}#page=22) nhắc đến FixMatch và các hướng phát triển như Dash, FlexMatch, FreeMatch.
 
 Trực giác của consistency regularization khá tự nhiên: thay đổi nhỏ về ánh sáng, crop hoặc nhiễu không nên khiến mô hình đổi hoàn toàn nhận định về nội dung ảnh.
 

@@ -1,7 +1,7 @@
 ---
 layout: blog_post
-title: "Bắt đầu với AI Research: chọn hướng đi, hiểu academia và tìm ý tưởng"
-date: 2026-08-12 20:00:00 +0700
+title: "Getting Started with AI Research: Choosing a Direction, Understanding Academia, and Finding Ideas"
+date: 2024-07-08 20:00:00 +0700
 categories: [Research, Career]
 tags: [ai-research, study-abroad, academia, research-direction]
 description: "Một vài ghi chú từ Seminar 1 của AI VIETNAM về AI Research, lộ trình học thuật và cách bắt đầu tìm hướng nghiên cứu."
@@ -9,7 +9,7 @@ description: "Một vài ghi chú từ Seminar 1 của AI VIETNAM về AI Resear
 
 {% assign slide_deck = '/assets/data/blog/1-seminar1-studyabroad-v2.pdf' | relative_url %}
 
-> Đây là bài ghi chú được mình rút trích và sắp xếp lại từ **Seminar 1 — AI Research Study & Career Path: How to get started** trong khóa AI VIETNAM All-in-One Course. Một số nhận xét trong bài là cách mình diễn giải lại nội dung slide, nên không nên xem như “công thức chung” cho mọi người.
+> Đây là bài ghi chú được mình rút trích và sắp xếp lại từ **Seminar 1 - AI Research Study & Career Path: How to get started** trong khóa AI VIETNAM All-in-One Course. Một số nhận xét trong bài là cách mình diễn giải lại nội dung slide, nên không nên xem như “công thức chung” cho mọi người.
 
 📎 [Mở toàn bộ slide seminar (PDF)]({{ slide_deck }})
 
@@ -19,7 +19,7 @@ Thoạt nhìn, hai vai trò này có thể khá giống nhau: đều cần nền
 
 AI Engineer thường quan tâm đến việc đưa một hệ thống vào hoạt động: mô hình có đủ nhanh không, chi phí inference bao nhiêu, sản phẩm có ổn định không, người dùng có sử dụng được không. Nói ngắn gọn, trọng tâm là **tối ưu hóa, dữ liệu, sản phẩm và chi phí**.
 
-AI Researcher lại tập trung nhiều hơn vào việc tạo ra hoặc kiểm chứng tri thức mới: một giả thuyết có đúng không, phương pháp nào tốt hơn và vì sao, mô hình đang học điều gì, kết quả có tổng quát không. Trọng tâm nghiêng về **benchmarking, mô hình, sự thật và tri thức**. [Slide 5–6]({{ slide_deck }}#page=5) trình bày sự khác biệt này khá trực quan: hai hướng có thể giao nhau về skillset, nhưng mindset không hoàn toàn giống nhau.
+AI Researcher lại tập trung nhiều hơn vào việc tạo ra hoặc kiểm chứng tri thức mới: một giả thuyết có đúng không, phương pháp nào tốt hơn và vì sao, mô hình đang học điều gì, kết quả có tổng quát không. Trọng tâm nghiêng về **benchmarking, mô hình, sự thật và tri thức**. [Slide 5-6]({{ slide_deck }}#page=5) trình bày sự khác biệt này khá trực quan: hai hướng có thể giao nhau về skillset, nhưng mindset không hoàn toàn giống nhau.
 
 Điều này không có nghĩa một người phải chọn một bên và bỏ hẳn bên còn lại. Trong thực tế, một researcher tốt vẫn cần biết code và đánh giá hệ thống, còn một engineer tốt cũng cần tư duy thực nghiệm và hiểu giới hạn của mô hình. Điểm khác nhau chủ yếu nằm ở câu hỏi mình muốn dành nhiều thời gian nhất để trả lời.
 
@@ -39,9 +39,9 @@ Vì vậy, học tiếp không chỉ là “học thêm một tấm bằng”. �
 
 ## Các lộ trình học tiếp thường gặp
 
-[Slide 8–15]({{ slide_deck }}#page=8) đưa ra một số lộ trình phổ biến, không phải quy định cứng:
+[Slide 8-15]({{ slide_deck }}#page=8) đưa ra một số lộ trình phổ biến, không phải quy định cứng:
 
-- **Master rồi đi industry:** thường kéo dài khoảng 1–2 năm ở nhiều khu vực. Sau đó có thể chuyển sang AI Engineer hoặc các vai trò liên quan.
+- **Master rồi đi industry:** thường kéo dài khoảng 1-2 năm ở nhiều khu vực. Sau đó có thể chuyển sang AI Engineer hoặc các vai trò liên quan.
 - **Master rồi học PhD:** có thể đi từ châu Á sang châu Á/châu Âu, hoặc từ châu Á sang các nước như Mỹ, Australia hay một số chương trình khác. Tổng thời gian thường dài hơn nhưng phù hợp với người muốn theo academia hoặc research scientist.
 - **Direct PhD:** một số trường và quốc gia cho phép đi thẳng từ bậc undergraduate lên PhD. Lộ trình này ngắn hơn về tổng số bằng phải học, nhưng yêu cầu đầu vào thường cao hơn về tiếng Anh, research experience và thành tích nghiên cứu.
 
@@ -51,7 +51,7 @@ Một điểm mình thấy khá thực tế là bài toán không chỉ nằm �
 
 ## Tìm hướng nghiên cứu: đừng bắt đầu bằng một từ khóa quá rộng
 
-[Slide 17–18]({{ slide_deck }}#page=17) mô tả một **knowledge pyramid**. Có thể bắt đầu từ những tầng khác nhau:
+[Slide 17-18]({{ slide_deck }}#page=17) mô tả một **knowledge pyramid**. Có thể bắt đầu từ những tầng khác nhau:
 
 ```text
 Mathematical / optimization-based AI
@@ -67,7 +67,7 @@ Ví dụ, “machine learning” là một vùng quá lớn. Đi xuống một t
 
 Đi từ trên xuống giúp mình có nền tảng và ngữ cảnh. Đi từ dưới lên lại giúp mình bắt đầu với một bài toán gần thực tế hơn. Không có chiều nào luôn đúng; quan trọng là biết mình đang đứng ở đâu trong bản đồ kiến thức.
 
-Phần ví dụ về semi-supervised learning ở [slide 18–21]({{ slide_deck }}#page=18) cũng cho thấy một hướng nghiên cứu có thể nối nhiều lớp với nhau:
+Phần ví dụ về semi-supervised learning ở [slide 18-21]({{ slide_deck }}#page=18) cũng cho thấy một hướng nghiên cứu có thể nối nhiều lớp với nhau:
 
 - từ theory và concept của semi-supervised learning;
 - sang semi-supervised image classification hoặc semantic segmentation;
@@ -77,7 +77,7 @@ Nhìn theo cách này, “chọn topic” không nhất thiết là nghĩ ra m�
 
 ## AI Research Pyramid và khoảng trống để đóng góp
 
-[Slide 22–23]({{ slide_deck }}#page=22) chia research thành ba vùng:
+[Slide 22-23]({{ slide_deck }}#page=22) chia research thành ba vùng:
 
 1. **Mathematical AI:** nhiều về theory, optimization và mathematical modeling; các conference tiêu biểu được slide nhắc tới là NeurIPS, ICML và ICLR.
 2. **AI Task:** tập trung vào các bài toán như computer vision; ví dụ CVPR, ICCV và ECCV.
@@ -113,7 +113,7 @@ Với **fill gaps (cross-field)**, mình chủ động tìm giao điểm giữa 
 
 ### 4. Thêm constraint
 
-Một cách khác là giữ một bài toán quen thuộc nhưng thêm điều kiện khó hơn: dữ liệu noisy, domain shift, thiếu modality, giới hạn compute, hoặc yêu cầu robustness. [Slide 29–31]({{ slide_deck }}#page=29) minh họa hướng này qua việc kết hợp domain adaptation, object detection và noisy labeling trong bối cảnh mammogram.
+Một cách khác là giữ một bài toán quen thuộc nhưng thêm điều kiện khó hơn: dữ liệu noisy, domain shift, thiếu modality, giới hạn compute, hoặc yêu cầu robustness. [Slide 29-31]({{ slide_deck }}#page=29) minh họa hướng này qua việc kết hợp domain adaptation, object detection và noisy labeling trong bối cảnh mammogram.
 
 Constraint không chỉ làm bài toán khó hơn. Nếu constraint phản ánh một vấn đề thực tế, nó có thể khiến một bài toán cũ trở nên có ý nghĩa hơn.
 

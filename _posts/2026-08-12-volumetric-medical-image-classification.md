@@ -1,7 +1,7 @@
 ---
 layout: blog_post
-title: "Nhìn ảnh y khoa theo thể tích: 3D CNN, 3D U-Net và mô hình 2.5D"
-date: 2026-08-12 23:00:00 +0700
+title: "Understanding Volumetric Medical Images: 3D CNNs, 3D U-Net, and 2.5D Models"
+date: 2024-07-29 23:00:00 +0700
 categories: [Medical AI, Computer Vision]
 tags: [3d-cnn, 3d-unet, volumetric-data, medical-imaging, lstm]
 description: "Ghi chú từ Seminar 3 của AI VIETNAM về volumetric medical images, RSNA 2023 và hướng kết hợp 3D segmentation với 2.5D CNN + RNN."
@@ -9,7 +9,7 @@ description: "Ghi chú từ Seminar 3 của AI VIETNAM về volumetric medical i
 
 {% assign slide_deck = '/assets/data/blog/4-volumetric-medical-image-classification.pdf' | relative_url %}
 
-> Đây là bài ghi chú được mình rút trích từ **Seminar 3 — Exploring Disease Classification Methods for Volumetric (3D) Medical Image (CTs/MRIs)** của AI VIETNAM. Mình tập trung vào trực giác và pipeline chính trong slide, còn các chi tiết implementation nên xem lại trong PDF gốc.
+> Đây là bài ghi chú được mình rút trích từ **Seminar 3 - Exploring Disease Classification Methods for Volumetric (3D) Medical Image (CTs/MRIs)** của AI VIETNAM. Mình tập trung vào trực giác và pipeline chính trong slide, còn các chi tiết implementation nên xem lại trong PDF gốc.
 
 📎 [Mở toàn bộ slide seminar (PDF)]({{ slide_deck }})
 
@@ -19,7 +19,7 @@ Khi nhìn một ảnh 2D, ta thường nghĩ input là một ma trận chiều c
 
 Tập hợp các lát cắt này tạo thành một **volumetric image**. Thay vì chỉ nhìn một mặt phẳng, ta có thể quan sát cấu trúc theo cả ba chiều.
 
-[Slide 3–4]({{ slide_deck }}#page=3) đưa ra các ví dụ từ video, BraTS brain tumor segmentation và RSNA abdominal trauma detection. Cùng một ý tưởng “nhiều frame/lát cắt tạo thành một volume” xuất hiện trong nhiều bài toán khác nhau.
+[Slide 3-4]({{ slide_deck }}#page=3) đưa ra các ví dụ từ video, BraTS brain tumor segmentation và RSNA abdominal trauma detection. Cùng một ý tưởng “nhiều frame/lát cắt tạo thành một volume” xuất hiện trong nhiều bài toán khác nhau.
 
 Điểm này quan trọng vì một tổn thương y khoa có thể không thể hiện đầy đủ trong một lát cắt đơn lẻ. Thông tin ở các lát cắt bên cạnh có thể giúp mô hình hiểu hình dạng và sự liên tục của cấu trúc.
 
@@ -43,13 +43,13 @@ Trực giác của 3D CNN là mô hình không chỉ học pattern trong một l
 
 U-Net là một kiến trúc quen thuộc cho segmentation, với encoder để trích xuất feature và decoder để khôi phục độ phân giải. Skip connection nối feature ở encoder với decoder để giữ lại thông tin không gian chi tiết.
 
-Khi chuyển sang 3D U-Net, các operation 2D được thay bằng operation 3D để xử lý volume. [Slide 7–11]({{ slide_deck }}#page=7) đi từ review 2D U-Net đến các bước hình thành 3D U-Net.
+Khi chuyển sang 3D U-Net, các operation 2D được thay bằng operation 3D để xử lý volume. [Slide 7-11]({{ slide_deck }}#page=7) đi từ review 2D U-Net đến các bước hình thành 3D U-Net.
 
 Điểm mạnh của 3D U-Net là có thể dự đoán mask với context theo cả ba chiều. Nhưng nó cũng phải trả giá bằng tensor lớn hơn, memory usage cao hơn và preprocessing phức tạp hơn.
 
 ## RSNA 2023: một bài toán volumetric thực tế
 
-Phần tiếp theo của seminar lấy RSNA 2023 làm ví dụ. [Slide 12–16]({{ slide_deck }}#page=12) giới thiệu dữ liệu theo study và nhiều cơ quan trong cùng một volume.
+Phần tiếp theo của seminar lấy RSNA 2023 làm ví dụ. [Slide 12-16]({{ slide_deck }}#page=12) giới thiệu dữ liệu theo study và nhiều cơ quan trong cùng một volume.
 
 Pipeline được trình bày theo hai stage:
 
@@ -96,7 +96,7 @@ Một điểm đáng chú ý trong slide là backbone và sequence model có th�
 
 ## LSTM và segmentation head
 
-[Slide 21–25]({{ slide_deck }}#page=21) tách pipeline 2.5D thành các thành phần nhỏ hơn:
+[Slide 21-25]({{ slide_deck }}#page=21) tách pipeline 2.5D thành các thành phần nhỏ hơn:
 
 - CNN encoder để lấy feature từ từng input slice hoặc nhóm slice;
 - LSTM head để tổng hợp thông tin theo sequence;
@@ -107,7 +107,7 @@ Cách trình bày theo từng bước này khá hữu ích khi implement. Thay v
 
 ## Upsampling: ConvTranspose, Interpolation hay Pixel Shuffle?
 
-Decoder và segmentation head thường cần đưa feature map về độ phân giải cao hơn. [Slide 26–28]({{ slide_deck }}#page=26) giới thiệu ba lựa chọn:
+Decoder và segmentation head thường cần đưa feature map về độ phân giải cao hơn. [Slide 26-28]({{ slide_deck }}#page=26) giới thiệu ba lựa chọn:
 
 - **ConvTranspose2d:** học kernel để upsample, nhưng có thể tạo checkerboard artifacts nếu cấu hình không phù hợp;
 - **Interpolation:** đơn giản và ít tham số hơn, nhưng không tự học được cách khôi phục feature;
