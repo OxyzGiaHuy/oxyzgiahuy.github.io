@@ -4,4 +4,61 @@ title: Project
 navbar_title: Project
 ---
 
-<!-- Project entries will be added here later. -->
+<main class="projects-page">
+    <header class="projects-hero">
+        <div>
+            <p class="projects-eyebrow">Selected work</p>
+            <h1>Projects</h1>
+            <p class="projects-lead">A collection of research, engineering, and applied AI projects. Each card highlights the question, tools, and outcome behind the work.</p>
+        </div>
+        <div class="projects-hero-mark" aria-hidden="true"><i class="fas fa-code-branch"></i></div>
+    </header>
+
+    {% for group in site.data.projects.groups %}
+    <section class="project-group" aria-labelledby="project-group-{{ forloop.index }}">
+        <div class="project-group-heading">
+            <h2 id="project-group-{{ forloop.index }}">{{ group.name }}</h2>
+            <span>{{ group.items | size }} Projects</span>
+        </div>
+        <div class="project-grid">
+            {% for item in group.items %}
+            {% assign project_link = item.github | default: item.href %}
+            <article class="project-card">
+                {% if project_link %}
+                <a class="project-card-media" href="{{ project_link | relative_url }}" target="_blank" rel="noopener" aria-label="Open {{ item.title }}">
+                {% else %}
+                <div class="project-card-media">
+                {% endif %}
+                    {% if item.image %}
+                    <img src="{{ item.image | relative_url }}" alt="{{ item.title }} preview" loading="lazy">
+                    {% else %}
+                    <div class="project-placeholder">
+                        <i class="{{ item.icon | default: 'fas fa-code' }}" aria-hidden="true"></i>
+                        <span>{{ item.type }}</span>
+                    </div>
+                    {% endif %}
+                {% if project_link %}</a>{% else %}</div>{% endif %}
+
+                <div class="project-card-body">
+                    <div class="project-card-meta">
+                        <span>{{ item.type }}</span>
+                        <time>{{ item.date }}</time>
+                    </div>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
+                    <div class="project-tags">
+                        {% for tag in item.tags %}<span>{{ tag }}</span>{% endfor %}
+                    </div>
+                    {% if item.github or item.href %}
+                    <div class="project-links">
+                        {% if item.github %}<a href="{{ item.github }}" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>{% endif %}
+                        {% if item.href %}<a href="{{ item.href | relative_url }}"><i class="fas fa-arrow-up-right-from-square"></i> Project page</a>{% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+</main>

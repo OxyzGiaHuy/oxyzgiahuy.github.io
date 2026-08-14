@@ -1,0 +1,130 @@
+groups:
+- name: Research Projects
+  items:
+  - title: "SAGE: Shape-Adaptive Gated Experts for Medical Image Segmentation"
+    type: Research
+    date: Jul. 2025 - Feb. 2026
+    description: A mixture-of-experts framework for medical histopathology segmentation with shape-adaptive routing and efficient expert specialization.
+    image: /assets/images/covers/sage.jpg
+    href: /sage/
+    icon: fas fa-microscope
+    tags:
+    - Medical imaging
+    - Mixture of experts
+    - Segmentation
+  - title: "ELDER: Equivariance-preserving Downsampling for Efficient Low-Resolution Image Classification"
+    type: Research
+    date: Mar. 2025 - Jun. 2025
+    description: A systematic study of equivariance-preserving downsampling for low-resolution CNN classification, reaching strong CIFAR-10 accuracy with a compact model.
+    image: /assets/images/covers/elder.png
+    icon: fas fa-expand-arrows-alt
+    tags:
+    - Computer vision
+    - Efficient AI
+    - CNNs
+  - title: LiDAR-Camera 3D Object Detection
+    type: Ongoing direction
+    date: Aug. 2025 - present
+    description: Exploring robust multi-modal representations for 3D perception by combining complementary LiDAR and camera signals.
+    icon: fas fa-cubes
+    tags:
+    - 3D vision
+    - Multi-modal learning
+
+- name: Semester Projects
+  items:
+  - title: VectorRAG for Vietnamese Medical-Legal QA
+    type: NLP · Information retrieval
+    date: Mar. 2026 - Jun. 2026
+    description: A retrieval-augmented question answering system designed for Vietnamese medical and legal documents.
+    icon: fas fa-book-medical
+    tags:
+    - RAG
+    - Vietnamese NLP
+    - Streamlit
+  - title: TrailsExplorer
+    type: Software engineering
+    date: Nov. 2025 - Jan. 2026
+    description: A Gemini-powered trip planning application that turns travel preferences into structured, practical itineraries.
+    github: https://github.com/OxyzGiaHuy/CSC13002-Intro2SE
+    icon: fas fa-route
+    tags:
+    - Gemini
+    - Full-stack
+    - Trip planning
+- name: AI VIETNAM Projects
+  items:
+  - title: Emoji Image Generation with Stable Diffusion
+    type: Generative AI
+    date: Apr. 2025 - Jul. 2025
+    description: A study of controllable image generation for emoji-style visual content using Stable Diffusion.
+    icon: fas fa-face-smile
+    tags:
+    - Diffusion models
+    - Generation
+  - title: Text-Guided Image Generation with Conditional Flow Matching
+    type: Generative AI
+    date: Dec. 2024 - Jan. 2025
+    description: An implementation study of conditional flow matching for text-guided image synthesis.
+    icon: fas fa-wand-magic-sparkles
+    tags:
+    - Flow matching
+    - Text-to-image
+  - title: Multi-Dataset Image Classification
+    type: Computer vision
+    date: Oct. 2025
+    description: A lightweight image classification application supporting multiple datasets and interactive inference.
+    github: https://github.com/OxyzGiaHuy/LeNet_Streamlit
+    icon: fas fa-images
+    tags:
+    - Classification
+    - LeNet
+    - Streamlit
+  - title: Image Depth Estimation
+    type: Computer vision
+    date: Aug. 2024
+    description: A computer vision project for estimating scene depth from images.
+    github: https://github.com/OxyzGiaHuy/Image_Depth_Estimation
+    icon: fas fa-mountain-sun
+    tags:
+    - Depth estimation
+    - Vision
+  - title: Image Segmentation with K-Means
+    type: Computer vision
+    date: Jul. 2024
+    description: An interpretable image segmentation pipeline based on color-space clustering with K-Means.
+    github: https://github.com/OxyzGiaHuy/Image_Segmentation_KMeans
+    icon: fas fa-object-group
+    tags:
+    - Segmentation
+    - Unsupervised learning
+  - title: RAG for PDF Question Answering
+    type: NLP · Information retrieval
+    date: Jul. 2024
+    description: A document question answering prototype that combines PDF parsing, vector search, and LangChain.
+    github: https://github.com/OxyzGiaHuy/RAG_Langchain_Project
+    icon: fas fa-file-lines
+    tags:
+    - RAG
+    - LangChain
+    - LLMs
+
+- name: Competitions
+  items:
+  - title: Known Item Search for Video Retrieval
+    type: HCMC AI Challenge
+    date: Sep. 2024
+    description: A text-to-video retrieval system for finding known items in long-form video content.
+    icon: fas fa-video
+    tags:
+    - Video retrieval
+    - CLIP
+  - title: Heineken Beer Detection
+    type: AngelHack 2024
+    date: Jun. 2024
+    description: An AI-powered image analysis system for detecting Heineken products, counting customers, and extracting marketing insights.
+    github: https://github.com/nananam98/hackhcmc-angelhack-heineken
+    icon: fas fa-beer-mug-empty
+    tags:
+    - Object detection
+    - Computer vision
