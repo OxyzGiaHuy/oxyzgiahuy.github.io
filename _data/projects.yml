@@ -26,6 +26,7 @@ groups:
     type: Ongoing direction
     date: Aug. 2025 - present
     description: Exploring robust multi-modal representations for 3D perception by combining complementary LiDAR and camera signals.
+    image: /assets/images/covers/lidar-camera-3d-detection.jpg
     icon: fas fa-cubes
     tags:
     - 3D vision
@@ -37,6 +38,7 @@ groups:
     type: NLP · Information retrieval
     date: Mar. 2026 - Jun. 2026
     description: A retrieval-augmented question answering system designed for Vietnamese medical and legal documents.
+    image: /assets/images/covers/vectorrag.jpg
     icon: fas fa-book-medical
     tags:
     - RAG
@@ -46,6 +48,7 @@ groups:
     type: Software engineering
     date: Nov. 2025 - Jan. 2026
     description: A Gemini-powered trip planning application that turns travel preferences into structured, practical itineraries.
+    image: /assets/images/covers/trailsexplorer.jpg
     github: https://github.com/OxyzGiaHuy/CSC13002-Intro2SE
     icon: fas fa-route
     tags:
@@ -58,6 +61,7 @@ groups:
     type: Generative AI
     date: Apr. 2025 - Jul. 2025
     description: A study of controllable image generation for emoji-style visual content using Stable Diffusion.
+    image: /assets/images/covers/emoji-stable-diffusion.jpg
     icon: fas fa-face-smile
     tags:
     - Diffusion models
@@ -66,6 +70,7 @@ groups:
     type: Generative AI
     date: Dec. 2024 - Jan. 2025
     description: An implementation study of conditional flow matching for text-guided image synthesis.
+    image: /assets/images/covers/conditional-flow-matching.jpg
     icon: fas fa-wand-magic-sparkles
     tags:
     - Flow matching
@@ -74,6 +79,7 @@ groups:
     type: Computer vision
     date: Oct. 2025
     description: A lightweight image classification application supporting multiple datasets and interactive inference.
+    image: /assets/images/covers/multi-dataset-classification.jpg
     github: https://github.com/OxyzGiaHuy/LeNet_Streamlit
     icon: fas fa-images
     tags:
@@ -84,6 +90,7 @@ groups:
     type: Computer vision
     date: Aug. 2024
     description: A computer vision project for estimating scene depth from images.
+    image: /assets/images/covers/depth-estimation.jpg
     github: https://github.com/OxyzGiaHuy/Image_Depth_Estimation
     icon: fas fa-mountain-sun
     tags:
@@ -93,6 +100,7 @@ groups:
     type: Computer vision
     date: Jul. 2024
     description: An interpretable image segmentation pipeline based on color-space clustering with K-Means.
+    image: /assets/images/covers/kmeans-segmentation.jpg
     github: https://github.com/OxyzGiaHuy/Image_Segmentation_KMeans
     icon: fas fa-object-group
     tags:
@@ -102,6 +110,7 @@ groups:
     type: NLP · Information retrieval
     date: Jul. 2024
     description: A document question answering prototype that combines PDF parsing, vector search, and LangChain.
+    image: /assets/images/covers/rag-pdf-qa.jpg
     github: https://github.com/OxyzGiaHuy/RAG_Langchain_Project
     icon: fas fa-file-lines
     tags:
@@ -115,6 +124,7 @@ groups:
     type: HCMC AI Challenge
     date: Sep. 2024
     description: A text-to-video retrieval system for finding known items in long-form video content.
+    image: /assets/images/covers/video-retrieval.jpg
     icon: fas fa-video
     tags:
     - Video retrieval
@@ -123,6 +133,7 @@ groups:
     type: AngelHack 2024
     date: Jun. 2024
     description: An AI-powered image analysis system for detecting Heineken products, counting customers, and extracting marketing insights.
+    image: /assets/images/covers/beer-detection.jpg
     github: https://github.com/nananam98/hackhcmc-angelhack-heineken
     icon: fas fa-beer-mug-empty
     tags:
