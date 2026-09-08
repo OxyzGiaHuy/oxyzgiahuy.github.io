@@ -31,6 +31,11 @@ Nhưng với ảnh không nhãn, ta không có ground truth để so sánh.
 
 Một ý tưởng tự nhiên là huấn luyện mô hình trên tập labeled trước. Sau đó dùng mô hình này dự đoán cho tập unlabeled, rồi coi prediction đó như một nhãn tạm thời. Cách làm này gọi là **pseudo-labeling**. Sơ đồ ở [slide 7-8]({{ slide_deck }}#page=7) mô tả đúng quy trình đó.
 
+<figure class="blog-slide">
+  <img src="{{ '/assets/images/blog/slides/blog-02-slide-07-ssl-features.jpg' | relative_url }}" alt="Feature extraction và prototype trong semi-supervised learning" loading="lazy">
+  <figcaption>Slide 7: cùng một feature space có thể bị lệch khi dữ liệu labeled quá ít, khiến prototype chưa đại diện cho toàn bộ class.</figcaption>
+</figure>
+
 Pseudo-labeling khá hấp dẫn vì nó biến dữ liệu không nhãn thành dữ liệu “có nhãn”. Tuy nhiên, nhãn tạm thời này không phải sự thật tuyệt đối. Nếu mô hình ban đầu đoán sai, lỗi đó có thể được đưa ngược trở lại quá trình huấn luyện và làm mô hình tự củng cố sai lầm của mình.
 
 ## Semi-supervised learning là gì?
@@ -104,6 +109,11 @@ Mỗi mask y tế có thể yêu cầu chuyên gia đánh dấu rất chi tiết
 Ý tưởng cốt lõi là: nếu ta tạo ra các phiên bản thay đổi nhẹ của cùng một ảnh, prediction của mô hình nên nhất quán.
 
 Trong classification, FixMatch là một ví dụ nổi tiếng. Mô hình có thể dùng một augmentation yếu để tạo pseudo-label, sau đó yêu cầu prediction trên augmentation mạnh vẫn khớp với nhãn đó. [Slide 22-23]({{ slide_deck }}#page=22) nhắc đến FixMatch và các hướng phát triển như Dash, FlexMatch, FreeMatch.
+
+<figure class="blog-slide">
+  <img src="{{ '/assets/images/blog/slides/blog-02-slide-22-fixmatch.jpg' | relative_url }}" alt="Sơ đồ consistency regularization của FixMatch" loading="lazy">
+  <figcaption>Slide 22: consistency regularization yêu cầu các biến thể của cùng một mẫu vẫn cho prediction nhất quán.</figcaption>
+</figure>
 
 Trực giác của consistency regularization khá tự nhiên: thay đổi nhỏ về ánh sáng, crop hoặc nhiễu không nên khiến mô hình đổi hoàn toàn nhận định về nội dung ảnh.
 

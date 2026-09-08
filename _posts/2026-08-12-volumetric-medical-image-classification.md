@@ -21,6 +21,11 @@ Tập hợp các lát cắt này tạo thành một **volumetric image**. Thay v
 
 [Slide 3-4]({{ slide_deck }}#page=3) đưa ra các ví dụ từ video, BraTS brain tumor segmentation và RSNA abdominal trauma detection. Cùng một ý tưởng “nhiều frame/lát cắt tạo thành một volume” xuất hiện trong nhiều bài toán khác nhau.
 
+<figure class="blog-slide">
+  <img src="{{ '/assets/images/blog/slides/blog-04-slide-03-volumetric-data.jpg' | relative_url }}" alt="Các lát cắt 2D được xếp thành volumetric medical image" loading="lazy">
+  <figcaption>Slide 3: dữ liệu y khoa 3D được tạo từ nhiều lát cắt 2D, nên thông tin giữa các lát cắt cũng có thể quan trọng như thông tin trong từng ảnh.</figcaption>
+</figure>
+
 Điểm này quan trọng vì một tổn thương y khoa có thể không thể hiện đầy đủ trong một lát cắt đơn lẻ. Thông tin ở các lát cắt bên cạnh có thể giúp mô hình hiểu hình dạng và sự liên tục của cấu trúc.
 
 ## Từ 2D CNN sang 3D CNN
@@ -81,6 +86,11 @@ Các study có thể có kích thước volume và spacing khác nhau. Rescaling
 Trong slide, một input được tạo bằng cách stack 32 slices với 3 channels. CNN encoder trích xuất feature, sau đó một LSTM head xử lý chuỗi feature để dự đoán xác suất injury. Đồng thời, segmentation head tạo mask phụ với Dice loss.
 
 [Slide 20]({{ slide_deck }}#page=20) minh họa pipeline chính:
+
+<figure class="blog-slide">
+  <img src="{{ '/assets/images/blog/slides/blog-04-slide-20-2-5d-pipeline.jpg' | relative_url }}" alt="Pipeline 2.5D CNN với LSTM và segmentation head" loading="lazy">
+  <figcaption>Slide 20: nhiều slice được đưa qua CNN, tổng hợp bằng LSTM và hỗ trợ thêm bởi segmentation head.</figcaption>
+</figure>
 
 ```text
 Stacked slices

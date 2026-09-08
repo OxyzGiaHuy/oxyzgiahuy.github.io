@@ -78,6 +78,26 @@
     margin: 1rem 0;
 }
 
+.blog-content .blog-slide {
+    max-width: 960px;
+    margin: 1.75rem auto;
+    text-align: center;
+}
+
+.blog-content .blog-slide img {
+    display: block;
+    width: 100%;
+    margin: 0 auto 0.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
+}
+
+.blog-content .blog-slide figcaption {
+    color: #6c757d;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 /* Multi-column image layouts */
 .blog-content .row img {
     margin: 0.5rem 0;

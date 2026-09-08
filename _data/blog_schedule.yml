@@ -1,0 +1,57 @@
+# Reference calendar for the AI VIETNAM seminar blog series.
+# Keep dates here when adding future posts so the sequence remains consistent.
+# Visual and writing rules: see BLOG_WRITING_RULES.md.
+1:
+  date: 2024-07-08
+  source: "1. Seminar1_StudyAbroad_v2.pdf"
+2:
+  date: 2024-07-15
+  source: "2. Seminar1_SSMS.pdf"
+3:
+  date: 2024-07-22
+  source: "3. DG seminar.pdf"
+4:
+  date: 2024-07-29
+  source: "4. Seminar 03 - Volumetrics Medical Images Classification (ver2).pdf"
+5:
+  date: 2024-08-01
+  source: "5. DoTranNhatTuong_01-08_v2.pdf"
+6:
+  date: 2024-08-22
+  source: "6. MedTS_v2.pdf"
+7:
+  date: 2024-09-12
+  source: "7. AI in Robotics.pdf"
+8:
+  date: 2024-10-17
+  source: "8. AIO2024_MLOps_Docker.pdf"
+9:
+  date: 2024-10-26
+  source: "9. MLOPS_Cloud_Deployment_v2.pdf"
+10:
+  date: 2024-10-27
+  source: "10. FMMix_Report.pdf"
+11:
+  date: 2024-10-27
+  source: "11. VMambaDA - Presentation_v2.pdf"
+12:
+  date: 2024-10-31
+  source: "12. Speedup Machine Learning Inference_v2.pdf"
+13:
+  date: 2024-11-07
+  source: "13. Introduction to Machine Learning Serving and Packaging_v2.pdf"
+14:
+  date: 2024-11-16
+  source: "14. Triton Inference Server.pdf"
+15:
+  date: 2024-12-05
+  source: "15. Airflow_v3.pdf"
+16:
+  date: 2024-12-12
+  source: "16. MLFlow_v2.pdf"
+17:
+  date: 2024-12-19
+  source: "17. Monitoring.pdf"
+18:
+  date: 2024-12-26
+  source: "18. CICD_v3.pdf"

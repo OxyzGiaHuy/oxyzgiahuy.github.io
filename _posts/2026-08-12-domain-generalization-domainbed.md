@@ -67,6 +67,11 @@ Nhưng có một hạn chế rất thực tế: **nếu target data chưa xuất
 
 [Slide 15]({{ slide_deck }}#page=15) mô tả ví dụ có Hospital A, B và C trong training, rồi triển khai sang Hospital D.
 
+<figure class="blog-slide">
+  <img src="{{ '/assets/images/blog/slides/blog-03-slide-15-domain-generalization.jpg' | relative_url }}" alt="Sơ đồ domain generalization từ các bệnh viện source sang một bệnh viện target mới" loading="lazy">
+  <figcaption>Slide 15: target domain chưa xuất hiện trong training, nên model phải học feature ổn định giữa các source domain.</figcaption>
+</figure>
+
 Ở đây, ta không thể dựa vào việc “nhìn trước” target data để điều chỉnh model. Model phải học được những feature ổn định hơn giữa các source domains, thay vì ghi nhớ signature riêng của từng domain.
 
 Ví dụ trong medical imaging rất dễ hình dung: cùng một loại bệnh nhưng ảnh đến từ scanner, protocol hoặc bệnh viện khác nhau. Một model tốt không nên chỉ nhận ra style của một bệnh viện; nó cần giữ được tín hiệu liên quan trực tiếp đến bệnh lý.
@@ -89,6 +94,11 @@ Một điểm cần chú ý là DG không chỉ là “thêm một loss”. Kế
 Nếu mỗi paper tự chọn dataset, algorithm, model selection và cách đánh giá khác nhau, việc so sánh giữa các phương pháp sẽ rất khó. Đây là lý do cần một benchmark và platform thống nhất.
 
 [Slide 18]({{ slide_deck }}#page=18) giới thiệu **DomainBed**, một framework tập hợp:
+
+<figure class="blog-slide">
+  <img src="{{ '/assets/images/blog/slides/blog-03-slide-18-domainbed.jpg' | relative_url }}" alt="DomainBed benchmark với nhiều dataset và protocol đánh giá" loading="lazy">
+  <figcaption>Slide 18: DomainBed giúp đặt nhiều algorithm và dataset vào một protocol tương đối thống nhất để so sánh công bằng hơn.</figcaption>
+</figure>
 
 1. các dataset và algorithm cho domain generalization;
 2. quy trình thực nghiệm tương đối gọn và nhất quán;

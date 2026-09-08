@@ -53,6 +53,11 @@ Một điểm mình thấy khá thực tế là bài toán không chỉ nằm �
 
 [Slide 17-18]({{ slide_deck }}#page=17) mô tả một **knowledge pyramid**. Có thể bắt đầu từ những tầng khác nhau:
 
+<figure class="blog-slide">
+  <img src="{{ '/assets/images/blog/slides/blog-01-slide-17-knowledge-pyramid.jpg' | relative_url }}" alt="Knowledge pyramid từ mathematical AI đến một bài toán cụ thể" loading="lazy">
+  <figcaption>Slide 17: knowledge pyramid. Hình này gợi ý một cách đi từ nền tảng rộng đến một bài toán nghiên cứu cụ thể.</figcaption>
+</figure>
+
 ```text
 Mathematical / optimization-based AI
                 ↓
@@ -78,6 +83,11 @@ Nhìn theo cách này, “chọn topic” không nhất thiết là nghĩ ra m�
 ## AI Research Pyramid và khoảng trống để đóng góp
 
 [Slide 22-23]({{ slide_deck }}#page=22) chia research thành ba vùng:
+
+<figure class="blog-slide">
+  <img src="{{ '/assets/images/blog/slides/blog-01-slide-22-research-pyramid.jpg' | relative_url }}" alt="AI Research Pyramid gồm Mathematical AI, AI Task và Interdisciplinary AI" loading="lazy">
+  <figcaption>Slide 22: AI Research Pyramid. Các khoảng trống thú vị thường nằm ở điểm nối giữa Mathematical AI, AI Task và Interdisciplinary AI.</figcaption>
+</figure>
 
 1. **Mathematical AI:** nhiều về theory, optimization và mathematical modeling; các conference tiêu biểu được slide nhắc tới là NeurIPS, ICML và ICLR.
 2. **AI Task:** tập trung vào các bài toán như computer vision; ví dụ CVPR, ICCV và ECCV.
