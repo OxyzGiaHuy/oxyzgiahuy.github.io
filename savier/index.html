@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="SAVIER: Source-Anchored Visual Inspection and Evidence-Guided Repair for Vietnamese Cultural Text-to-Image Generation">
+  <meta name="keywords"
+    content="Cultural text-to-image generation, Vietnamese culture, image-aware prompt refinement, reference-guided generation, SAVIER, ViCuP">
+  <title>SAVIER: Evidence-Guided Repair for Vietnamese Cultural Text-to-Image Generation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+      background: linear-gradient(135deg, #9d174d 0%, #db2777 55%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800 !important;
+      font-size: 2.2rem !important;
+      line-height: 1.25 !important;
+      padding-bottom: 0.1em;
+    }
+
+    .publication-authors {
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    .publication-authors a {
+      color: #be185d !important;
+    }
+
+    .publication-authors a:hover {
+      text-decoration: underline;
+    }
+
+    .author-block {
+      display: inline-block;
+      margin-right: 0.25em;
+    }
+
+    .publication-links .link-block {
+      display: inline-block;
+      margin: 0.25rem 0.15rem;
+    }
+
+    .figure-block {
+      margin: 1.5rem auto 0.5rem;
+      text-align: center;
+    }
+
+    .figure-block img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      background: #fff;
+    }
+
+    .image-caption {
+      margin-top: 0.75rem;
+      font-style: italic;
+      color: #666;
+      font-size: 0.95rem;
+      text-align: justify;
+    }
+
+    .highlight-cards {
+      margin-top: 1rem;
+    }
+
+    .highlight-cards .box {
+      height: 100%;
+      border-top: 4px solid #db2777;
+    }
+
+    .highlight-cards .box h4 {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .result-table {
+      overflow-x: auto;
+      margin: 1.5rem auto 0.5rem;
+    }
+
+    .result-table table {
+      margin: 0 auto;
+    }
+
+    .result-table th,
+    .result-table td {
+      text-align: center !important;
+      vertical-align: middle !important;
+      white-space: nowrap;
+    }
+
+    .result-table td:first-child,
+    .result-table th:first-child {
+      text-align: left !important;
+    }
+
+    .result-table tr.is-ours td {
+      background: #fdf2f8;
+    }
+
+    .result-table tr.group-start td {
+      border-top: 2px solid #dbdbdb;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title publication-title">
+              SAVIER: Source-Anchored Visual Inspection and Evidence-Guided Repair
+              for Vietnamese Cultural Text-to-Image Generation
+            </h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://orcid.org/0009-0006-6684-5323" target="_blank">Gia-Huy
+                  Thai</a><sup>1,2,*</sup>,</span>
+              <span class="author-block">Duc-Tien Khong<sup>1,2,*</sup>,</span>
+              <span class="author-block"><a href="https://www.fit.hcmus.edu.vn/~tmtriet" target="_blank">Minh-Triet
+                  Tran</a><sup>1,2</sup>,</span>
+              <span class="author-block"><a href="https://ltnghia.github.io/" target="_blank">Trung-Nghia
+                  Le</a><sup>1,2,&dagger;</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>University of Science, Ho Chi Minh City, Vietnam</span>
+              <span class="author-block"><sup>2</sup>Vietnam National University, Ho Chi Minh City, Vietnam</span>
+            </div>
+
+            <div class="is-size-6 publication-authors" style="margin-top: 0.5rem;">
+              <span class="author-block"><sup>*</sup>Equal contribution</span>
+              <span class="author-block"><sup>&dagger;</sup>Corresponding author</span>
+            </div>
+
+
+            <div class="has-text-centered" style="margin-top: 1.25rem; margin-bottom: 1rem;">
+              <picture>
+                <source srcset="savier_mascot.webp" type="image/webp">
+                <img src="savier_mascot.gif" alt="SAVIER mascot: a banh chung superhero holding a magnifying glass and a paintbrush"
+                  style="height: 180px; width: auto; object-fit: contain;">
+              </picture>
+            </div>
+
+            <div class="publication-links">
+              <span class="link-block">
+                <a class="button is-normal is-rounded is-dark" disabled title="The paper is under review">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper (coming soon)</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/OxyzGiaHuy/SAVIER" class="button is-normal is-rounded is-dark"
+                  target="_blank" rel="noopener noreferrer">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="figure-block">
+              <img src="qualitative.jpg" alt="Qualitative comparison of SAVIER with the original prompt and Culture-TRIP on SDXL and FLUX.1-dev">
+            </div>
+            <p class="image-caption">
+              <strong>Six selected ViCuP prompts (S004, S010, S024, S034, S039, S042).</strong>
+              For each generator, columns show the original prompt, the Culture-TRIP image I<sub>0</sub>, and the
+              SAVIER image I<sub>1</sub>; bilingual prompts appear at left. The examples include improvements and
+              regressions and are illustrative rather than a random sample.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Text-to-image models can render plausible Vietnamese scenes while missing cues that identify a focal
+              cultural entity or details explicitly requested by the user. We present SAVIER, a training-free,
+              one-pass repair framework that addresses these requirements separately. An offline, human-verified
+              visual contract links each entity to source-supported cues, while a fixed photograph bank provides
+              visual conditioning. During repair, a Curator separates cultural evidence from prompt-preservation
+              requirements, a prompt-blind Observer describes the initial image, and a Refiner proposes bounded
+              positive corrections. We evaluate the complete pipeline on 50 prompts of ViCuP dataset using SDXL and
+              FLUX.1-dev. Relative to saved Culture-TRIP expansions, SAVIER raises VLM-judged visual-contract
+              fulfillment from 55.6 to 69.6 on SDXL and from 59.1 to 67.3 on FLUX. These results evaluate the
+              complete repair and reference-conditioned generation pipeline rather than an isolated causal effect of
+              the agents.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contributions -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Highlights</h2>
+      <div class="columns is-multiline highlight-cards">
+        <div class="column is-half">
+          <div class="box">
+            <h4>Training-free repair</h4>
+            <p>Repairs Vietnamese cultural depictions without retraining the generator or altering the user's
+              request. It performs one additional generation and fixes evidence and reference images offline rather
+              than selecting them at inference time.</p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="box">
+            <h4>Curator, Observer, Refiner</h4>
+            <p>Each role has a controlled view of the information. The Curator separates sourced cultural cues from
+              prompt-explicit details, the Observer reports the initial image without the prompt, and the Refiner
+              converts discrepancies into bounded positive instructions.</p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="box">
+            <h4>ViCuP dataset</h4>
+            <p>50 bilingual Vietnamese-English cultural prompts across eight categories, each centered on a single
+              annotated focal entity that is named rather than visually described.</p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="box">
+            <h4>Two generator backbones</h4>
+            <p>SAVIER is evaluated against the original-prompt and Culture-TRIP baselines with both SDXL and
+              FLUX.1-dev, using cultural-relevance and contract-based visual criteria.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Method</h2>
+
+      <div class="figure-block">
+        <img src="pipeline.png" alt="Overview of the SAVIER pipeline in four stages: generate, inspect, decide, regenerate">
+      </div>
+      <p class="image-caption">
+        <strong>Overview of SAVIER, read left to right in four stages.</strong>
+        The Curator reads the prompt and the retrieved passages, the Observer reads only I<sub>0</sub>, and the
+        Refiner reads their messages but never the pixels. Proposed actions are screened against I<sub>0</sub>
+        before the second generator call.
+      </p>
+
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-four-fifths">
+          <div class="figure-block">
+            <img src="agent_module.png" alt="The agent module of SAVIER with numbered messages between Curator, Observer, Refiner and Screening">
+          </div>
+          <p class="image-caption">
+            <strong>The agent module, enlarged.</strong>
+            Messages are numbered in order. Screening is a deterministic filter over the Observer's scores, not a
+            fourth agent.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Results on ViCuP</h2>
+      <div class="result-table">
+        <table class="table is-hoverable is-narrow">
+          <thead>
+            <tr>
+              <th rowspan="2">Configuration</th>
+              <th colspan="2">Cultural Relevance</th>
+              <th colspan="2">Contract Diagnostics</th>
+            </tr>
+            <tr>
+              <th>CAIRE-VN &uarr;</th>
+              <th>CAIRE-CN &darr;</th>
+              <th>VCFS &uarr;</th>
+              <th>CCR &darr;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SDXL</td>
+              <td>2.66</td>
+              <td>2.46</td>
+              <td>52.9</td>
+              <td>20.8</td>
+            </tr>
+            <tr>
+              <td>SDXL + Culture-TRIP</td>
+              <td>3.00</td>
+              <td>2.54</td>
+              <td>55.6</td>
+              <td>15.3</td>
+            </tr>
+            <tr class="is-ours">
+              <td>SDXL + SAVIER</td>
+              <td><strong>3.36</strong></td>
+              <td><strong>2.36</strong></td>
+              <td><strong>69.6</strong></td>
+              <td><strong>15.2</strong></td>
+            </tr>
+            <tr class="group-start">
+              <td>FLUX</td>
+              <td>2.50</td>
+              <td><strong>2.54</strong></td>
+              <td>44.8</td>
+              <td><strong>13.3</strong></td>
+            </tr>
+            <tr>
+              <td>FLUX + Culture-TRIP</td>
+              <td>2.50</td>
+              <td>3.08</td>
+              <td>59.1</td>
+              <td>15.0</td>
+            </tr>
+            <tr class="is-ours">
+              <td>FLUX + SAVIER</td>
+              <td><strong>3.00</strong></td>
+              <td>2.88</td>
+              <td><strong>67.3</strong></td>
+              <td>14.2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="image-caption">
+        Results on ViCuP (50 prompts; prompt-level means). CAIRE uses a five-point scale; VCFS and CCR are
+        percentages. VCFS (Visual Contract Fulfillment Score) is the weighted percentage of required visual evidence
+        present. These comparisons concern the complete SAVIER pipeline, including photographic conditioning,
+        rather than the isolated effect of agent-mediated repair.
+      </p>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section hero is-light" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <div style="position: relative;">
+        <button class="button is-small is-light" onclick="copyBibtex()"
+          style="position: absolute; top: 0.5rem; right: 0.5rem; z-index: 10;">
+          <span class="icon"><i class="fas fa-copy"></i></span>
+          <span>Copy</span>
+        </button>
+        <pre><code id="bibtex"></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          <a href="/">Back to homepage</a>
+        </p>
+        <p>
+          This website is licensed under a <a rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+            International License</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyBibtex() {
+      var copyText = document.getElementById("bibtex").innerText;
+      navigator.clipboard.writeText(copyText).then(function () {
+        var btn = document.querySelector("#BibTeX button span:last-child");
+        btn.innerText = "Copied!";
+        setTimeout(function () {
+          btn.innerText = "Copy";
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+
+</html>
