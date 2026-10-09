@@ -1,7 +1,7 @@
 groups:
 - name: Research Projects
   items:
-  - title: "SAGE: Shape-Adaptive Gated Experts for Medical Image Segmentation"
+  - title: "SAGE: Shape-Adapting Gated Experts for Adaptive Histopathology Image Segmentation"
     type: Research
     date: Jul. 2025 - Feb. 2026
     description: A mixture-of-experts framework for medical histopathology segmentation with shape-adaptive routing and efficient expert specialization.
@@ -12,16 +12,17 @@ groups:
     - Medical imaging
     - Mixture of experts
     - Segmentation
-  - title: "ELDER: Equivariance-preserving Downsampling for Efficient Low-Resolution Image Classification"
-    type: Research
-    date: Mar. 2025 - Jun. 2025
-    description: A systematic study of equivariance-preserving downsampling for low-resolution CNN classification, reaching strong CIFAR-10 accuracy with a compact model.
-    image: /assets/images/covers/elder.png
-    icon: fas fa-expand-arrows-alt
-    tags:
-    - Computer vision
-    - Efficient AI
-    - CNNs
+  # ELDER hidden for now; uncomment to show again
+  # - title: "ELDER: Equivariance-preserving Downsampling for Efficient Low-Resolution Image Classification"
+  #   type: Research
+  #   date: Mar. 2025 - Jun. 2025
+  #   description: A systematic study of equivariance-preserving downsampling for low-resolution CNN classification, reaching strong CIFAR-10 accuracy with a compact model.
+  #   image: /assets/images/covers/elder.png
+  #   icon: fas fa-expand-arrows-alt
+  #   tags:
+  #   - Computer vision
+  #   - Efficient AI
+  #   - CNNs
   - title: LiDAR-Camera 3D Object Detection
     type: Ongoing direction
     date: Aug. 2025 - present

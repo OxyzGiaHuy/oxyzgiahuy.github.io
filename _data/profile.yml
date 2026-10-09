@@ -4,10 +4,9 @@ navbar_name: "TiGiHi"
 
 positions:
 - name: Undergraduate Researcher
-- name: Leader, Mixture of Multimodal Experts (MoME)
 
 email: "thaigiahuy.hlk@gmail.com"
-cv_link: /assets/data/GiaHuyThai_Researcher.pdf
+# cv_link: /assets/data/GiaHuyThai_Researcher.pdf  # CV link hidden for now
 gscholar: "https://scholar.google.com.vn/citations?user=SIsr2TgAAAAJ&hl=vi"
 github: OxyzGiaHuy
 # twitter: your_twitter_id  # Do not include the '@' symbol
@@ -21,11 +20,25 @@ short_bio_text_justify: false
 short_bio: >-
   <p>
     I am a final-year Honors Program undergraduate student in Information Technology at
-    <a href="https://hcmus.edu.vn/" target="_blank">VNUHCM - University of Science</a>.
-    Separately, I lead research at the independent Mixture of Multimodal Experts (MoME)
-    group, advised by <a href="http://tuandang.info/" target="_blank">Tuan Dang</a>.
-    My research interests include computer vision, medical image analysis, multimodal learning,
-    and efficient expert-based neural architectures.
+    <a class="bio-org" href="https://hcmus.edu.vn/" target="_blank">VNUHCM - University of Science</a>.
+    My research focuses on <span class="bio-topic">multimodal and robust perception</span>,
+    <span class="bio-topic">generative models</span>, and
+    <span class="bio-topic">mixture-of-experts architectures</span>,
+    toward visual AI systems that remain reliable in real-world applications.
+  </p>
+  <p>
+    At VNUHCM - University of Science, I am a research assistant at the
+    <strong>Multimedia Synergy Lab (MSLab)</strong>, working on culturally grounded
+    text-to-image generation with
+    <a class="bio-person" href="https://ltnghia.github.io/" target="_blank">Dr. Trung-Nghia Le</a> and
+    <a class="bio-person" href="https://www.fit.hcmus.edu.vn/~tmtriet" target="_blank">Assoc. Prof. Minh-Triet Tran</a>.
+  </p>
+  <p>
+    Separately, I lead the independent <strong>Mixture of Multimodal Experts (MoME)</strong> research group,
+    where I work on efficient expert-based architectures for medical image analysis with
+    <a class="bio-person" href="https://nhatptnk8912.github.io/" target="_blank">Assoc. Prof. Nhat Ho</a>
+    and on robust multimodal 3D perception with
+    <a class="bio-person" href="https://www.cogniboticslab.org/member.php?id=tuandang" target="_blank">Asst. Prof. Tuan Dang</a>.
   </p>
 
 portrait_url: /assets/images/photos/me.png
@@ -34,13 +47,13 @@ education:
 - name: AI VIETNAM
   logo: /assets/images/badges/aivietnam.png
   dept: Extracurricular
-  position: Research Assistant
+  position: AI Resident
   date: Feb. 2024 - present
 - name: VNUHCM - University of Science
   logo: /assets/images/badges/logo_hcmus.png
   position: >-
     Faculty of Information Technology | Honors Program <br/>
-    Bachelor of Science student | GPA: 3.86/4.0
+    GPA: 3.86/4.0
   date: Sep. 2023 - present
 - name: Hoang Le Kha High School for the Gifted, Tay Ninh
   logo: /assets/images/badges/logo_hlk.png
@@ -49,9 +62,22 @@ education:
     GPA (Grade 12): 9.5/10.0
   date: Sep. 2020 - May 2023
 
+experience:
+- name: Trivita AI
+  logo: /assets/images/badges/logo_trivita.png
+  position: Intern Research Engineer
+  date: Sep. 2026 - present
+- name: Multimedia Synergy Lab (MSLab)
+  logo: /assets/images/badges/logo_mslab.png
+  position: Research Assistant
+  date: Aug. 2026 - present
+
 awards:
+- name: SSIP 2026 - Outstanding Project (Knowledge Gap Detection)
+  url: https://drive.google.com/file/d/1tm-hCTpYmz3PPVy17hxzZbYFQXCRUcez/view?usp=sharing
+  date: Jul. 2026
 - name: "IELTS Academic - Overall Band Score: 6.5"
-  url: https://drive.google.com/file/d/1SGcXOpoMmjvRFe8i2te8A3sUhWF94MQ2/view?usp=sharing
+  url: https://drive.google.com/file/d/15qk2aNvIXzWEcqsdQcjPq9uFR5osek8G/view?usp=sharing
   date: "Issued: Jun. 2026"
 - name: Data for Life Season 3 - Special Award
   url: https://drive.google.com/file/d/1v2ok6_anJuFJXxMfzI4v8Qu9o9yO3D8g/view?usp=sharing
