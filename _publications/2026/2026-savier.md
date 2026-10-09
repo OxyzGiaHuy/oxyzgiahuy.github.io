@@ -11,6 +11,9 @@ venue_class: review
 pub_pre: "Submitted to "
 abstract: >-
   A training-free, one-pass repair framework that grounds Vietnamese cultural text-to-image generation in human-verified evidence and reference photographs through Curator, prompt-blind Observer, and Refiner roles.
+mascot:
+  webp: /savier/savier_mascot.webp
+  fallback: /savier/savier_mascot.gif
 cover: /assets/images/covers/savier.png
 authors:
   - Gia Huy Thai*

@@ -143,3 +143,20 @@ div.lazy {
 .text-profile-bio p:last-child {
   margin-bottom: 0.75rem;
 }
+
+/* Paper mascot peeking over the top-right corner of a publication cover */
+.pub-cover {
+  position: relative;
+}
+.pub-mascot img {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 44%;
+  max-width: 92px;
+  height: auto;
+  transform: rotate(14deg);
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.18));
+}
