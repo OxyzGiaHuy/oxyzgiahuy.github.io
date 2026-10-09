@@ -2,9 +2,13 @@
 title: >-
   ELDER: Equivariance-preserving Downsampling for Efficient Low-Resolution Image Classification
 date: 2026-01-01 00:00:00 +0700
+# hidden for now; set published: true to show again
+published: false
 selected: true
 pub: "ACMLC"
 pub_date: "2026"
+venue_tag: "ACMLC'26"
+venue_class: acmlc
 abstract: >-
   A systematic study of equivariance-preserving downsampling for efficient low-resolution CNN classification. Achieves 81.78% accuracy on CIFAR-10 with only 570K parameters through architectural variants that maintain spatial information.
 cover: /assets/images/covers/elder.png
