@@ -14,6 +14,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 baseurl: "" # user site is served from the domain root
+url: "https://oxyzgiahuy.github.io" # used for absolute links in link previews
+description: >-
+  Gia Huy Thai, undergraduate researcher at VNUHCM - University of Science, working on robust multimodal perception, generative models, and mixture-of-experts.
+og_image: /assets/images/photos/og-image.jpg
 
 # Build settings
 markdown: kramdown
@@ -32,6 +36,13 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - elder/ # ELDER hidden for now; remove this line to publish it again
+  # internal notes and template demo pages, not part of the public site
+  - README.md
+  - BLOG_WRITING_RULES.md
+  - index_layout2.html
+  - mipnerf/
+  - mipnerf360/
+  - zipnerf/
 
 # timezone: Asia/Shanghai
 

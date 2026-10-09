@@ -1,0 +1,14 @@
+{%- assign meta_desc = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | normalize_whitespace | truncate: 160 -%}
+{%- if page.url == "/" -%}{%- assign meta_title = site.data.profile.navbar_name -%}{%- else -%}{%- assign meta_title = page.title | append: " - " | append: site.data.profile.navbar_name -%}{%- endif -%}
+    <meta name="description" content="{{ meta_desc | escape }}">
+    <meta name="author" content="{{ site.data.profile.primary_name }}">
+    <meta property="og:type" content="{% if page.layout == 'blog_post' %}article{% else %}website{% endif %}">
+    <meta property="og:site_name" content="{{ site.data.profile.navbar_name }}">
+    <meta property="og:title" content="{{ meta_title | escape }}">
+    <meta property="og:description" content="{{ meta_desc | escape }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:image" content="{{ site.og_image | absolute_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon/favicon-32.png' | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ '/assets/images/favicon/apple-touch-icon.png' | relative_url }}">
