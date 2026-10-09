@@ -105,3 +105,41 @@ div.lazy {
 .email-text {
     font-family: Source Code Pro, monospace;
 }
+
+/* Venue tags shown before publication titles */
+.venue-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  margin-right: 2px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #fff;
+  white-space: nowrap;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+.venue-default { background-color: #5d6d7e; }
+.venue-cvpr { background-color: #1a5276; }
+.venue-iccv { background-color: #21618c; }
+.venue-eccv { background-color: #2874a6; }
+.venue-icra { background-color: #c0392b; }
+.venue-arxiv { background-color: #b31b1b; }
+.venue-soict { background-color: #e67e22; }
+.venue-acmlc { background-color: #16a085; }
+.venue-review { background-color: #7f8c8d; }
+
+/* Bio highlights: research topics in orange, people and organizations as bold links */
+.text-profile-bio .bio-topic {
+  color: #c45f00;
+  font-weight: 600;
+}
+.text-profile-bio .bio-person,
+.text-profile-bio .bio-org {
+  font-weight: 600;
+}
+.text-profile-bio p:last-child {
+  margin-bottom: 0.75rem;
+}
